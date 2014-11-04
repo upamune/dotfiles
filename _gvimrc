@@ -1,3 +1,4 @@
+set imdisable
 syntax on
 colorscheme hybrid
 
