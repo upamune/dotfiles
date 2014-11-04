@@ -7,7 +7,6 @@ set shiftwidth=2
 " Ctrl-jでESCでできるようにする
 imap <c-j> <esc>
 
-
 "---------------------------
 " Start Neobundle Settings.
 "---------------------------
