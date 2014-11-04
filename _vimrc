@@ -74,6 +74,29 @@ NeoBundle 'Shougo/vimproc.vim', {
 " lightline.vim (ステータスラインをかっこよく)
 NeoBundle 'itchyny/lightline.vim'
 set laststatus=2
+" syntasticがエラーの時赤色にする(:call lightline#update)
+let g:lightline = {
+      \ 'active': {
+      \   'right': [ [ 'syntastic', 'lineinfo' ],
+      \              [ 'percent' ],
+      \              [ 'fileformat', 'fileencoding', 'filetype' ] ]
+      \ },
+      \ 'component_expand': {
+      \   'syntastic': 'SyntasticStatuslineFlag',
+      \ },
+      \ 'component_type': {
+      \   'syntastic': 'error',
+      \ }
+      \ }
+let g:syntastic_mode_map = { 'mode': 'passive' }
+augroup AutoSyntastic
+  autocmd!
+  autocmd BufWritePost *.c,*.cpp call s:syntastic()
+augroup END
+function! s:syntastic()
+  SyntasticCheck
+  call lightline#update()
+endfunction
 
 " Molokaiカラースキーム
 NeoBundle 'tomasr/molokai'
