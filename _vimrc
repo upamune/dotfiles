@@ -148,6 +148,9 @@ endfunction
 " vim-fugitive (git)
 NeoBundle 'tpope/vim-fugitive'
 
+" gitを扱う
+NeoBundle 'gregsexton/gitv'
+
 " Molokaiカラースキーム
 NeoBundle 'tomasr/molokai'
 " Hybiridカラースキーム
