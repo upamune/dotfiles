@@ -195,6 +195,9 @@ NeoBundle 'gregsexton/gitv'
 " s-<<<<とかを使えるように
 NeoBundle 'kana/vim-submode'
 
+" Python用補完プラグイン
+NeoBundle 'davidhalter/jedi-vim'
+
 " Molokaiカラースキーム
 NeoBundle 'tomasr/molokai'
 " Hybiridカラースキーム
