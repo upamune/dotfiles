@@ -35,7 +35,6 @@ nnoremap sQ :<C-u>bd<CR>
 nnoremap sb :<C-u>Unite buffer_tab -buffer-name=file<CR>
 nnoremap sB :<C-u>Unite buffer -buffer-name=file<CR>
 
-
 "---------------------------
 " Start Neobundle Settings.
 "---------------------------
@@ -59,7 +58,10 @@ let g:unite_source_file_mru_limit = 200
 
 " NERDTreeを設定 (ファイルビューアー)
 NeoBundle 'scrooloose/nerdtree'
- 
+
+" VimFiler (ファイルビューアー)
+NeoBundle 'Shougo/vimfiler'
+
 " indentLine (かしこいインデント)
 NeoBundle 'Yggdroot/indentLine'
  
@@ -183,6 +185,9 @@ NeoBundle 'tpope/vim-fugitive'
 " gitを扱う
 NeoBundle 'gregsexton/gitv'
 
+" s-<<<<とかを使えるように
+NeoBundle 'kana/vim-submode'
+
 " Molokaiカラースキーム
 NeoBundle 'tomasr/molokai'
 " Hybiridカラースキーム
@@ -201,5 +206,14 @@ NeoBundleCheck
 "-------------------------
 colorscheme hybrid
 syntax on
+
+call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
+call submode#enter_with('bufmove', 'n', '', 's<', '<C-w><')
+call submode#enter_with('bufmove', 'n', '', 's+', '<C-w>+')
+call submode#enter_with('bufmove', 'n', '', 's-', '<C-w>-')
+call submode#map('bufmove', 'n', '', '>', '<C-w>>')
+call submode#map('bufmove', 'n', '', '<', '<C-w><')
+call submode#map('bufmove', 'n', '', '+', '<C-w>+')
+call submode#map('bufmove', 'n', '', '-', '<C-w>-')
 
 
