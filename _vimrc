@@ -3,9 +3,23 @@ set tabstop=2
 set autoindent
 set expandtab
 set shiftwidth=2
- 
+
+"行番号を表示する
+set number
+
+" ゴミが生まれないようにする
+set nowritebackup
+set nobackup
+set noswapfile
+
+" 補完するときに大文字小文字を区別しない
+set infercase
+
 " Ctrl-jでESCでできるようにする
 imap <c-j> <esc>
+
+" jjでESCする
+imap jj <Esc>
 
 " 画面分割＆タブ関係
 nnoremap s <Nop>
@@ -37,9 +51,6 @@ nnoremap sB :<C-u>Unite buffer -buffer-name=file<CR>
 
 " ノーマルモード時だけ ; と : を入れ替える
 nnoremap ; :
-
-" Flake8(pythonの文法チェック)をlで呼び出す
-nnoremap l :call Flake8()
 
 "---------------------------
 " Start Neobundle Settings.
@@ -213,6 +224,8 @@ NeoBundle "kevinw/pyflakes-vim"
 " 文法チェック(pep8に準拠)
 NeoBundle "nvie/vim-flake8"
 
+" Gundo.vimアンドゥーツリーを作成
+NeoBundle "sjl/gundo.vim"
 
 " Molokaiカラースキーム
 NeoBundle 'tomasr/molokai'
