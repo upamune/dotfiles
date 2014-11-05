@@ -38,6 +38,9 @@ nnoremap sB :<C-u>Unite buffer -buffer-name=file<CR>
 " ノーマルモード時だけ ; と : を入れ替える
 nnoremap ; :
 
+" Flake8(pythonの文法チェック)をlで呼び出す
+nnoremap l :call Flake8()
+
 "---------------------------
 " Start Neobundle Settings.
 "---------------------------
@@ -91,7 +94,8 @@ let g:syntastic_warning_symbol = '⚠'
 let g:syntastic_javascript_checker = 'jshint'
 let g:syntastic_mode_map = {
       \ "mode" : "active",
-      \ "active_filetypes" : ["javascript", "json"],
+      \ "active_filetypes" : ["javascript", "json","vim"],
+      \ "passive_filetypes" : ["python"]
       \}
 let g:syntastic_check_on_open = 0 "ファイルオープン時にはチェックをしない
 let g:syntastic_check_on_save = 1 "ファイル保存時にはチェックを実施
@@ -197,6 +201,18 @@ NeoBundle 'kana/vim-submode'
 
 " Python用補完プラグイン
 NeoBundle 'davidhalter/jedi-vim'
+" rename用のマッピングを無効にしたため、代わりにコマンドを定義
+command! -nargs=0 JediRename :call jedi#rename()
+" pythonのrename用のマッピングがquickrunとかぶるため回避させる
+let g:jedi#rename_command = ""
+let g:jedi#pydoc = "k"
+
+" pyflakes(Python構文エラー検出)
+NeoBundle "kevinw/pyflakes-vim"
+
+" 文法チェック(pep8に準拠)
+NeoBundle "nvie/vim-flake8"
+
 
 " Molokaiカラースキーム
 NeoBundle 'tomasr/molokai'
