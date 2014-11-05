@@ -4,6 +4,9 @@ set autoindent
 set expandtab
 set shiftwidth=2
 
+" バックスペースでなんでも消せるようにする
+set backspace=indent,eol,start
+
 "行番号を表示する
 set number
 
@@ -51,6 +54,9 @@ nnoremap sB :<C-u>Unite buffer -buffer-name=file<CR>
 
 " ノーマルモード時だけ ; と : を入れ替える
 nnoremap ; :
+
+" Uでgundo開く
+nmap U :<C-u>GundoToggle<CR>
 
 "---------------------------
 " Start Neobundle Settings.
@@ -216,7 +222,6 @@ NeoBundle 'davidhalter/jedi-vim'
 command! -nargs=0 JediRename :call jedi#rename()
 " pythonのrename用のマッピングがquickrunとかぶるため回避させる
 let g:jedi#rename_command = ""
-let g:jedi#pydoc = "k"
 
 " pyflakes(Python構文エラー検出)
 NeoBundle "kevinw/pyflakes-vim"
@@ -226,6 +231,8 @@ NeoBundle "nvie/vim-flake8"
 
 " Gundo.vimアンドゥーツリーを作成
 NeoBundle "sjl/gundo.vim"
+let g:gundo_auto_preview = 0
+
 
 " Molokaiカラースキーム
 NeoBundle 'tomasr/molokai'
@@ -245,7 +252,6 @@ NeoBundleCheck
 "-------------------------
 colorscheme hybrid
 syntax on
-
 call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
 call submode#enter_with('bufmove', 'n', '', 's<', '<C-w><')
 call submode#enter_with('bufmove', 'n', '', 's+', '<C-w>+')
