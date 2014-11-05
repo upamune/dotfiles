@@ -35,6 +35,9 @@ nnoremap sQ :<C-u>bd<CR>
 nnoremap sb :<C-u>Unite buffer_tab -buffer-name=file<CR>
 nnoremap sB :<C-u>Unite buffer -buffer-name=file<CR>
 
+" ノーマルモード時だけ ; と : を入れ替える
+nnoremap ; :
+
 "---------------------------
 " Start Neobundle Settings.
 "---------------------------
@@ -86,6 +89,13 @@ let g:syntastic_enable_signs = 1
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '⚠'
 let g:syntastic_javascript_checker = 'jshint'
+let g:syntastic_mode_map = {
+      \ "mode" : "active",
+      \ "active_filetypes" : ["javascript", "json"],
+      \}
+let g:syntastic_check_on_open = 0 "ファイルオープン時にはチェックをしない
+let g:syntastic_check_on_save = 1 "ファイル保存時にはチェックを実施
+
 
 " Gips.vim (Gips.vim (矢印キーを使うとお叱りを受ける) 
 NeoBundle 'modsound/gips-vim.git'
