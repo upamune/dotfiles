@@ -83,6 +83,10 @@ NeoBundle 'grep.vim'
  
 " syntastic(シンタックスチェック)
 NeoBundle 'scrooloose/syntastic'
+let g:syntastic_enable_signs = 1
+let g:syntastic_error_symbol = '✗'
+let g:syntastic_warning_symbol = '⚠'
+let g:syntastic_javascript_checker = 'jshint'
 
 " Gips.vim (Gips.vim (矢印キーを使うとお叱りを受ける) 
 NeoBundle 'modsound/gips-vim.git'
