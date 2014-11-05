@@ -3,6 +3,7 @@ set tabstop=2
 set autoindent
 set expandtab
 set shiftwidth=2
+set smarttab
 
 " バックスペースでなんでも消せるようにする
 set backspace=indent,eol,start
@@ -231,8 +232,10 @@ NeoBundle "nvie/vim-flake8"
 
 " Gundo.vimアンドゥーツリーを作成
 NeoBundle "sjl/gundo.vim"
-let g:gundo_auto_preview = 0
+"let g:gundo_auto_preview = 0
 
+"しゃべる（かなり）
+NeoBundle 'supermomonga/shaberu.vim'
 
 " Molokaiカラースキーム
 NeoBundle 'tomasr/molokai'
@@ -260,5 +263,4 @@ call submode#map('bufmove', 'n', '', '>', '<C-w>>')
 call submode#map('bufmove', 'n', '', '<', '<C-w><')
 call submode#map('bufmove', 'n', '', '+', '<C-w>+')
 call submode#map('bufmove', 'n', '', '-', '<C-w>-')
-
 
