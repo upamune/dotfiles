@@ -239,6 +239,10 @@ NeoBundle "sjl/gundo.vim"
 "しゃべる（かなり）
 NeoBundle 'supermomonga/shaberu.vim'
 
+" Tweeterできるようにしようぜ
+NeoBundle 'basyura/TweetVim'
+NeoBundle 'basyura/twibill.vim'
+NeoBundle 'tyru/open-browser.vim'
 " Molokaiカラースキーム
 NeoBundle 'tomasr/molokai'
 " Hybiridカラースキーム
