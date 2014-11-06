@@ -221,6 +221,16 @@ NeoBundle 'kana/vim-submode'
 
 " Python用補完プラグイン
 NeoBundle 'davidhalter/jedi-vim'
+" docstringは表示しない
+autocmd FileType python setlocal completeopt-=preview
+autocmd FileType python setlocal omnifunc=jedi#completions
+" neocompleteとの連携をイイ感じにする
+let g:jedi#completions_enabled = 0
+let g:jedi#auto_vim_configuration = 0
+if !exists('g:neocomplete#force_omni_input_patterns')
+  let g:neocomplete#force_omni_input_patterns = {}
+endif
+let g:neocomplete#force_omni_input_patterns.python = '\h\w*\|'
 
 " Gundo.vimアンドゥーツリーを作成
 NeoBundle "sjl/gundo.vim"
