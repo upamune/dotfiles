@@ -126,3 +126,4 @@ alias mv='mv -i'
 alias mkdir='mkdir -p'
 
 alias hist='history'
+alias vimconfig='vim ~/.vimrc'
