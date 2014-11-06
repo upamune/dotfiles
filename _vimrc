@@ -74,6 +74,8 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " neocomplete ( 自動補完)
 NeoBundle 'Shougo/neocomplete.vim'
 let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#max_list = 10
+
 " Unite.vim
 NeoBundle 'Shougo/unite.vim'
 let g:unite_enable_start_insert=1
