@@ -221,16 +221,6 @@ NeoBundle 'kana/vim-submode'
 
 " Python用補完プラグイン
 NeoBundle 'davidhalter/jedi-vim'
-" rename用のマッピングを無効にしたため、代わりにコマンドを定義
-command! -nargs=0 JediRename :call jedi#rename()
-" pythonのrename用のマッピングがquickrunとかぶるため回避させる
-let g:jedi#rename_command = ""
-
-" pyflakes(Python構文エラー検出)
-NeoBundle "kevinw/pyflakes-vim"
-
-" 文法チェック(pep8に準拠)
-NeoBundle "nvie/vim-flake8"
 
 " Gundo.vimアンドゥーツリーを作成
 NeoBundle "sjl/gundo.vim"
