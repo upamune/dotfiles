@@ -239,6 +239,10 @@ NeoBundle "sjl/gundo.vim"
 "しゃべる（かなり）
 NeoBundle 'supermomonga/shaberu.vim'
 
+" Lingrのクライアント
+NeoBundle 'basyura/J6uil.vim'
+let g:J6uil_user     = 'jajkeqos'
+let g:J6uil_password = 'ZjbNXc7TqPTAvDmMVCgZ6XxQjo'
 " Tweeterできるようにしようぜ
 NeoBundle 'basyura/TweetVim'
 NeoBundle 'basyura/twibill.vim'
@@ -247,6 +251,7 @@ NeoBundle 'tyru/open-browser.vim'
 NeoBundle 'tomasr/molokai'
 " Hybiridカラースキーム
 NeoBundle 'w0ng/vim-hybrid'
+
 
 call neobundle#end()
  
@@ -269,4 +274,3 @@ call submode#map('bufmove', 'n', '', '>', '<C-w>>')
 call submode#map('bufmove', 'n', '', '<', '<C-w><')
 call submode#map('bufmove', 'n', '', '+', '<C-w>+')
 call submode#map('bufmove', 'n', '', '-', '<C-w>-')
-
