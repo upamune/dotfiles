@@ -19,11 +19,9 @@ set noswapfile
 " 補完するときに大文字小文字を区別しない
 set infercase
 
-" Ctrl-jでESCでできるようにする
-imap <c-j> <esc>
-
-" jjでESCする
+" jj or kkでESCする
 imap jj <Esc>
+imap kk <Esc>
 
 " 画面分割＆タブ関係
 nnoremap s <Nop>
@@ -239,14 +237,15 @@ NeoBundle "sjl/gundo.vim"
 "しゃべる（かなり）
 NeoBundle 'supermomonga/shaberu.vim'
 
-" Lingrのクライアント
-NeoBundle 'basyura/J6uil.vim'
-let g:J6uil_user     = 'jajkeqos'
-let g:J6uil_password = 'ZjbNXc7TqPTAvDmMVCgZ6XxQjo'
 " Tweeterできるようにしようぜ
 NeoBundle 'basyura/TweetVim'
 NeoBundle 'basyura/twibill.vim'
 NeoBundle 'tyru/open-browser.vim'
+
+NeoBundle "tyru/caw.vim.git"
+nmap <Leader>c <Plug>(caw:i:toggle)
+vmap <Leader>c <Plug>(caw:i:toggle)
+
 " Molokaiカラースキーム
 NeoBundle 'tomasr/molokai'
 " Hybiridカラースキーム
