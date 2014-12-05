@@ -98,6 +98,9 @@ HISTFILE=~/.zsh/.zsh_history
 HISTSIZE=1000000
 SAVEHIST=1000000
 
+#git 補完できるように
+fpath=(~/.zsh/complention $fpath)
+
 # 補完機能を有効にする
 autoload -Uz compinit
 compinit
