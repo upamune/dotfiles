@@ -57,6 +57,9 @@ nnoremap ; :
 " Uでgundo開く
 nmap U :<C-u>GundoToggle<CR>
 
+" ~/.pyenv/shimsを$PATHに追加
+let $PATH = "~/.pyenv/shims:".$PATH
+
 "---------------------------
 " Start Neobundle Settings.
 "---------------------------
@@ -115,6 +118,16 @@ let g:syntastic_mode_map = {
       \ "active_filetypes" : ["javascript", "json","vim"],
       \ "passive_filetypes" : ["python"]
       \}
+if executable("clang++")
+  let g:syntastic_cpp_compiler = 'clang++'
+  let g:syntastic_cpp_compiler_options = '--std=c++11 --stdlib=libc++'
+  let g:quickrun_config = {}
+  let g:quickrun_config['cpp/clang++11'] = {
+      \ 'cmdopt': '--std=c++11 --stdlib=libc++',
+      \ 'type': 'cpp/clang++'
+    \ }
+  let g:quickrun_config['cpp'] = {'type': 'cpp/clang++11'}
+endif
 let g:syntastic_check_on_open = 0 "ファイルオープン時にはチェックをしない
 let g:syntastic_check_on_save = 1 "ファイル保存時にはチェックを実施
 
@@ -133,6 +146,15 @@ NeoBundle 'Shougo/vimproc.vim', {
       \     'unix' : 'gmake',
       \    },
       \ }
+" neosnippet
+NeoBundle 'Shougo/neosnippet'
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+" Enable snipMate compatibility feature.
+let g:neosnippet#enable_snipmate_compatibility = 1
+" Tell Neosnippet about the other snippets
+let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
 
 " lightline.vim (ステータスラインをかっこよく)
 NeoBundle 'itchyny/lightline.vim'
@@ -217,8 +239,22 @@ NeoBundle 'gregsexton/gitv'
 " s-<<<<とかを使えるように
 NeoBundle 'kana/vim-submode'
 
-" Python用補完プラグイン
-NeoBundle 'davidhalter/jedi-vim'
+" DJANGO_SETTINGS_MODULE を自動設定
+NeoBundleLazy "lambdalisue/vim-django-support", {
+      \ "autoload": {
+      \   "filetypes": ["python", "python3", "djangohtml"]
+      \ }}
+
+" 補完用に jedi-vim を追加
+NeoBundle "davidhalter/jedi-vim"
+
+" pyenv 処理用に vim-pyenv を追加
+NeoBundleLazy "lambdalisue/vim-pyenv", {
+      \ "depends": ['davidhalter/jedi-vim'],
+      \ "autoload": {
+      \   "filetypes": ["python", "python3", "djangohtml"]
+      \ }}
+
 " docstringは表示しない
 autocmd FileType python setlocal completeopt-=preview
 autocmd FileType python setlocal omnifunc=jedi#completions
@@ -242,9 +278,13 @@ NeoBundle 'basyura/TweetVim'
 NeoBundle 'basyura/twibill.vim'
 NeoBundle 'tyru/open-browser.vim'
 
+" コメントをトグルする (\c)
 NeoBundle "tyru/caw.vim.git"
 nmap <Leader>c <Plug>(caw:i:toggle)
 vmap <Leader>c <Plug>(caw:i:toggle)
+
+" %%でディレクトリを展開する
+cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
 " Molokaiカラースキーム
 NeoBundle 'tomasr/molokai'

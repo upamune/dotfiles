@@ -119,7 +119,7 @@ setopt hist_ignore_all_dups
 alias la='ls -a'
 alias ll='ls -l'
  
-alias rm='rm -i'
+alias rm='rmtrash'
 alias cp='cp -i'
 alias mv='mv -i'
  
@@ -127,3 +127,4 @@ alias mkdir='mkdir -p'
 
 alias hist='history'
 alias vimconfig='vim ~/.vimrc'
+eval "$(rbenv init -)"
