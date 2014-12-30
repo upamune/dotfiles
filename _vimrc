@@ -15,6 +15,7 @@ set number
 set nowritebackup
 set nobackup
 set noswapfile
+set noundofile
 
 " 補完するときに大文字小文字を区別しない
 set infercase
@@ -278,14 +279,14 @@ NeoBundle 'basyura/TweetVim'
 NeoBundle 'basyura/twibill.vim'
 NeoBundle 'tyru/open-browser.vim'
 
-" コメントをトグルする (\c)
+" コメントをトグルする(\c)でできる
 NeoBundle "tyru/caw.vim.git"
 nmap <Leader>c <Plug>(caw:i:toggle)
 vmap <Leader>c <Plug>(caw:i:toggle)
 
-" %%でディレクトリを展開する
-cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
-
+" TypeScript用
+NeoBundle 'leafgarland/typescript-vim'
+NeoBundle 'clausreinke/typescript-tools'
 " Molokaiカラースキーム
 NeoBundle 'tomasr/molokai'
 " Hybiridカラースキーム
