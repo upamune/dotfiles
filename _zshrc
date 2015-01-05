@@ -122,7 +122,7 @@ setopt hist_ignore_all_dups
 alias la='ls -a'
 alias ll='ls -l'
  
-alias rm='rm -i'
+alias rm='rmtrash'
 alias cp='cp -i'
 alias mv='mv -i'
  
@@ -132,3 +132,5 @@ alias hist='history'
 alias vimconfig='vim ~/.vimrc'
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
+=======
+eval "$(rbenv init -)"
