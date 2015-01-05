@@ -130,3 +130,5 @@ alias mkdir='mkdir -p'
 
 alias hist='history'
 alias vimconfig='vim ~/.vimrc'
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
