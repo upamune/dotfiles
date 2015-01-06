@@ -1,4 +1,4 @@
-# Path to your oh-my-zsh installation.
+
 export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
@@ -131,4 +131,6 @@ alias mkdir='mkdir -p'
 alias hist='history'
 alias vimconfig='vim ~/.vimrc'
 
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
 eval "$(rbenv init -)"
