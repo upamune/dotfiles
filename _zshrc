@@ -130,4 +130,5 @@ alias mkdir='mkdir -p'
 
 alias hist='history'
 alias vimconfig='vim ~/.vimrc'
+
 eval "$(rbenv init -)"
