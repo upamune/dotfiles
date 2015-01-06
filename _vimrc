@@ -120,8 +120,8 @@ let g:syntastic_mode_map = {
       \ "passive_filetypes" : ["python"]
       \}
 if executable("clang++")
-  let g:syntastic_cpp_compiler = 'clang++'
-  let g:syntastic_cpp_compiler_options = '--std=c++11 --stdlib=libc++'
+  let g:syntastic_cpp_compiler = 'g++'
+  let g:syntastic_cpp_compiler_options = '--std=c++11'
   let g:quickrun_config = {}
   let g:quickrun_config['cpp/clang++11'] = {
       \ 'cmdopt': '--std=c++11 --stdlib=libc++',
