@@ -1,5 +1,5 @@
 " インデントをスペースだけにする "
-set tabstop=2
+
 set autoindent
 set expandtab
 set shiftwidth=2
@@ -120,8 +120,8 @@ let g:syntastic_mode_map = {
       \ "passive_filetypes" : ["python"]
       \}
 if executable("clang++")
-  let g:syntastic_cpp_compiler = 'clang++'
-  let g:syntastic_cpp_compiler_options = '--std=c++11 --stdlib=libc++'
+  let g:syntastic_cpp_compiler = 'g++'
+  let g:syntastic_cpp_compiler_options = '--std=c++11'
   let g:quickrun_config = {}
   let g:quickrun_config['cpp/clang++11'] = {
       \ 'cmdopt': '--std=c++11 --stdlib=libc++',
@@ -155,7 +155,7 @@ xmap <C-k>     <Plug>(neosnippet_expand_target)
 " Enable snipMate compatibility feature.
 let g:neosnippet#enable_snipmate_compatibility = 1
 " Tell Neosnippet about the other snippets
-let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
+let g:neosnippet#snippets_directory='~/dotfiles/vim-snippet'
 
 " lightline.vim (ステータスラインをかっこよく)
 NeoBundle 'itchyny/lightline.vim'
