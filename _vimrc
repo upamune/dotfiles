@@ -284,6 +284,9 @@ NeoBundle "tyru/caw.vim.git"
 nmap <Leader>c <Plug>(caw:i:toggle)
 vmap <Leader>c <Plug>(caw:i:toggle)
 
+" Emmet用 (c-tで展開)
+NeoBundleInstall 'mattn/emmet-vim'
+let g:user_emmet_leader_key='<c-t>'
 " TypeScript用
 NeoBundle 'leafgarland/typescript-vim'
 NeoBundle 'clausreinke/typescript-tools'
