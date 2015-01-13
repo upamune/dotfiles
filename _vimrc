@@ -55,6 +55,13 @@ nnoremap sB :<C-u>Unite buffer -buffer-name=file<CR>
 " ノーマルモード時だけ ; と : を入れ替える
 nnoremap ; :
 
+" Yを行末までのヤンクにする
+nnoremap Y y$
+
+" カッコを対応させる
+set showmatch
+set matchtime=1
+
 " Uでgundo開く
 nmap U :<C-u>GundoToggle<CR>
 
@@ -73,7 +80,7 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 " neobundle自体をneobundleで管理
 NeoBundleFetch 'Shougo/neobundle.vim'
 
-" neocomplete ( 自動補完)
+" neocomplete (自動補完)
 NeoBundle 'Shougo/neocomplete.vim'
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#max_list = 10
@@ -104,6 +111,19 @@ let g:quickrun_config = {
       \} 
 " C-cでQuickRunを終了させる "
 nnoremap <expr><silent> <C-c> quickrun#is_running() ?  quickrun#sweep_sessions() : "\<C-c>"
+
+" vim-scouter
+function! Scouter(file, ...)
+  let pat = '^\s*$\|^\s*"'
+  let lines = readfile(a:file)
+  if !a:0 || !a:1
+    let lines = split(substitute(join(lines, "\n"), '\n\s*\\', '', 'g'), "\n")
+  endif
+  return len(filter(lines,'v:val !~ pat'))
+endfunction
+command! -bar -bang -nargs=? -complete=file Scouter
+\        echo Scouter(empty(<q-args>) ? $MYVIMRC : expand(<q-args>), <bang>0)
+
 
 " grep.vim (つよいgrep)
 NeoBundle 'grep.vim'
