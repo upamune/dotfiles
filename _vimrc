@@ -128,6 +128,13 @@ command! -bar -bang -nargs=? -complete=file Scouter
 " grep.vim (つよいgrep)
 NeoBundle 'grep.vim'
  
+" Markdown Preview
+NeoBundle 'kannokanno/previm'
+
+" OpenBrowser
+NeoBundle 'tyru/open-browser.vim'
+'
+
 " syntastic(シンタックスチェック)
 NeoBundle 'scrooloose/syntastic'
 let g:syntastic_enable_signs = 1
@@ -297,7 +304,6 @@ NeoBundle 'supermomonga/shaberu.vim'
 " Tweeterできるようにしようぜ
 NeoBundle 'basyura/TweetVim'
 NeoBundle 'basyura/twibill.vim'
-NeoBundle 'tyru/open-browser.vim'
 
 " コメントをトグルする(\c)でできる
 NeoBundle "tyru/caw.vim.git"
