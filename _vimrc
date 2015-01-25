@@ -133,7 +133,10 @@ NeoBundle 'kannokanno/previm'
 
 " OpenBrowser
 NeoBundle 'tyru/open-browser.vim'
-'
+
+" <ESC>押下後のIM切替開始までの反応が遅い場合はttimeoutlenを短く設定
+set timeout timeoutlen=1000 ttimeoutlen=100
+
 
 " syntastic(シンタックスチェック)
 NeoBundle 'scrooloose/syntastic'
