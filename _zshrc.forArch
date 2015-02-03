@@ -132,21 +132,8 @@ alias vimconfig='vim ~/.vimrc'
 
 alias gif='git flow'
 
+export GTK_IM_MODULE=ibus
+export XMODIFIERS=@im=ibus
+export QT_IM_MODULE=ibus
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
-eval "$(rbenv init -)"
-
-if [ -z "$TMUX" -a -z "$STY" ]; then
-  if type tmuxx >/dev/null 2>&1; then
-    tmuxx
-  elif type tmux >/dev/null 2>&1; then
-    if tmux has-session && tmux list-sessions | egrep -q '.*]$'; then
-      # デタッチ済みセッションが存在する
-      tmux attach && echo "tmux attached session "
-    else
-      tmux new-session && echo "tmux created new session"
-    fi
-  elif type screen >/dev/null 2>&1; then
-    screen -rx || screen -D -RR
-  fi
-fi

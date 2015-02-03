@@ -132,6 +132,16 @@ command! -bar -bang -nargs=? -complete=file Scouter
 " grep.vim (つよいgrep)
 NeoBundle 'grep.vim'
  
+" Markdown Preview
+NeoBundle 'kannokanno/previm'
+
+" OpenBrowser
+NeoBundle 'tyru/open-browser.vim'
+
+" <ESC>押下後のIM切替開始までの反応が遅い場合はttimeoutlenを短く設定
+set timeout timeoutlen=1000 ttimeoutlen=100
+
+
 " syntastic(シンタックスチェック)
 NeoBundle 'scrooloose/syntastic'
 let g:syntastic_enable_signs = 1
@@ -301,7 +311,6 @@ NeoBundle 'supermomonga/shaberu.vim'
 " Tweeterできるようにしようぜ
 NeoBundle 'basyura/TweetVim'
 NeoBundle 'basyura/twibill.vim'
-NeoBundle 'tyru/open-browser.vim'
 
 " コメントをトグルする(\c)でできる
 NeoBundle "tyru/caw.vim.git"
