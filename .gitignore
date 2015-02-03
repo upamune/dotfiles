@@ -1,5 +1,6 @@
-vimfiles/
+vimfiles
 .DS_Store
 *.swp
 *~
+
 
