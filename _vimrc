@@ -331,6 +331,7 @@ NeoBundleCheck
 " End Neobundle Settings.
 "-------------------------
 colorscheme hybrid
+
 syntax on
 call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
 call submode#enter_with('bufmove', 'n', '', 's<', '<C-w><')
