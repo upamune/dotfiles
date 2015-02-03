@@ -85,6 +85,10 @@ NeoBundle 'Shougo/neocomplete.vim'
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#max_list = 10
 
+" ヘルプ日本語化
+NeoBundle 'vim-jp/vimdoc-ja'
+set helplang=ja,en
+
 " Unite.vim
 NeoBundle 'Shougo/unite.vim'
 let g:unite_enable_start_insert=1
