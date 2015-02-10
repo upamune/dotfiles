@@ -55,6 +55,13 @@ nnoremap sB :<C-u>Unite buffer -buffer-name=file<CR>
 " ノーマルモード時だけ ; と : を入れ替える
 nnoremap ; :
 
+" Yを行末までのヤンクにする
+nnoremap Y y$
+
+" カッコを対応させる
+set showmatch
+set matchtime=1
+
 " Uでgundo開く
 nmap U :<C-u>GundoToggle<CR>
 
@@ -73,10 +80,14 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 " neobundle自体をneobundleで管理
 NeoBundleFetch 'Shougo/neobundle.vim'
 
-" neocomplete ( 自動補完)
+" neocomplete (自動補完)
 NeoBundle 'Shougo/neocomplete.vim'
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#max_list = 10
+
+" ヘルプ日本語化
+NeoBundle 'vim-jp/vimdoc-ja'
+set helplang=ja,en
 
 " Unite.vim
 NeoBundle 'Shougo/unite.vim'
@@ -105,9 +116,32 @@ let g:quickrun_config = {
 " C-cでQuickRunを終了させる "
 nnoremap <expr><silent> <C-c> quickrun#is_running() ?  quickrun#sweep_sessions() : "\<C-c>"
 
+" vim-scouter
+function! Scouter(file, ...)
+  let pat = '^\s*$\|^\s*"'
+  let lines = readfile(a:file)
+  if !a:0 || !a:1
+    let lines = split(substitute(join(lines, "\n"), '\n\s*\\', '', 'g'), "\n")
+  endif
+  return len(filter(lines,'v:val !~ pat'))
+endfunction
+command! -bar -bang -nargs=? -complete=file Scouter
+\        echo Scouter(empty(<q-args>) ? $MYVIMRC : expand(<q-args>), <bang>0)
+
+
 " grep.vim (つよいgrep)
 NeoBundle 'grep.vim'
  
+" Markdown Preview
+NeoBundle 'kannokanno/previm'
+
+" OpenBrowser
+NeoBundle 'tyru/open-browser.vim'
+
+" <ESC>押下後のIM切替開始までの反応が遅い場合はttimeoutlenを短く設定
+set timeout timeoutlen=1000 ttimeoutlen=100
+
+
 " syntastic(シンタックスチェック)
 NeoBundle 'scrooloose/syntastic'
 let g:syntastic_enable_signs = 1
@@ -277,19 +311,12 @@ NeoBundle 'supermomonga/shaberu.vim'
 " Tweeterできるようにしようぜ
 NeoBundle 'basyura/TweetVim'
 NeoBundle 'basyura/twibill.vim'
-NeoBundle 'tyru/open-browser.vim'
 
 " コメントをトグルする(\c)でできる
 NeoBundle "tyru/caw.vim.git"
 nmap <Leader>c <Plug>(caw:i:toggle)
 vmap <Leader>c <Plug>(caw:i:toggle)
 
-" Emmet用 (c-tで展開)
-NeoBundleInstall 'mattn/emmet-vim'
-let g:user_emmet_leader_key='<c-t>'
-" TypeScript用
-NeoBundle 'leafgarland/typescript-vim'
-NeoBundle 'clausreinke/typescript-tools'
 " Molokaiカラースキーム
 NeoBundle 'tomasr/molokai'
 " Hybiridカラースキーム
@@ -308,6 +335,7 @@ NeoBundleCheck
 " End Neobundle Settings.
 "-------------------------
 colorscheme hybrid
+
 syntax on
 call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
 call submode#enter_with('bufmove', 'n', '', 's<', '<C-w><')
