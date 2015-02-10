@@ -136,3 +136,6 @@ alias gif='git flow'
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 eval "$(rbenv init -)"
+export GOPATH=/Users/Masato/go1.4
+export GOROOT=/usr/local/opt/go/libexec
+export PATH=/Users/Masato/go1.4/bin:/usr/local/opt/go/libexec/bin:/Users/Masato/go1.4/bin:/usr/local/opt/go/libexec/bin:/Users/Masato/.rbenv/shims:/usr/local/heroku/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
