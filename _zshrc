@@ -133,6 +133,11 @@ alias vimconfig='vim ~/.vimrc'
 
 alias gif='git flow'
 
+### For Vim
+export HATENA_USER_NAME="jajkeqos"
+export HATENA_API_KEY="p2qlp1j4xy"
+export HATENA_API_ENDPOINT="https://blog.hatena.ne.jp/jajkeqos/jajkeqos.hatenablog.com/atom"
+
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 eval "$(rbenv init -)"
