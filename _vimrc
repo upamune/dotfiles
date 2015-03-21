@@ -25,6 +25,9 @@ set termencoding=UTF-8
 " 補完するときに大文字小文字を区別しない
 set infercase
 
+" <ESC>押下後のIM切替開始までの反応が遅い場合はttimeoutlenを短く設定
+set timeout timeoutlen=1000 ttimeoutlen=75
+
 " jj or kkでESCする
 imap jj <Esc>
 imap kk <Esc>
@@ -142,20 +145,6 @@ NeoBundle 'kannokanno/previm'
 
 " OpenBrowser
 NeoBundle 'tyru/open-browser.vim'
-
-NeoBundle 'mattn/webapi-vim'
-NeoBundle 'moznion/hateblo.vim'
-let g:hateblo_vim = {
-    \ 'user':         'jajkeqos',
-    \ 'api_key':      'p2qlp1j4xy',
-    \ 'api_endpoint': 'https://blog.hatena.ne.jp/jajkeqos/jajkeqos.hatenablog.com/atom',
-    \ 'WYSIWYG_mode': 0,
-    \ 'always_yes':   0,
-    \ 'edit_command': 'edit'
-    \ }
-
-" <ESC>押下後のIM切替開始までの反応が遅い場合はttimeoutlenを短く設定
-set timeout timeoutlen=1000 ttimeoutlen=100
 
 
 " syntastic(シンタックスチェック)
@@ -298,6 +287,18 @@ NeoBundle "sjl/gundo.vim"
 NeoBundle "tyru/caw.vim.git"
 nmap <Leader>c <Plug>(caw:i:toggle)
 vmap <Leader>c <Plug>(caw:i:toggle)
+
+NeoBundle 'moznion/hateblo.vim', {
+          \ 'depends': ['mattn/webapi-vim', 'Shougo/unite.vim']
+  \ }
+let g:hateblo_vim = {
+    \ 'user':         $HATENA_USER_NAME,
+    \ 'api_key':      $HATENA_API_KEY,
+    \ 'api_endpoint': $HATENA_API_ENDPOINT,
+    \ 'WYSIWYG_mode': 0,
+    \ 'always_yes':   0,
+    \ 'edit_command': 'edit'
+    \ }
 
 " Molokaiカラースキーム
 NeoBundle 'tomasr/molokai'
