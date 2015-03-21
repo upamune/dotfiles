@@ -17,6 +17,11 @@ set nobackup
 set noswapfile
 set noundofile
 
+" UTF-8
+set encoding=UTF-8
+set fileencoding=UTF-8
+set termencoding=UTF-8
+
 " 補完するときに大文字小文字を区別しない
 set infercase
 
@@ -137,6 +142,17 @@ NeoBundle 'kannokanno/previm'
 
 " OpenBrowser
 NeoBundle 'tyru/open-browser.vim'
+
+NeoBundle 'mattn/webapi-vim'
+NeoBundle 'moznion/hateblo.vim'
+let g:hateblo_vim = {
+    \ 'user':         'jajkeqos',
+    \ 'api_key':      'p2qlp1j4xy',
+    \ 'api_endpoint': 'https://blog.hatena.ne.jp/jajkeqos/jajkeqos.hatenablog.com/atom',
+    \ 'WYSIWYG_mode': 0,
+    \ 'always_yes':   0,
+    \ 'edit_command': 'edit'
+    \ }
 
 " <ESC>押下後のIM切替開始までの反応が遅い場合はttimeoutlenを短く設定
 set timeout timeoutlen=1000 ttimeoutlen=100
@@ -274,43 +290,9 @@ NeoBundle 'gregsexton/gitv'
 " s-<<<<とかを使えるように
 NeoBundle 'kana/vim-submode'
 
-" DJANGO_SETTINGS_MODULE を自動設定
-NeoBundleLazy "lambdalisue/vim-django-support", {
-      \ "autoload": {
-      \   "filetypes": ["python", "python3", "djangohtml"]
-      \ }}
-
-" 補完用に jedi-vim を追加
-NeoBundle "davidhalter/jedi-vim"
-
-" pyenv 処理用に vim-pyenv を追加
-NeoBundleLazy "lambdalisue/vim-pyenv", {
-      \ "depends": ['davidhalter/jedi-vim'],
-      \ "autoload": {
-      \   "filetypes": ["python", "python3", "djangohtml"]
-      \ }}
-
-" docstringは表示しない
-autocmd FileType python setlocal completeopt-=preview
-autocmd FileType python setlocal omnifunc=jedi#completions
-" neocompleteとの連携をイイ感じにする
-let g:jedi#completions_enabled = 0
-let g:jedi#auto_vim_configuration = 0
-if !exists('g:neocomplete#force_omni_input_patterns')
-  let g:neocomplete#force_omni_input_patterns = {}
-endif
-let g:neocomplete#force_omni_input_patterns.python = '\h\w*\|'
-
 " Gundo.vimアンドゥーツリーを作成
 NeoBundle "sjl/gundo.vim"
 "let g:gundo_auto_preview = 0
-
-"しゃべる（かなり）
-NeoBundle 'supermomonga/shaberu.vim'
-
-" Tweeterできるようにしようぜ
-NeoBundle 'basyura/TweetVim'
-NeoBundle 'basyura/twibill.vim'
 
 " コメントをトグルする(\c)でできる
 NeoBundle "tyru/caw.vim.git"
