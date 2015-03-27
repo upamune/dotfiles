@@ -1,7 +1,7 @@
 # dotfiles
 [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/jajkeqos/dotfiles?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-##Hateblo
+## Hateblo
 環境変数を設定する必要があります
 - $HATENA_USER_NAME
 - $HATENA_API_KEY
@@ -28,4 +28,10 @@
 :HatebloDelete
 現在のバッファのエントリを削除します． 上述の方法で開いたバッファでしか実行できません．
 
+
+## Vim for Ruby
+- コード補完のためにRSense  ```brew install rsense``` *JREをインストールする必要あり ```rsenseHome``` にRSenseのインストールフォルダを指定する必要がある。
+- 静的解析ツールのrubocop ```gem install rubocop```
+- リファレンス用のrefe2 ```gem install refe2 && bitclust setup``` *リファレンスのセットアップ
+- メソッド定義元へのジャンプ機能のctags ```brew install ctags```
 
