@@ -276,6 +276,32 @@ NeoBundle 'tpope/vim-fugitive'
 " gitを扱う
 NeoBundle 'gregsexton/gitv'
 
+"####### For Ruby #######
+" コード補完
+NeoBundle 'marcus/rsense'
+let g:rsenseHome = '/usr/local/bin/rsense'
+let g:rsenseUseOmniFunc = 1
+NeoBundle 'supermomonga/neocomplete-rsense.vim'
+let g:acp_enableAtStartup = 0
+let g:neocomplete#enable_smart_case = 1
+if !exists('g:neocomplete#force_omni_input_patterns')
+  let g:neocomplete#force_omni_input_patterns = {}
+endif
+let g:neocomplete#force_omni_input_patterns.ruby = '[^.*\t]\.\w*\|\h\w*::'
+
+" 静的解析
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': ['ruby'] }
+let g:syntastic_ruby_checkers = ['rubocop']
+
+" ドキュメント参照
+NeoBundle 'thinca/vim-ref'
+NeoBundle 'yuku-t/vim-ref-ri'
+
+" メソッド定義元へのジャンプ
+NeoBundle 'szw/vim-tags'
+"####### For Ruby #######
+
+
 " s-<<<<とかを使えるように
 NeoBundle 'kana/vim-submode'
 
