@@ -17,8 +17,16 @@ set nobackup
 set noswapfile
 set noundofile
 
+" UTF-8
+set encoding=UTF-8
+set fileencoding=UTF-8
+set termencoding=UTF-8
+
 " 補完するときに大文字小文字を区別しない
 set infercase
+
+" <ESC>押下後のIM切替開始までの反応が遅い場合はttimeoutlenを短く設定
+set timeout timeoutlen=1000 ttimeoutlen=75
 
 " jj or kkでESCする
 imap jj <Esc>
@@ -144,9 +152,6 @@ NeoBundle 'kannokanno/previm'
 
 " OpenBrowser
 NeoBundle 'tyru/open-browser.vim'
-
-" <ESC>押下後のIM切替開始までの反応が遅い場合はttimeoutlenを短く設定
-set timeout timeoutlen=1000 ttimeoutlen=100
 
 
 " syntastic(シンタックスチェック)
@@ -278,6 +283,7 @@ NeoBundle 'tpope/vim-fugitive'
 " gitを扱う
 NeoBundle 'gregsexton/gitv'
 
+<<<<<<< HEAD
 " s-<<<<とかを使えるように
 NeoBundle 'kana/vim-submode'
 
@@ -287,26 +293,57 @@ autocmd FileType python setlocal omnifunc=jedi#completions
 " neocompleteとの連携をイイ感じにする
 let g:jedi#completions_enabled = 0
 let g:jedi#auto_vim_configuration = 0
+=======
+"####### For Ruby #######
+" コード補完
+NeoBundle 'marcus/rsense'
+let g:rsenseHome = '/usr/local/bin/rsense'
+let g:rsenseUseOmniFunc = 1
+NeoBundle 'supermomonga/neocomplete-rsense.vim'
+let g:acp_enableAtStartup = 0
+let g:neocomplete#enable_smart_case = 1
+>>>>>>> 54745459e46d2e29cf45934729fc200b611e8551
 if !exists('g:neocomplete#force_omni_input_patterns')
   let g:neocomplete#force_omni_input_patterns = {}
 endif
-let g:neocomplete#force_omni_input_patterns.python = '\h\w*\|'
+let g:neocomplete#force_omni_input_patterns.ruby = '[^.*\t]\.\w*\|\h\w*::'
+
+" 静的解析
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': ['ruby'] }
+let g:syntastic_ruby_checkers = ['rubocop']
+
+" ドキュメント参照
+NeoBundle 'thinca/vim-ref'
+NeoBundle 'yuku-t/vim-ref-ri'
+
+" メソッド定義元へのジャンプ
+NeoBundle 'szw/vim-tags'
+"####### For Ruby #######
+
+
+" s-<<<<とかを使えるように
+NeoBundle 'kana/vim-submode'
 
 " Gundo.vimアンドゥーツリーを作成
 NeoBundle "sjl/gundo.vim"
 "let g:gundo_auto_preview = 0
 
-"しゃべる（かなり）
-NeoBundle 'supermomonga/shaberu.vim'
-
-" Tweeterできるようにしようぜ
-NeoBundle 'basyura/TweetVim'
-NeoBundle 'basyura/twibill.vim'
-
 " コメントをトグルする(\c)でできる
 NeoBundle "tyru/caw.vim.git"
 nmap <Leader>c <Plug>(caw:i:toggle)
 vmap <Leader>c <Plug>(caw:i:toggle)
+
+NeoBundle 'moznion/hateblo.vim', {
+          \ 'depends': ['mattn/webapi-vim', 'Shougo/unite.vim']
+  \ }
+let g:hateblo_vim = {
+    \ 'user':         $HATENA_USER_NAME,
+    \ 'api_key':      $HATENA_API_KEY,
+    \ 'api_endpoint': $HATENA_API_ENDPOINT,
+    \ 'WYSIWYG_mode': 0,
+    \ 'always_yes':   0,
+    \ 'edit_command': 'edit'
+    \ }
 
 " Molokaiカラースキーム
 NeoBundle 'tomasr/molokai'
