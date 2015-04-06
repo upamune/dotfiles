@@ -82,8 +82,15 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 
 " neocomplete (自動補完)
 NeoBundle 'Shougo/neocomplete.vim'
-let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#max_list = 10
+let g:acp_enableAtStartup = 0
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_smart_case = 1
+if !exists('g:neocomplete#force_omni_input_patterns')
+    let g:neocomplete#force_omni_input_patterns = {}
+  endif
+  let g:neocomplete#force_omni_input_patterns.ruby = '[^.*\t]\.\w*\|\h\w*::'
+
 
 " ヘルプ日本語化
 NeoBundle 'vim-jp/vimdoc-ja'
@@ -274,22 +281,6 @@ NeoBundle 'gregsexton/gitv'
 " s-<<<<とかを使えるように
 NeoBundle 'kana/vim-submode'
 
-" DJANGO_SETTINGS_MODULE を自動設定
-NeoBundleLazy "lambdalisue/vim-django-support", {
-      \ "autoload": {
-      \   "filetypes": ["python", "python3", "djangohtml"]
-      \ }}
-
-" 補完用に jedi-vim を追加
-NeoBundle "davidhalter/jedi-vim"
-
-" pyenv 処理用に vim-pyenv を追加
-NeoBundleLazy "lambdalisue/vim-pyenv", {
-      \ "depends": ['davidhalter/jedi-vim'],
-      \ "autoload": {
-      \   "filetypes": ["python", "python3", "djangohtml"]
-      \ }}
-
 " docstringは表示しない
 autocmd FileType python setlocal completeopt-=preview
 autocmd FileType python setlocal omnifunc=jedi#completions
@@ -321,6 +312,24 @@ vmap <Leader>c <Plug>(caw:i:toggle)
 NeoBundle 'tomasr/molokai'
 " Hybiridカラースキーム
 NeoBundle 'w0ng/vim-hybrid'
+
+"Ruby用設定
+"コード補完
+NeoBundle 'marcus/rsense'
+NeoBundle 'supermomonga/neocomplete-rsense.vim'
+let g:rsenseHome = '/usr/local/bin/rsense'
+let g:rsenseUseOmniFunc = 1
+"静的解析
+NeoBundle 'scrooloose/syntastic'
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': ['ruby'] }
+let g:syntastic_ruby_checkers = ['rubocop'] }
+"ドキュメント
+NeoBundle 'thinca/vim-ref'
+NeoBundle 'yuku-t/vim-ref-ri'
+"メソッド定義元へジャンプ
+NeoBundle 'szw/vim-tags'
+" 自動で閉じる
+NeoBundle 'tpope/vim-endwise'
 
 
 call neobundle#end()
