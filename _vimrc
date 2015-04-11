@@ -121,13 +121,20 @@ NeoBundle 'Townk/vim-autoclose'
  
 " quickrun (コード実行)
 NeoBundle 'thinca/vim-quickrun'
-" QuickRunしたら下に分割して結果を表示
+" QuickRunしたら右に分割して結果を表示
 let g:quickrun_config = {
-      \   "_" : {
-      \       "outputter/buffer/split" : ":botright",
-      \       "outputter/buffer/close_on_empty" : 1
+      \   "cpp/g++" : {
+      \       "cmdopt" : "-std=c++0x",
+      \       "hook/time/enable" : 1
       \   },
-      \} 
+      \   "_" : {
+      \       "outputter/buffer/close_on_empty" : 1,
+      \       "runner" : "vimproc",
+      \       "runner/vimproc/updatetime" : 60,
+      \       "hook/time/enable" : 1
+      \   },
+      \}
+set splitright
 " C-cでQuickRunを終了させる "
 nnoremap <expr><silent> <C-c> quickrun#is_running() ?  quickrun#sweep_sessions() : "\<C-c>"
 
@@ -283,17 +290,8 @@ NeoBundle 'tpope/vim-fugitive'
 " gitを扱う
 NeoBundle 'gregsexton/gitv'
 
-<<<<<<< HEAD
 " s-<<<<とかを使えるように
 NeoBundle 'kana/vim-submode'
-
-" docstringは表示しない
-autocmd FileType python setlocal completeopt-=preview
-autocmd FileType python setlocal omnifunc=jedi#completions
-" neocompleteとの連携をイイ感じにする
-let g:jedi#completions_enabled = 0
-let g:jedi#auto_vim_configuration = 0
-=======
 "####### For Ruby #######
 " コード補完
 NeoBundle 'marcus/rsense'
@@ -302,7 +300,7 @@ let g:rsenseUseOmniFunc = 1
 NeoBundle 'supermomonga/neocomplete-rsense.vim'
 let g:acp_enableAtStartup = 0
 let g:neocomplete#enable_smart_case = 1
->>>>>>> 54745459e46d2e29cf45934729fc200b611e8551
+
 if !exists('g:neocomplete#force_omni_input_patterns')
   let g:neocomplete#force_omni_input_patterns = {}
 endif
@@ -319,10 +317,6 @@ NeoBundle 'yuku-t/vim-ref-ri'
 " メソッド定義元へのジャンプ
 NeoBundle 'szw/vim-tags'
 "####### For Ruby #######
-
-
-" s-<<<<とかを使えるように
-NeoBundle 'kana/vim-submode'
 
 " Gundo.vimアンドゥーツリーを作成
 NeoBundle "sjl/gundo.vim"
