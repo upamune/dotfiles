@@ -11,6 +11,10 @@ set backspace=indent,eol,start
 "行番号を表示する
 set number
 
+" 現在現在行をハイライトする
+set cursorline
+
+
 " ゴミが生まれないようにする
 set nowritebackup
 set nobackup
@@ -130,11 +134,11 @@ let g:quickrun_config = {
       \   "_" : {
       \       "outputter/buffer/close_on_empty" : 1,
       \       "runner" : "vimproc",
-      \       "runner/vimproc/updatetime" : 60,
-      \       "hook/time/enable" : 1
+      \       "runner/vimproc/updatetime" : 60
       \   },
       \}
 set splitright
+
 " C-cでQuickRunを終了させる "
 nnoremap <expr><silent> <C-c> quickrun#is_running() ?  quickrun#sweep_sessions() : "\<C-c>"
 
@@ -353,7 +357,7 @@ let g:rsenseUseOmniFunc = 1
 "静的解析
 NeoBundle 'scrooloose/syntastic'
 let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': ['ruby'] }
-let g:syntastic_ruby_checkers = ['rubocop'] }
+"let g:syntastic_ruby_checkers = ['rubocop'] }
 "ドキュメント
 NeoBundle 'thinca/vim-ref'
 NeoBundle 'yuku-t/vim-ref-ri'
