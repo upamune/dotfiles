@@ -6,3 +6,14 @@
 - リファレンス用のrefe2 ```gem install refe2 && bitclust setup``` *リファレンスのセットアップ
 - メソッド定義元へのジャンプ機能のctags ```brew install ctags```
 
+## ZSH
+
+### Antigen の導入
+
+```
+mkdir $HOME/.zsh
+cd $HOME/.zsh
+git clone git@github.com:zsh-users/antigen.git
+
+```
+
