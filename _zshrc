@@ -86,10 +86,15 @@ case ${OSTYPE} in
       alias -g C='| xsel --input --clipboard'
     fi
 
+
+    # HOME直下に.nvmが存在したら環境変数を設定する
+    if [ -d $HOME/.nvm ] ; then
+      source /usr/share/nvm/init-nvm.sh
+    fi
     # nvmが存在したらnvmのinitとnodeのバージョンを指定する
     if which nvm > /dev/null 2>&1 ; then
-      source /usr/share/nvm/init-nvm.sh
       nvm use v0.10.38
+      export PATH=$HOME/.nvm/v0.10.38/bin:$PATH
     fi
   ;;
 esac
