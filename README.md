@@ -1,19 +1,26 @@
-# dotfiles
+# Initialize
 
-## Vim for Ruby
+```
+chmod u+x init.sh
+./init.sh
+```
+
+
+## Vim 
+
+### For Ruby
 - コード補完のためにRSense  ```brew install rsense``` *JREをインストールする必要あり ```rsenseHome``` にRSenseのインストールフォルダを指定する必要がある。
 - 静的解析ツールのrubocop ```gem install rubocop```
 - リファレンス用のrefe2 ```gem install refe2 && bitclust setup``` *リファレンスのセットアップ
 - メソッド定義元へのジャンプ機能のctags ```brew install ctags```
 
-## ZSH
+## Zsh
 
-### Antigen の導入
+### 主なプラグイン
 
-```
-mkdir $HOME/.zsh
-cd $HOME/.zsh
-git clone git@github.com:zsh-users/antigen.git
+### 使用テーマ
 
-```
+### エイリアス
+
+### キーバインド
 
