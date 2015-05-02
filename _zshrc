@@ -200,7 +200,22 @@ if [[ -f $HOME/.zsh/antigen/antigen.zsh ]]; then
     autoload -Uz add-zsh-hook
     add-zsh-hook chpwd _cdd_chpwd
   fi
-  
 
 fi
 
+############################
+#| |_ _ __ ___  _   ___    #
+#| __| '_ ` _ \| | | \ \/ /#
+#| |_| | | | | | |_| |>  < #
+# \__|_| |_| |_|\__,_/_/\_\#
+############################
+
+if [ -z "$PS1" ]; then return ; fi
+
+if [ -z $TMUX ] ; then
+  if [ -z `tmux ls` ] ; then
+    tmux
+  else
+    tmux attach
+  fi
+fi
