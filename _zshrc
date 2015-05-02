@@ -166,13 +166,13 @@ if [[ -f $HOME/.zsh/antigen/antigen.zsh ]]; then
   antigen bundle zsh-users/zsh-completions src
   antigen bundle zsh-users/zsh-syntax-highlighting
   antigen bundle mollifier/anyframe
+  antigen bundle m4i/cdd
   antigen apply
 
   # zsh-completions の設定
   fpath=($HOME/.zsh/zsh-completions/src(N-/) $fpath)
 
   # anyframe の設定
-
   # Ctrl-Pでコマンドを挿入できるようにする
   function peco-put-history() {  
     builtin history -n -r 1 \
@@ -181,7 +181,6 @@ if [[ -f $HOME/.zsh/antigen/antigen.zsh ]]; then
   }
   zle -N peco-put-history 
   bindkey '^x^p' peco-put-history
-
   # Ctrl-xwでtmuxのウィンドウを切り替えられるようにする
   function peco-tmux() {
    local i=$(tmux lsw | awk '/active.$/ {print NR-1}')    
@@ -193,6 +192,15 @@ if [[ -f $HOME/.zsh/antigen/antigen.zsh ]]; then
   }
   zle -N peco-tmux 
   bindkey '^xw' peco-tmux
+
+  # cdd の設定
+  if [[ -f $HOME/.antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-m4i-SLASH-cdd.git/cdd ]]; then
+    source $HOME/.antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-m4i-SLASH-cdd.git/cdd
+    touch $CDD_FILE
+    autoload -Uz add-zsh-hook
+    add-zsh-hook chpwd _cdd_chpwd
+  fi
+  
 
 fi
 
