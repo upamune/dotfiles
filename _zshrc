@@ -25,6 +25,11 @@ colors
 # 補完機能を有効にする
 autoload -Uz compinit
 compinit
+# C-w の挙動を変える(細かく消す)
+autoload -Uz select-word-style 
+select-word-style default
+zstyle ':zle:*' word-chars " /=;@:{},|"
+zstyle ':zle:*' word-style unspecified
 
 # Emacs 風キーバインドにする
 bindkey -e
