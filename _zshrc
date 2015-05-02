@@ -188,12 +188,13 @@ fi
 # \__|_| |_| |_|\__,_/_/\_\#
 ############################
 
-if [ -z "$PS1" ]; then return ; fi
-
-if [ -z $TMUX ] ; then
-  if [ -z `tmux ls` ] ; then
-    tmux
-  else
-    tmux attach
+# tmuxがインストールされていたら自動的に起動してアタッチする
+if which tmux > /dev/null 2>&1 ; then
+  if [ -z $TMUX ] ; then
+    if [ -z `tmux ls` ] ; then
+      tmux
+    else
+      tmux attach
+    fi
   fi
 fi
