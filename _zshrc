@@ -47,6 +47,7 @@ setopt hist_ignore_all_dups
 setopt interactive_comments
 
 # エイリアス
+alias l='ls --color=auto'
 alias ls='ls --color=auto'
 alias la='ls -a'
 alias ll='ls -l'
@@ -56,6 +57,8 @@ alias mkdir='mkdir -p'
 alias hist='history'
 alias vimconfig='vim ~/.vimrc'
 alias zshconfig='vim ~/.zshrc'
+alias -g L='| less'
+alias -g G='| grep'
 
 #OS 別設定
 case ${OSTYPE} in
