@@ -145,5 +145,9 @@ esac
 
 if [[ -f $HOME/.zsh/antigen/antigen.zsh ]]; then
   source $HOME/.zsh/antigen/antigen.zsh
+  antigen bundle zsh-users/zsh-completions src
   antigen apply
+
+  # zsh-completions の設定
+  fpath=($HOME/.zsh/zsh-completions/src(N-/) $fpath)
 fi
