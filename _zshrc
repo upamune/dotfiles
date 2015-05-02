@@ -165,9 +165,21 @@ if [[ -f $HOME/.zsh/antigen/antigen.zsh ]]; then
   source $HOME/.zsh/antigen/antigen.zsh
   antigen bundle zsh-users/zsh-completions src
   antigen bundle zsh-users/zsh-syntax-highlighting
+  antigen bundle mollifier/anyframe
   antigen apply
 
   # zsh-completions の設定
   fpath=($HOME/.zsh/zsh-completions/src(N-/) $fpath)
 
+  # anyframe の設定
+
+  # Ctrl-Pでコマンドを挿入できるようにする
+  function peco-put-history() {  
+    builtin history -n -r 1 \
+      | anyframe-selector-auto "$LBUFFER" \
+      | anyframe-action-put 
+  }
+  zle -N peco-put-history 
+  bindkey '^x^p' peco-put-history
 fi
+
