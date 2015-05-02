@@ -61,8 +61,18 @@ setopt interactive_comments
 
 # ディレクトリ名だけでcdできるようにする
 setopt AUTO_CD
+
 # ディレクトリスタックをcdでできるようにする
 setopt AUTO_PUSHD
+
+# Ctrl-Dでzshを終了しない
+setopt IGNORE_EOF
+
+# Ctrl-Q/Ctrl-Sのフローコントロールを無効にする
+setopt NO_FLOW_CONTROL
+
+# beep音を無効にする
+setopt NO_BEEP
 
 # エイリアス
 alias l='ls --color=auto'
