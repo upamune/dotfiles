@@ -12,15 +12,16 @@
 #|__/     |__/             |_|             #
 
 
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
 # 環境変数
 export LANG=ja_JP.UTF-8
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+#git 補完できるように
+fpath=(~/.zsh/complention $fpath)
  
 # 色を使用出来るようにする
 autoload -Uz colors
 colors
-
 # 補完機能を有効にする
 autoload -Uz compinit
 compinit
@@ -28,6 +29,7 @@ compinit
 # Emacs 風キーバインドにする
 bindkey -e
  
+
 # ヒストリの設定
 HISTFILE=~/.zsh/.zsh_history
 HISTSIZE=1000000
@@ -40,8 +42,6 @@ setopt share_history
 # 同じコマンドをヒストリに残さない
 setopt hist_ignore_all_dups
 
-#git 補完できるように
-fpath=(~/.zsh/complention $fpath)
 
 # '#' 以降をコメントとして扱う
 setopt interactive_comments
@@ -50,7 +50,6 @@ setopt interactive_comments
 alias ls='ls --color=auto'
 alias la='ls -a'
 alias ll='ls -l'
-alias rm='rmtrash'
 alias cp='cp -i'
 alias mv='mv -i'
 alias mkdir='mkdir -p'
@@ -62,9 +61,10 @@ alias zshconfig='vim ~/.zshrc'
 case ${OSTYPE} in
   # For MacOS
   darwin*)
+    echo hi
     # rmtrashが存在したらrmをrmtrashにエイリアスする
     if which rmtrash > /dev/null 2>&1 ; then
-      alias rm='rmtrash'
+      alias -g rm='rmtrash'
     fi
 
     # Cでクリップボードにコピーできるようにする
@@ -85,5 +85,12 @@ case ${OSTYPE} in
     if which xsel > /dev/null 2>&1 ; then
       alias -g C='| xsel --input --clipboard'
     fi
+
+    # nvmが存在したらnvmのinitとnodeのバージョンを指定する
+    if which nvm > /dev/null 2>&1 ; then
+      source /usr/share/nvm/init-nvm.sh
+      nvm use v0.10.38
+    fi
   ;;
 esac
+
