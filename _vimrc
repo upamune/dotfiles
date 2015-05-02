@@ -1,5 +1,3 @@
-" インデントをスペースだけにする "
-
 set autoindent
 set expandtab
 set shiftwidth=2
@@ -77,27 +75,6 @@ set matchtime=1
 " Uでgundo開く
 nmap U :<C-u>GundoToggle<CR>
 
-" insertモード時のみ数字列と記号列を入れ替える
-inoremap  1 !
-inoremap  2 @
-inoremap  3 #
-inoremap  4 $
-inoremap  5 %
-inoremap  6 ^
-inoremap  7 &
-inoremap  8 *
-inoremap  9 (
-inoremap  0 )
-inoremap  ! 1
-inoremap  @ 2
-inoremap  # 3
-inoremap  $ 4
-inoremap  % 5
-inoremap  ^ 6
-inoremap  & 7
-inoremap  * 8
-inoremap  ( 9
-inoremap  ) 0
 
 "---------------------------
 " Start Neobundle Settings.
