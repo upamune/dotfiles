@@ -54,7 +54,9 @@ setopt hist_reduce_blanks
 setopt share_history
 # 同じコマンドをヒストリに残さない
 setopt hist_ignore_all_dups
-
+# 履歴をインクリメンタルサーチできるようにする
+bindkey '^r' \  history-incremental-pattern-search-backward 
+bindkey '^s' \  history-incremental-pattern-search-forward
 
 # '#' 以降をコメントとして扱う
 setopt interactive_comments
