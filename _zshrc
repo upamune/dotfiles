@@ -64,8 +64,10 @@ setopt interactive_comments
 # ディレクトリ名だけでcdできるようにする
 setopt AUTO_CD
 
-# ディレクトリスタックをcdでできるようにする
-setopt AUTO_PUSHD
+# 最近移動したディレクトリに移動できるようにする
+autoload -Uz add-zsh-hook
+autoload -Uz chpwd_recent_dirs cdr
+add-zsh-hook chpwd chpwd_recent_dirs
 
 # Ctrl-Dでzshを終了しない
 setopt IGNORE_EOF
