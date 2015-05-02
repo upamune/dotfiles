@@ -35,8 +35,13 @@ zstyle ':zle:*' word-style unspecified
 bindkey -e
  
 
+# プロンプトの設定
+PROMPT="[%n@ %~] %% "
+RPROMPT="[%*]"
+
+
 # ヒストリの設定
-HISTFILE=~/.zsh/.zsh_history
+HISTFILE=~/.zsh_history
 HISTSIZE=1000000
 SAVEHIST=1000000
 HIST_STAMPS="mm/dd/yyyy"
