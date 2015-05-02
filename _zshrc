@@ -16,6 +16,7 @@
 # 環境変数
 export LANG=ja_JP.UTF-8
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+
 #git 補完できるように
 fpath=(~/.zsh/complention $fpath)
  
@@ -25,6 +26,8 @@ colors
 # 補完機能を有効にする
 autoload -Uz compinit
 compinit
+# 補完時に大文字と小文字を区別しない
+zstyle ':complention:*' matcher-list 'm:{a-z}={A-Z}'
 # C-w の挙動を変える(細かく消す)
 autoload -Uz select-word-style 
 select-word-style default
@@ -55,6 +58,11 @@ setopt hist_ignore_all_dups
 
 # '#' 以降をコメントとして扱う
 setopt interactive_comments
+
+# ディレクトリ名だけでcdできるようにする
+setopt AUTO_CD
+# ディレクトリスタックをcdでできるようにする
+setopt AUTO_PUSHD
 
 # エイリアス
 alias l='ls --color=auto'
