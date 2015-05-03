@@ -22,7 +22,7 @@ export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
 #git 補完できるように
 fpath=(~/.zsh/complention $fpath)
- 
+
 # 色を使用出来るようにする
 autoload -Uz colors
 colors
@@ -32,14 +32,14 @@ compinit
 # 補完時に大文字と小文字を区別しない
 zstyle ':complention:*' matcher-list 'm:{a-z}={A-Z}'
 # C-w の挙動を変える(細かく消す)
-autoload -Uz select-word-style 
+autoload -Uz select-word-style
 select-word-style default
 zstyle ':zle:*' word-chars " /=;@:{},|"
 zstyle ':zle:*' word-style unspecified
 
 # Emacs 風キーバインドにする
 bindkey -e
- 
+
 # ヒストリの設定
 HISTFILE=~/.zsh_history
 HISTSIZE=1000000
@@ -52,7 +52,7 @@ setopt share_history
 # 同じコマンドをヒストリに残さない
 setopt hist_ignore_all_dups
 # 履歴をインクリメンタルサーチできるようにする
-bindkey '^r' history-incremental-pattern-search-backward 
+bindkey '^r' history-incremental-pattern-search-backward
 bindkey '^s' history-incremental-pattern-search-forward
 
 # '#' 以降をコメントとして扱う
@@ -89,6 +89,9 @@ alias vimconfig='vim ~/.vimrc'
 alias zshconfig='vim ~/.zshrc'
 alias -g L='| less'
 alias -g G='| grep'
+alias -g v='gvim'
+alias -g vim='gvim'
+
 
 #OS 別設定
 case ${OSTYPE} in
@@ -132,7 +135,7 @@ case ${OSTYPE} in
   ;;
 esac
 
-########################################                          
+########################################
 #    _          _   _                  #
 #   / \   _ __ | |_(_) __ _  ___ _ __  #
 #  / _ \ | '_ \| __| |/ _` |/ _ \ '_ \ #
@@ -156,23 +159,23 @@ if [[ -f $HOME/.zsh/antigen/antigen.zsh ]]; then
 
   # anyframe の設定
   # Ctrl-Pでコマンドを挿入できるようにする
-  function peco-put-history() {  
+  function peco-put-history() {
     builtin history -n -r 1 \
       | anyframe-selector-auto "$LBUFFER" \
-      | anyframe-action-put 
+      | anyframe-action-put
   }
-  zle -N peco-put-history 
+  zle -N peco-put-history
   bindkey '^x^p' peco-put-history
   # Ctrl-xwでtmuxのウィンドウを切り替えられるようにする
   function peco-tmux() {
-   local i=$(tmux lsw | awk '/active.$/ {print NR-1}')    
+   local i=$(tmux lsw | awk '/active.$/ {print NR-1}')
    local f='#{window_index}: #{window_name}#{window_flags} #{pane_current_path}'
   tmux lsw -F "$f" \
     | anyframe-selector-auto "" --initial-index $i \
     | cut -d ':' -f 1 \
     | anyframe-action-execute tmux select-window -t
   }
-  zle -N peco-tmux 
+  zle -N peco-tmux
   bindkey '^xw' peco-tmux
 
   # cdd の設定
