@@ -139,9 +139,15 @@ NeoBundle 'Shougo/unite.vim'
 let g:unite_enable_start_insert=1
 let g:unite_source_history_yank_enable =1
 let g:unite_source_file_mru_limit = 200
+NeoBundle 'Shougo/unite-outline'
 
 " VimFiler (ファイルビューアー)
 NeoBundle 'Shougo/vimfiler'
+
+" 
+NeoBundle 'majutsushi/tagbar'
+
+
 
 " indentLine ( インデントを表示する)
 NeoBundle 'Yggdroot/indentLine'
@@ -301,13 +307,49 @@ endfunction
 " \___\___/"
 "          "
 """"""""""""
+NeoBundle 'dgryski/vim-godef'
+NeoBundle 'vim-jp/vim-go-extra'
+set path+=$GOPATH/src/**
+let g:gofmt_command = 'goimports'
+au BufWritePre *.go Fmt
+au BufNewFile,BufRead *.go set sw=4 noexpandtab ts=4 completeopt=menu,preview
+au FileType go compiler go
+
+let g:tagbar_type_go = {
+    \ 'ctagstype' : 'go',
+    \ 'kinds'     : [
+        \ 'p:package',
+        \ 'i:imports:1',
+        \ 'c:constants',
+        \ 'v:variables',
+        \ 't:types',
+        \ 'n:interfaces',
+        \ 'w:fields',
+        \ 'e:embedded',
+        \ 'm:methods',
+        \ 'r:constructor',
+        \ 'f:functions'
+    \ ],
+    \ 'sro' : '.',
+    \ 'kind2scope' : {
+        \ 't' : 'ctype',
+        \ 'n' : 'ntype'
+    \ },
+    \ 'scope2kind' : {
+        \ 'ctype' : 't',
+        \ 'ntype' : 'n'
+    \ },
+    \ 'ctagsbin'  : 'gotags',
+    \ 'ctagsargs' : '-sort -silent'
+\ }
+
 
 """""""""""""""""""
-"  ___  _     _   "     
-" / __|| |_ _| |_ "     
-"| (_|_   _|_   _|"     
-" \___||_|   |_|  "     
-"                 "     
+"  ___  _     _   "
+" / __|| |_ _| |_ "
+"| (_|_   _|_   _|"
+" \___||_|   |_|  "
+"                 "
 """""""""""""""""""
 
 if executable("clang++")
@@ -347,4 +389,5 @@ call submode#map('bufmove', 'n', '', '+', '<C-w>+')
 call submode#map('bufmove', 'n', '', '-', '<C-w>-')
  
 colorscheme hybrid
+filetype plugin indent on
 syntax on
