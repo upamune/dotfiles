@@ -51,6 +51,9 @@ go get -u github.com/jstemmer/gotags
 - zsh-syntax-highlighting
 - anyframe
 - cdd
+  - tmuxのウィンドウに移動できる
+- cdr
+  - 最近移動したディレクトリに移動する
 
 ### 使用テーマ
 - amuse
@@ -71,7 +74,6 @@ go get -u github.com/jstemmer/gotags
   - G => | grep
   - v => gvim
   - vim => gvim
-
   - MacOS
     - rm => rmtrash
     - C => | pbcopy
