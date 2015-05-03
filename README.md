@@ -6,7 +6,10 @@ chmod u+x init.sh
 ```
 
 
-## Vim 
+## Vim
+
+- 行末の無駄な空白を削除する
+  - ```:FixWhiteSpace```
 
 ### For C++
 
@@ -35,6 +38,8 @@ go get -u github.com/jstemmer/gotags
   - ```:Import fmt```
 - 整形する
   - ```:Fmt```
+- タグにジャンプできるウィンドウを出す
+  - ```:Tagbar```
 
 ### For Ruby
 - コード補完のためにRSense  ```brew install rsense``` *JREをインストールする必要あり ```rsenseHome``` にRSenseのインストールフォルダを指定する必要がある。
