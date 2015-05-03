@@ -144,8 +144,15 @@ NeoBundle 'Shougo/unite-outline'
 " VimFiler (ファイルビューアー)
 NeoBundle 'Shougo/vimfiler'
 
-" 
+" いい感じにタグジャンプできるようになる
 NeoBundle 'majutsushi/tagbar'
+
+" 行の余計なスペースを可視化する
+NeoBundle 'bronson/vim-trailing-whitespace'
+if neobundle#tap('vim-trailing-whitespace')
+    " uniteでスペースが表示されるので、設定でOFFにします。
+    let g:extra_whitespace_ignored_filetypes = ['unite']
+endif
 
 
 
