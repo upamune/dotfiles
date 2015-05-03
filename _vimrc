@@ -1,6 +1,32 @@
-set autoindent
+""""""""""""""""""""""""""""""""""""""""""""""""""
+"     __   _(_)_ __ ___  _ __ ___  | |__  _   _  "
+"     \ \ / / | '_ ` _ \| '__/ __| | '_ \| | | | "
+"  _   \ V /| | | | | | | | | (__  | |_) | |_| | "
+" (_)   \_/ |_|_| |_| |_|_|  \___| |_.__/ \__, | "
+"                                         |___/  "
+"    _        _ _                                "
+"   (_) __ _ (_) | _____  __ _  ___  ___         "
+"   | |/ _` || | |/ / _ \/ _` |/ _ \/ __|        "
+"   | | (_| || |   <  __/ (_| | (_) \__ \        "
+"  _/ |\__,_|/ |_|\_\___|\__, |\___/|___/        "
+" |__/     |__/             |_|                  "
+""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+""""""""""""""""""""""""""
+" ____            _      "
+"| __ )  __ _ ___(_) ___ "
+"|  _ \ / _` / __| |/ __|"
+"| |_) | (_| \__ \ | (__ "
+"|____/ \__,_|___/_|\___|"
+"                        "
+""""""""""""""""""""""""""
+
+" タブ文字の代わりに半角スペースを使用する
 set expandtab
+" タブ幅を半角スペース2つ分にする
 set shiftwidth=2
+set smartindent
 set smarttab
 
 " バックスペースでなんでも消せるようにする
@@ -11,7 +37,6 @@ set number
 
 " 現在現在行をハイライトする
 set cursorline
-
 
 " ゴミが生まれないようにする
 set nowritebackup
@@ -27,9 +52,15 @@ set termencoding=UTF-8
 " 補完するときに大文字小文字を区別しない
 set infercase
 
-" <ESC>押下後のIM切替開始までの反応が遅い場合はttimeoutlenを短く設定
-set timeout timeoutlen=1000 ttimeoutlen=75
 
+""""""""""""""""""""""""""""""""""""""
+" _  __          ____  _           _ "
+"| |/ /___ _   _| __ )(_)_ __   __| |"
+"| ' // _ \ | | |  _ \| | '_ \ / _` |"
+"| . \  __/ |_| | |_) | | | | | (_| |"
+"|_|\_\___|\__, |____/|_|_| |_|\__,_|"
+"          |___/                     "
+""""""""""""""""""""""""""""""""""""""
 " jj or kkでESCする
 imap jj <Esc>
 imap kk <Esc>
@@ -44,8 +75,6 @@ nnoremap sJ <C-w>J
 nnoremap sK <C-w>K
 nnoremap sL <C-w>L
 nnoremap sH <C-w>H
-nnoremap sn gt
-nnoremap sp gT
 nnoremap sr <C-w>r
 nnoremap s= <C-w>=
 nnoremap sw <C-w>w
@@ -62,7 +91,7 @@ nnoremap sQ :<C-u>bd<CR>
 nnoremap sb :<C-u>Unite buffer_tab -buffer-name=file<CR>
 nnoremap sB :<C-u>Unite buffer -buffer-name=file<CR>
 
-" ノーマルモード時だけ ; と : を入れ替える
+" ノーマルモード時だけ ; と : を入れ替える (US用)
 nnoremap ; :
 
 " Yを行末までのヤンクにする
@@ -72,13 +101,14 @@ nnoremap Y y$
 set showmatch
 set matchtime=1
 
-" Uでgundo開く
-nmap U :<C-u>GundoToggle<CR>
 
-
-"---------------------------
-" Start Neobundle Settings.
-"---------------------------
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+" _   _            ____                  _ _       "
+"| \ | | ___  ___ | __ ) _   _ _ __   __| | | ___  "
+"|  \| |/ _ \/ _ \|  _ \| | | | '_ \ / _` | |/ _ \ "
+"| |\  |  __/ (_) | |_) | |_| | | | | (_| | |  __/ "
+"|_| \_|\___|\___/|____/ \__,_|_| |_|\__,_|_|\___| "
+""""""""""""""""""""""""""""""""""""""""""""""""""""
 " bundleで管理するディレクトリを指定
 set runtimepath+=~/.vim/bundle/neobundle.vim/
  
@@ -318,6 +348,8 @@ NeoBundle 'szw/vim-tags'
 " Gundo.vimアンドゥーツリーを作成
 NeoBundle "sjl/gundo.vim"
 "let g:gundo_auto_preview = 0
+" Uでgundo開く
+nmap U :<C-u>GundoToggle<CR>
 
 " コメントをトグルする(\c)でできる
 NeoBundle "tyru/caw.vim.git"
@@ -382,3 +414,6 @@ call submode#map('bufmove', 'n', '', '>', '<C-w>>')
 call submode#map('bufmove', 'n', '', '<', '<C-w><')
 call submode#map('bufmove', 'n', '', '+', '<C-w>+')
 call submode#map('bufmove', 'n', '', '-', '<C-w>-')
+
+
+
