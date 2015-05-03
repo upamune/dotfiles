@@ -8,6 +8,11 @@ chmod u+x init.sh
 
 ## Vim 
 
+### For C++
+
+
+### For Go
+
 ### For Ruby
 - コード補完のためにRSense  ```brew install rsense``` *JREをインストールする必要あり ```rsenseHome``` にRSenseのインストールフォルダを指定する必要がある。
 - 静的解析ツールのrubocop ```gem install rubocop```
