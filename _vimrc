@@ -52,6 +52,9 @@ set termencoding=UTF-8
 " 補完するときに大文字小文字を区別しない
 set infercase
 
+" カッコを対応させる
+set showmatch
+set matchtime=1
 
 """"""""""""""""""""""""""""""""""""""
 " _  __          ____  _           _ "
@@ -96,11 +99,6 @@ nnoremap ; :
 
 " Yを行末までのヤンクにする
 nnoremap Y y$
-
-" カッコを対応させる
-set showmatch
-set matchtime=1
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " _   _            ____                  _ _       "
