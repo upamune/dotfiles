@@ -42,18 +42,47 @@ go get -u github.com/jstemmer/gotags
   - ```:Tagbar```
 
 ### For Ruby
-- コード補完のためにRSense  ```brew install rsense``` *JREをインストールする必要あり ```rsenseHome``` にRSenseのインストールフォルダを指定する必要がある。
-- 静的解析ツールのrubocop ```gem install rubocop```
-- リファレンス用のrefe2 ```gem install refe2 && bitclust setup``` *リファレンスのセットアップ
-- メソッド定義元へのジャンプ機能のctags ```brew install ctags```
+
 
 ## Zsh
 
-### 主なプラグイン
+### プラグイン
+- zsh-completions
+- zsh-syntax-highlighting
+- anyframe
+- cdd
 
 ### 使用テーマ
+- amuse
 
 ### エイリアス
+  - c => clear
+  - h => history
+  - l => ls --color=auto
+  - ls => ls --color=auto
+  - la => ls -a
+  - ll => ls -l
+  - cp => cp -i
+  - mv => mv -i
+  - mkdir => mkdir -p
+  - vimconfig => 'vim ~/.vimrc'
+  - zshconfig => 'vim ~/.zshrc'
+  - L => | less
+  - G => | grep
+  - v => gvim
+  - vim => gvim
+
+  - MacOS
+    - rm => rmtrash
+    - C => | pbcopy
+  - Linux
+    - C => | xsel --input --clipboard
 
 ### キーバインド
+  - Ctrl-r => 履歴をインクリメンタルサーチする(後方)
+  - Ctrl-s => 履歴をインクリメンタルサーチする(前方)
+  - Ctrl-x + Ctrl-p => pecoを使って履歴からコマンドを挿入する
+  - Ctrl-x + w => pecoでtmuxのウィンドウを切り替える
+
+
 
