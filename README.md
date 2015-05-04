@@ -42,6 +42,19 @@ go get -u github.com/jstemmer/gotags
   - ```:Tagbar```
 
 ### For Ruby
+依存関係がいくつかあるのでまずインストールしてください。あときちんとgemにPATHが通っているかどうかも確かめてください。 [参考](http://jajkeqos.com/2015/05/04/vim-ruby-env/)
+
+```
+yaourt -S jdk8-openjdk
+wget http://cx4a.org/pub/rsense/rsense-0.3.tar.bz2
+bzip2 -dc rsense-0.3.tar.bz2 | tar xvf -
+sudo cp -r rsense-0.3 /usr/local/lib
+sudo chmod +x /usr/local/lib/rsense-0.3/bin/rsense
+gem install rubocop refe2
+bitclust setup
+```
+
+
 - RSenseを使用しての補完
   - ```RSense```依存
 - 保存時にrubocopを使用してのシンタックスチェック
