@@ -58,3 +58,16 @@ if [[ ! -d $HOME/.zsh/antigen ]] ; then
   mkdir -p ~/.zsh/ && cd ~/.zsh && git clone https://github.com/zsh-users/antigen.git
 fi
 
+echo """
+
+    _    _ _   ____                     _
+   / \  | | | |  _ \  ___  _ __   ___  | |
+  / _ \ | | | | | | |/ _ \| '_ \ / _ \ | |
+ / ___ \| | | | |_| | (_) | | | |  __/ |_|
+/_/   \_\_|_| |____/ \___/|_| |_|\___| (_)
+
+
+But some gems and PATH is not good.
+Please install manually yourself by reading README !
+
+"""
