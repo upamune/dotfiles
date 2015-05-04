@@ -158,7 +158,7 @@ endif
 
 " indentLine ( インデントを表示する)
 NeoBundle 'Yggdroot/indentLine'
- 
+
 " quickrun (コード実行)
 NeoBundle 'thinca/vim-quickrun'
 " QuickRunしたら右に分割して結果を表示
@@ -213,7 +213,7 @@ NeoBundle "tyru/caw.vim.git"
 nmap <Leader>c <Plug>(caw:i:toggle)
 vmap <Leader>c <Plug>(caw:i:toggle)
 
-" Gundo 
+" Gundo
 NeoBundle "sjl/gundo.vim"
 " 移動と同時にプレビューしない
 let g:gundo_auto_preview = 0
@@ -306,6 +306,28 @@ endfunction
 "|_|_\\_,_|_.__/\_, |"
 "               |__/ "
 """"""""""""""""""""""
+" Rsense Ruby用補完
+NeoBundle 'marcus/rsense'
+NeoBundle 'supermomonga/neocomplete-rsense.vim'
+let g:rsenseHome = '/usr/local/lib/rsense-0.3'
+let g:rsenseUseOmniFunc = 1
+
+" Neocomplete
+if !exists('g:neocomplete#force_omni_input_patterns')
+  let g:neocomplete#force_omni_input_patterns = {}
+endif
+let g:neocomplete#force_omni_input_patterns.ruby = '[^.*\t]\.\w*\|\h\w*::'
+
+" Rubocop シンタックスチェック
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': ['ruby'] }
+let g:syntastic_ruby_checkers = ['rubocop']
+
+" ドキュメント参照
+NeoBundle 'thinca/vim-ref'
+NeoBundle 'yuku-t/vim-ref-ri'
+
+" Endを自動で挿入する
+NeoBundle 'tpope/vim-endwise'
 
 """"""""""""
 "  ___     "
@@ -394,7 +416,7 @@ call submode#map('bufmove', 'n', '', '>', '<C-w>>')
 call submode#map('bufmove', 'n', '', '<', '<C-w><')
 call submode#map('bufmove', 'n', '', '+', '<C-w>+')
 call submode#map('bufmove', 'n', '', '-', '<C-w>-')
- 
+
 colorscheme hybrid
 filetype plugin indent on
 syntax on

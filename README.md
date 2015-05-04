@@ -42,7 +42,16 @@ go get -u github.com/jstemmer/gotags
   - ```:Tagbar```
 
 ### For Ruby
-
+- RSenseを使用しての補完
+  - ```RSense```依存
+- 保存時にrubocopを使用してのシンタックスチェック
+- ```Shift+K```でドキュメントを参照する
+  - ```refe2```依存
+- ```end``` を自動で挿入する
+- 関数をアウトライン表示
+  - ```:Unite outline```
+- タグにジャンプできるウィンドウを出す
+  - ```:Tagbar```
 
 ## Zsh
 
