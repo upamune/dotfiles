@@ -90,7 +90,7 @@ alias zshconfig='vim ~/.zshrc'
 alias -g L='| less'
 alias -g G='| grep'
 alias -g v='gvim'
-alias -g vim='gvim'
+alias -g vi='vim'
 
 
 #OS 別設定
@@ -205,3 +205,4 @@ if which tmux > /dev/null 2>&1 ; then
     fi
   fi
 fi
+PATH="/usr/local/heroku/bin:$PATH"
