@@ -95,7 +95,7 @@ bitclust setup
   - L => | less
   - G => | grep
   - v => gvim
-  - vim => gvim
+  - vi => vim
   - MacOS
     - rm => rmtrash
     - C => | pbcopy
