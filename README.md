@@ -27,6 +27,10 @@ chmod u+x init.sh
 ### 便利コマンド
 - 行末の無駄な空白を削除する
   - ```:FixWhiteSpace```
+- Gistを作成する
+  - :Gista
+  - :Gista -l (リスト表示)
+  - :Unite gista
 
 ### For C++
 
