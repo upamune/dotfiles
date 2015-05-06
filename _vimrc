@@ -69,6 +69,18 @@ set matchtime=1
 imap jj <Esc>
 imap kk <Esc>
 
+" ノーマルモード時だけ ; と : を入れ替える (US用)
+nnoremap ; :
+
+" Yを行末までのヤンクにする
+nnoremap Y y$
+
+" 矢印キーでバッファのリサイズ
+nmap <Left> <C-w>>
+nmap <Right> <C-w><
+nmap <Down> <C-w>+
+nmap <UP> <C-w>-
+
 " 画面分割＆タブ関係
 nnoremap s <Nop>
 nnoremap sj <C-w>j
@@ -95,11 +107,6 @@ nnoremap sQ :<C-u>bd<CR>
 nnoremap sb :<C-u>Unite buffer_tab -buffer-name=file<CR>
 nnoremap sB :<C-u>Unite buffer -buffer-name=file<CR>
 
-" ノーマルモード時だけ ; と : を入れ替える (US用)
-nnoremap ; :
-
-" Yを行末までのヤンクにする
-nnoremap Y y$
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " _   _            ____                  _ _       "
@@ -417,6 +424,7 @@ call submode#map('bufmove', 'n', '', '<', '<C-w><')
 call submode#map('bufmove', 'n', '', '+', '<C-w>+')
 call submode#map('bufmove', 'n', '', '-', '<C-w>-')
 
-colorscheme hybrid
+colorscheme desert
 filetype plugin indent on
 syntax on
+
