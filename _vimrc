@@ -310,7 +310,9 @@ function! s:syntastic()
   call lightline#update()
 endfunction
 
-
+" VimからGistに投稿できるようにする
+NeoBundle 'lambdalisue/vim-gista'
+let g:gista#github_user = 'jajkeqos'
 
 """"""""""""""""""""""
 " ___      _         "
