@@ -158,7 +158,7 @@ if [[ -f $HOME/.zsh/antigen/antigen.zsh ]]; then
   fpath=($HOME/.zsh/zsh-completions/src(N-/) $fpath)
 
   # anyframe の設定
-  # Ctrl-Pでコマンドを挿入できるようにする
+  # Ctrl-XPでコマンドを挿入できるようにする
   function peco-put-history() {
     builtin history -n -r 1 \
       | anyframe-selector-auto "$LBUFFER" \
@@ -177,6 +177,9 @@ if [[ -f $HOME/.zsh/antigen/antigen.zsh ]]; then
   }
   zle -N peco-tmux
   bindkey '^xw' peco-tmux
+
+  # Ctrl-XCでcdrをpecoで開く
+  bindkey "^xc" anyframe-widget-cdr
 
   # cdd の設定
   if [[ -f $HOME/.antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-m4i-SLASH-cdd.git/cdd ]]; then
