@@ -12,7 +12,6 @@
 " |__/     |__/             |_|                  "
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
-
 """"""""""""""""""""""""""
 " ____            _      "
 "| __ )  __ _ ___(_) ___ "
@@ -75,11 +74,17 @@ nnoremap ; :
 " Yを行末までのヤンクにする
 nnoremap Y y$
 
-" 矢印キーでバッファのリサイズ
-nmap <Left> <C-w>>
+" ノーマルモード時矢印キーでバッファのリサイズ
+nmap <UP> <C-w>-
 nmap <Right> <C-w><
 nmap <Down> <C-w>+
-nmap <UP> <C-w>-
+nmap <Left> <C-w>>
+
+" インサートモード時の矢印キー
+inoremap <Up> <ESC>:<C-u>GundoToggle<CR>
+inoremap <Right> <Esc>:QuickRun<CR>
+inoremap <Down> <Esc>:w<CR>
+inoremap <Left> <ESC>:VimFiler<CR>
 
 " 画面分割＆タブ関係
 nnoremap s <Nop>
@@ -168,6 +173,7 @@ NeoBundle 'Yggdroot/indentLine'
 
 " quickrun (コード実行)
 NeoBundle 'thinca/vim-quickrun'
+
 " QuickRunしたら右に分割して結果を表示
 let g:quickrun_config = {
       \   "cpp/g++" : {
