@@ -205,4 +205,3 @@ if which tmux > /dev/null 2>&1 ; then
     fi
   fi
 fi
-PATH="/usr/local/heroku/bin:$PATH"
