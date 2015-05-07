@@ -93,8 +93,8 @@ alias -g vi='vim'
 
 if which go > /dev/null 2>&1 ; then
   # For Go
-  export GOPATH=$HOME/go
-  export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+  export GOPATH=~/go
+  export PATH=$PATH:$GOPATH/bin
 fi
 
 #OS 別設定
