@@ -75,10 +75,6 @@ setopt NO_BEEP
 # エイリアス
 alias c='clear'
 alias h='history'
-alias l='ls --color=auto'
-alias ls='ls --color=auto'
-alias la='ls -a'
-alias ll='ls -l'
 alias cp='cp -i'
 alias mv='mv -i'
 alias mkdir='mkdir -p'
