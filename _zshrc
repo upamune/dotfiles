@@ -117,6 +117,10 @@ case ${OSTYPE} in
       export XMODIFIERS=”@im=fcitx”
     fi
 
+    # herokuが存在したらPATHを通す
+    if [ -d /usr/local/heroku ]; then
+      PATH=/usr/local/heroku/bin:$PATH
+    fi
     # xselが存在したらCでクリップボードにコピーできるようにする
     if which xsel > /dev/null 2>&1 ; then
       alias -g C='| xsel --input --clipboard'
