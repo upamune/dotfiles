@@ -13,15 +13,27 @@ chmod u+x init.sh
 #### ノーマルモード
 
 上矢印キー => バッファのリサイズ
+
 右矢印キー => バッファのリサイズ
+
 下矢印キー => バッファのリサイズ
+
 左矢印キー => バッファのリサイズ
+
+/ => incsearch-forward
+
+? => incsearch-backword
+
+g/ => incsearch-stay
 
 ### インサートモード
 
 上矢印キー => Gundoのトグルj
+
 右矢印キー => QuickRun実行
+
 下矢印キー => ファイル保存
+
 左矢印キー => VimFilerを開く
 
 ### 便利コマンド
