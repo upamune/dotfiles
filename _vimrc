@@ -166,7 +166,25 @@ if neobundle#tap('vim-trailing-whitespace')
     let g:extra_whitespace_ignored_filetypes = ['unite']
 endif
 
-
+" マッチしたものすべてをインクリメンタルにハイライトする
+NeoBundle 'haya14busa/incsearch.vim',{
+  \ 'depends' : 'osyo-manga/vim-anzu'
+  \ }
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
+" 検索後カーソル移動したらハイライトすべて消す
+set hlsearch
+let g:incsearch#auto_nohlsearch = 1
+map   n <Plug>(incsearch-nohl-n)
+map   N <Plug>(incsearch-nohl-N)
+map *  <Plug>(incsearch-nohl-*)
+map #  <Plug>(incsearch-nohl-#)
+map g* <Plug>(incsearch-nohl-g*)
+map g# <Plug>(incsearch-nohl-g#)
+" 検索時にヒット件数を出す
+nmap  n <Plug>(incsearch-nohl)<Plug>(anzu-n-with-echo)
+nmap  N <Plug>(incsearch-nohl)<Plug>(anzu-N-with-echo)
 
 " indentLine ( インデントを表示する)
 NeoBundle 'Yggdroot/indentLine'
