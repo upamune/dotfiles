@@ -83,7 +83,7 @@ nmap <Left> <C-w>>
 " インサートモード時の矢印キー
 inoremap <Up> <ESC>:<C-u>GundoToggle<CR>
 inoremap <Right> <Esc>:QuickRun<CR>
-inoremap <Down> <Esc>:w<CR>
+inoremap <Down> <Esc>:w<CR>i
 inoremap <Left> <ESC>:VimFiler<CR>
 
 " 画面分割＆タブ関係
