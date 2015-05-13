@@ -201,7 +201,8 @@ let g:quickrun_config = {
       \   "_" : {
       \       "outputter/buffer/close_on_empty" : 1,
       \       "runner" : "vimproc",
-      \       "runner/vimproc/updatetime" : 60
+      \       "runner/vimproc/updatetime" : 60,
+      \       "outputter/buffer/split" : ":botright 8sp",
       \   },
       \}
 set splitright
@@ -417,7 +418,6 @@ let g:tagbar_type_go = {
 if executable("clang++")
   let g:syntastic_cpp_compiler = 'g++'
   let g:syntastic_cpp_compiler_options = '--std=c++11'
-  let g:quickrun_config = {}
   let g:quickrun_config['cpp/clang++11'] = {
       \ 'cmdopt': '--std=c++11 --stdlib=libc++',
       \ 'type': 'cpp/clang++'
