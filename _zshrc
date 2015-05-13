@@ -97,15 +97,16 @@ fi
 case ${OSTYPE} in
   # For MacOS
   darwin*)
-    echo hi
-    # rmtrashが存在したらrmをrmtrashにエイリアスする
-    #if which rmtrash > /dev/null 2>&1 ; then
-    #  alias -g rm='rmtrash'
-    #fi
 
     # Cでクリップボードにコピーできるようにする
     if which pbcopy > /dev/null 2>&1 ; then
       alias -g C='| pbcopy'
+    fi
+
+    # nvmがインストールされていたら環境変数を設定する
+    if [[ -d $HOME/.nvm ]] ; then
+      export NVM_DIR=$HOME/.nvm
+      source $(brew --prefix nvm)/nvm.sh
     fi
   ;;
   # For Linux
