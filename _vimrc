@@ -372,6 +372,9 @@ NeoBundle 'tpope/vim-endwise'
 """"""""""""
 NeoBundle 'dgryski/vim-godef'
 NeoBundle 'vim-jp/vim-go-extra'
+let g:syntastic_mode_map = { 'mode': 'passive',
+    \ 'active_filetypes': ['go'] }
+let g:syntastic_go_checkers = ['go', 'golint']
 set path+=$GOPATH/src/**
 let g:gofmt_command = 'goimports'
 au BufWritePre *.go Fmt
