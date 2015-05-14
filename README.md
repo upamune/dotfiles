@@ -140,7 +140,7 @@ bitclust setup
   - Ctrl-s => 履歴をインクリメンタルサーチする(前方)
   - Ctrl-x + Ctrl-p => pecoを使って履歴からコマンドを挿入する
   - Ctrl-x + w => pecoでtmuxのウィンドウを切り替える
-  - Ctrl-x + c => pecoでcdrを表示する
+  - Ctrl-x + Ctrl-d => pecoでcdrを表示する
 
 
 ## tmux

@@ -184,7 +184,7 @@ if [[ -f $HOME/.zsh/antigen/antigen.zsh ]]; then
   bindkey '^xw' peco-tmux
 
   # Ctrl-XCでcdrをpecoで開く
-  bindkey "^xc" anyframe-widget-cdr
+  bindkey "^x^d" anyframe-widget-cdr
 
   # cdd の設定
   if [[ -f $HOME/.antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-m4i-SLASH-cdd.git/cdd ]]; then
