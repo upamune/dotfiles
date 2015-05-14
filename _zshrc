@@ -118,6 +118,11 @@ case ${OSTYPE} in
       export XMODIFIERS=”@im=fcitx”
     fi
 
+    # Ruby2.2 がインストールされてたらPATHを通す
+    if [ -d $HOME/.gem/ruby/2.2.0/bin ]; then
+      export PATH=$PATH:$HOME/.gem/ruby/2.2.0/bin
+    fi
+
     # herokuが存在したらPATHを通す
     if [ -d /usr/local/heroku ]; then
       PATH=/usr/local/heroku/bin:$PATH
