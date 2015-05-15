@@ -1,4 +1,3 @@
-""""""""""""""""""""""""""""""""""""""""""""""""""
 "     __   _(_)_ __ ___  _ __ ___  | |__  _   _  "
 "     \ \ / / | '_ ` _ \| '__/ __| | '_ \| | | | "
 "  _   \ V /| | | | | | | | | (__  | |_) | |_| | "
@@ -139,9 +138,6 @@ let g:acp_enableAtStartup = 0
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
 
-" Hybiridカラースキーム
-NeoBundle 'w0ng/vim-hybrid'
-
 " ヘルプ日本語化
 NeoBundle 'vim-jp/vimdoc-ja'
 set helplang=ja,en
@@ -167,9 +163,7 @@ if neobundle#tap('vim-trailing-whitespace')
 endif
 
 " マッチしたものすべてをインクリメンタルにハイライトする
-NeoBundle 'haya14busa/incsearch.vim',{
-  \ 'depends' : 'osyo-manga/vim-anzu'
-  \ }
+NeoBundle 'haya14busa/incsearch.vim',{ 'depends' : 'osyo-manga/vim-anzu' }
 map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
@@ -193,18 +187,7 @@ NeoBundle 'Yggdroot/indentLine'
 NeoBundle 'thinca/vim-quickrun'
 
 " QuickRunしたら右に分割して結果を表示
-let g:quickrun_config = {
-      \   "cpp/g++" : {
-      \       "cmdopt" : "-std=c++0x",
-      \       "hook/time/enable" : 1
-      \   },
-      \   "_" : {
-      \       "outputter/buffer/close_on_empty" : 1,
-      \       "runner" : "vimproc",
-      \       "runner/vimproc/updatetime" : 60,
-      \       "outputter/buffer/split" : ":botright 8sp",
-      \   },
-      \}
+let g:quickrun_config = {   "cpp/g++" : {       "cmdopt" : "-std=c++0x",       "hook/time/enable" : 1   },   "_" : {       "outputter/buffer/close_on_empty" : 1,       "runner" : "vimproc",       "runner/vimproc/updatetime" : 60,       "outputter/buffer/split" : ":botright 8sp",   },}
 set splitright
 
 " syntastic(シンタックスチェック)
@@ -212,25 +195,22 @@ NeoBundle 'scrooloose/syntastic'
 let g:syntastic_enable_signs = 1
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '⚠'
-let g:syntastic_mode_map = {
-      \ "mode" : "active"
-      \}
+let g:syntastic_mode_map = { "mode" : "active"}
 "ファイルオープン時にはチェックをしない
 let g:syntastic_check_on_open = 0
 "ファイル保存時にはチェックを実施
 let g:syntastic_check_on_save = 1
 
+" Color Schemes
+NeoBundle 'ujihisa/unite-colorscheme'
+NeoBundle 'google/vim-colorscheme-primary'
+NeoBundle 'w0ng/vim-hybrid'
+NeoBundle 'nanotech/jellybeans.vim'
+NeoBundle 'jajkeqos/tomorrow-theme'
+
 " VimShell (Vimでシェルを使う)
 NeoBundle 'Shougo/vimshell.vim'
-NeoBundle 'Shougo/vimproc.vim', {
-      \ 'build' : {
-      \     'windows' : 'tools\\update-dll-mingw',
-      \     'cygwin' : 'make -f make_cygwin.mak',
-      \     'mac' : 'make -f make_mac.mak',
-      \     'linux' : 'make',
-      \     'unix' : 'gmake',
-      \    },
-      \ }
+NeoBundle 'Shougo/vimproc.vim', { 'build' : {     'windows' : 'tools\\update-dll-mingw',     'cygwin' : 'make -f make_cygwin.mak',     'mac' : 'make -f make_mac.mak',     'linux' : 'make',     'unix' : 'gmake',    }, }
 
 " neosnippet
 NeoBundle 'Shougo/neosnippet'
@@ -259,23 +239,7 @@ NeoBundle 'kana/vim-submode'
 NeoBundle 'itchyny/lightline.vim'
 set laststatus=2
 " syntasticがエラーの時赤色にする(:call lightline#update)
-      let g:lightline = {
-        \ 'colorscheme': 'wombat',
-        \ 'mode_map': {'c': 'NORMAL'},
-        \ 'active': {
-        \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ]
-        \ },
-        \ 'component_function': {
-        \   'modified': 'MyModified',
-        \   'readonly': 'MyReadonly',
-        \   'fugitive': 'MyFugitive',
-        \   'filename': 'MyFilename',
-        \   'fileformat': 'MyFileformat',
-        \   'filetype': 'MyFiletype',
-        \   'fileencoding': 'MyFileencoding',
-        \   'mode': 'MyMode'
-        \ }
-        \ }
+      let g:lightline = { 'colorscheme': 'wombat', 'mode_map': {'c': 'NORMAL'}, 'active': {   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ] }, 'component_function': {   'modified': 'MyModified',   'readonly': 'MyReadonly',   'fugitive': 'MyFugitive',   'filename': 'MyFilename',   'fileformat': 'MyFileformat',   'filetype': 'MyFiletype',   'fileencoding': 'MyFileencoding',   'mode': 'MyMode' } }
 
 function! MyModified()
   return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
@@ -286,12 +250,7 @@ function! MyReadonly()
 endfunction
 
 function! MyFilename()
-  return ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
-        \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
-        \  &ft == 'unite' ? unite#get_status_string() :
-        \  &ft == 'vimshell' ? vimshell#get_status_string() :
-        \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
-        \ ('' != MyModified() ? ' ' . MyModified() : '')
+  return ('' != MyReadonly() ? MyReadonly() . ' ' : '') . (&ft == 'vimfiler' ? vimfiler#get_status_string() :  &ft == 'unite' ? unite#get_status_string() :  &ft == 'vimshell' ? vimshell#get_status_string() : '' != expand('%:t') ? expand('%:t') : '[No Name]') . ('' != MyModified() ? ' ' . MyModified() : '')
 endfunction
 
 function! MyFugitive()
@@ -372,8 +331,7 @@ NeoBundle 'tpope/vim-endwise'
 """"""""""""
 NeoBundle 'dgryski/vim-godef'
 NeoBundle 'vim-jp/vim-go-extra'
-let g:syntastic_mode_map = { 'mode': 'passive',
-    \ 'active_filetypes': ['go'] }
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': ['go'] }
 let g:syntastic_go_checkers = ['go', 'golint']
 set path+=$GOPATH/src/**
 let g:gofmt_command = 'goimports'
@@ -381,33 +339,7 @@ au BufWritePre *.go Fmt
 au BufNewFile,BufRead *.go set sw=4 noexpandtab ts=4 completeopt=menu,preview
 au FileType go compiler go
 
-let g:tagbar_type_go = {
-    \ 'ctagstype' : 'go',
-    \ 'kinds'     : [
-        \ 'p:package',
-        \ 'i:imports:1',
-        \ 'c:constants',
-        \ 'v:variables',
-        \ 't:types',
-        \ 'n:interfaces',
-        \ 'w:fields',
-        \ 'e:embedded',
-        \ 'm:methods',
-        \ 'r:constructor',
-        \ 'f:functions'
-    \ ],
-    \ 'sro' : '.',
-    \ 'kind2scope' : {
-        \ 't' : 'ctype',
-        \ 'n' : 'ntype'
-    \ },
-    \ 'scope2kind' : {
-        \ 'ctype' : 't',
-        \ 'ntype' : 'n'
-    \ },
-    \ 'ctagsbin'  : 'gotags',
-    \ 'ctagsargs' : '-sort -silent'
-\ }
+let g:tagbar_type_go = { 'ctagstype' : 'go', 'kinds'     : [ 'p:package', 'i:imports:1', 'c:constants', 'v:variables', 't:types', 'n:interfaces', 'w:fields', 'e:embedded', 'm:methods', 'r:constructor', 'f:functions' ], 'sro' : '.', 'kind2scope' : { 't' : 'ctype', 'n' : 'ntype' }, 'scope2kind' : { 'ctype' : 't', 'ntype' : 'n' }, 'ctagsbin'  : 'gotags', 'ctagsargs' : '-sort -silent' }
 
 
 """""""""""""""""""
@@ -421,10 +353,7 @@ let g:tagbar_type_go = {
 if executable("clang++")
   let g:syntastic_cpp_compiler = 'g++'
   let g:syntastic_cpp_compiler_options = '--std=c++11'
-  let g:quickrun_config['cpp/clang++11'] = {
-      \ 'cmdopt': '--std=c++11 --stdlib=libc++',
-      \ 'type': 'cpp/clang++'
-    \ }
+  let g:quickrun_config['cpp/clang++11'] = { 'cmdopt': '--std=c++11 --stdlib=libc++', 'type': 'cpp/clang++' }
   let g:quickrun_config['cpp'] = {'type': 'cpp/clang++11'}
 endif
 
@@ -440,6 +369,7 @@ NeoBundle 'gregsexton/gitv'
 NeoBundle 'tpope/vim-fugitive'
 
 
+
 call neobundle#end()
 NeoBundleCheck
 
@@ -453,7 +383,17 @@ call submode#map('bufmove', 'n', '', '<', '<C-w><')
 call submode#map('bufmove', 'n', '', '+', '<C-w>+')
 call submode#map('bufmove', 'n', '', '-', '<C-w>-')
 
-colorscheme desert
-filetype plugin indent on
+""""""""""""""""""""""""
+"  _   _   _   _   _   "
+" / \ / \ / \ / \ / \  "
+"( c | o | l | o | r ) "
+" \_/ \_/ \_/ \_/ \_/  "
+"                      "
+""""""""""""""""""""""""
+" colorscheme desert
 syntax on
+set t_Co=256
+colorscheme Tomorrow-Night
+
+filetype plugin indent on
 
