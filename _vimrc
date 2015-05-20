@@ -293,6 +293,7 @@ endfunction
 NeoBundle 'lambdalisue/vim-gista'
 let g:gista#github_user = 'jajkeqos'
 
+
 """"""""""""""""""""""
 " ___      _         "
 "| _ \_  _| |__ _  _ "
@@ -357,6 +358,14 @@ if executable("clang++")
   let g:quickrun_config['cpp/clang++11'] = { 'cmdopt': '--std=c++11 --stdlib=libc++', 'type': 'cpp/clang++' }
   let g:quickrun_config['cpp'] = {'type': 'cpp/clang++11'}
 endif
+
+NeoBundle 'rhysd/vim-clang-format',{ 'depends' : 'kana/vim-operator-user' }
+let g:clang_format#style_options = {
+            \ "AccessModifierOffset" : -4,
+            \ "AllowShortIfStatementsOnASingleLine" : "true",
+            \ "AlwaysBreakTemplateDeclarations" : "true",
+            \ "Standard" : "C++11"}
+let g:clang_format#auto_format = 1
 
 """"""""""""""
 "  ___ _ _   "

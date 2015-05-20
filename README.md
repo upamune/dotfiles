@@ -46,6 +46,8 @@ g/ => incsearch-stay
 
 ### For C++
 
+- 保存時に自動でclang-formatが走る
+  - 要 clang
 
 ### For Go
 
