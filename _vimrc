@@ -207,7 +207,7 @@ NeoBundle 'ujihisa/unite-colorscheme'
 NeoBundle 'google/vim-colorscheme-primary'
 NeoBundle 'w0ng/vim-hybrid'
 NeoBundle 'nanotech/jellybeans.vim'
-NeoBundle 'jajkeqos/tomorrow-theme'
+NeoBundle 'upamune/tomorrow-theme'
 
 " VimShell (Vimでシェルを使う)
 NeoBundle 'Shougo/vimshell.vim'
