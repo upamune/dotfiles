@@ -46,6 +46,8 @@ g/ => incsearch-stay
 
 ### For C++
 
+- 保存時に自動でclang-formatが走る
+  - 要 clang
 
 ### For Go
 
@@ -129,6 +131,8 @@ bitclust setup
   - G => | grep
   - v => gvim
   - vi => vim
+  - mouseoff => xinput --disable bcm5974
+  - keyoff => xinput --disable Apple Inc. Apple Internal Keyboard / Trackpad
   - MacOS
     - rm => rmtrash
     - C => | pbcopy
