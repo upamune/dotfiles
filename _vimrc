@@ -148,7 +148,7 @@ NeoBundle 'Shougo/unite.vim'
 let g:unite_enable_start_insert=1
 let g:unite_source_history_yank_enable =1
 let g:unite_source_file_mru_limit = 200
-call unite#set_profile('default', 'context', {'ignorecase':1})
+"call unite#set_profile('default', 'context', {'ignorecase':1})
 NeoBundle 'Shougo/unite-outline'
 
 " VimFiler (ファイルビューアー)
