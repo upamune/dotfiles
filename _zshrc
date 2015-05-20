@@ -84,6 +84,8 @@ alias -g L='| less'
 alias -g G='| grep'
 alias -g v='gvim'
 alias -g vi='vim'
+alias keyoff='xinput --disable Apple Inc. Apple Internal Keyboard / Trackpad'
+alias mouseoff='xinput --disable bcm5974'
 
 
 
