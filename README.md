@@ -129,6 +129,8 @@ bitclust setup
   - G => | grep
   - v => gvim
   - vi => vim
+  - mouseoff => xinput --disable bcm5974
+  - keyoff => xinput --disable Apple Inc. Apple Internal Keyboard / Trackpad
   - MacOS
     - rm => rmtrash
     - C => | pbcopy
