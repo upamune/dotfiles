@@ -366,7 +366,8 @@ let g:clang_format#style_options = {
             \ "AllowShortIfStatementsOnASingleLine" : "true",
             \ "AlwaysBreakTemplateDeclarations" : "true",
             \ "Standard" : "C++11"}
-let g:clang_format#auto_format = 1
+" 保存時に自動でフォーマットする
+" let g:clang_format#auto_format = 1
 
 """"""""""""""
 "  ___ _ _   "
