@@ -234,6 +234,13 @@ let g:gundo_auto_preview = 0
 " Uでgundo開く
 nmap U :<C-u>GundoToggle<CR>
 
+" 移動系プラグイン {{{
+"   " ぬるぬるスクロール
+NeoBundleLazy 'yonchu/accelerated-smooth-scroll'
+NeoBundleLazy 'Lokaltog/vim-easymotion'
+NeoBundleLazy 'rhysd/clever-f.vim'
+" }}}
+
 " s-<<<<とかを使えるように
 NeoBundle 'kana/vim-submode'
 
@@ -380,6 +387,26 @@ let g:clang_format#style_options = {
 NeoBundle 'gregsexton/gitv'
 NeoBundle 'tpope/vim-fugitive'
 
+
+""""""""""""""""""""""""""""
+"_   _ _____ __  __ _      "
+"| | | |_   _|  \/  | |    "
+"| |_| | | | | |\/| | |    "
+"|  _  | | | | |  | | |___ "
+"|_| |_| |_| |_|  |_|_____|"
+""""""""""""""""""""""""""""
+NeoBundle 'amirh/HTML-AutoCloseTag'
+NeoBundle 'hail2u/vim-css3-syntax'
+NeoBundle 'gorodinskiy/vim-coloresque'
+NeoBundle 'tpope/vim-haml'
+NeoBundle 'mattn/emmet-vim'
+
+
+" syntax and filetype plugins {{{
+" JavaScript {{{
+NeoBundleLazy 'jelera/vim-javascript-syntax'
+NeoBundleLazy 'marijnh/tern_for_vim'
+" }}}
 
 
 call neobundle#end()
