@@ -120,6 +120,11 @@ case ${OSTYPE} in
       export XMODIFIERS=”@im=fcitx”
     fi
 
+    # ホームディレクトリ直下にxmodmapがあったら読み込む
+    if [[ -f ~/.xmodmap ]] ; then
+      xmodmap .xmodmap
+    fi
+
     # Ruby2.2 がインストールされてたらPATHを通す
     if [ -d $HOME/.gem/ruby/2.2.0/bin ]; then
       export PATH=$PATH:$HOME/.gem/ruby/2.2.0/bin
