@@ -14,8 +14,8 @@
 
 
 # 環境変数
-export LANG=C
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export LANG=ja_JP.UTF-8
+export PATH="/home/upamune/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
 #git 補完できるように
 fpath=(~/.zsh/complention $fpath)
@@ -117,7 +117,7 @@ case ${OSTYPE} in
     if which fcitx > /dev/null 2>&1 ; then
       export GTK_IM_MODULE=fcitx
       export QT_IM_MODULE=fcitx
-      export XMODIFIERS=”@im=fcitx”
+      export XMODIFIERS="@im=fcitx"
     fi
 
     # Ruby2.2 がインストールされてたらPATHを通す
