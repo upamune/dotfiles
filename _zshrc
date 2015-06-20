@@ -169,6 +169,7 @@ if [[ -f $HOME/.zsh/antigen/antigen.zsh ]]; then
   antigen bundle zsh-users/zsh-syntax-highlighting
   antigen bundle mollifier/anyframe
   antigen bundle m4i/cdd
+  antigen bundle upamune/zgit-repo-user-config
   antigen theme amuse
   antigen apply
 
@@ -206,8 +207,10 @@ if [[ -f $HOME/.zsh/antigen/antigen.zsh ]]; then
     autoload -Uz add-zsh-hook
     add-zsh-hook chpwd _cdd_chpwd
   fi
-
 fi
+
+export ZGITREPO_USER_CONFIG_FILE=$HOME/.zgitrepo_user.config
+add-zsh-hook precmd zgit-repo-user-config
 
 ############################
 #| |_ _ __ ___  _   ___    #
