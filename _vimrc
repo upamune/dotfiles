@@ -86,6 +86,9 @@ inoremap <Right> <Esc>:QuickRun<CR>
 inoremap <Down> <Esc>:w<CR>i
 inoremap <Left> <ESC>:VimFiler<CR>
 
+" 3倍のスピードでヘルプを参照できるッ!!
+nnoremap <C-h>  :<C-u>help<Space>
+
 " 画面分割＆タブ関係
 nnoremap s <Nop>
 nnoremap sj <C-w>j
