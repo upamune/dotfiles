@@ -140,6 +140,10 @@ case ${OSTYPE} in
       alias -g C='| xsel --input --clipboard'
     fi
 
+    # addon-sdk が存在したらエイリアス
+    if [ -d /opt/addon-sdk ] ; then
+      alias addon-sdk='cd /opt/addon-sdk && source bin/activate; cd -'
+    fi
 
     # HOME直下に.nvmが存在したら環境変数を設定する
     if [ -d $HOME/.nvm ] ; then
