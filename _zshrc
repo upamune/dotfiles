@@ -74,7 +74,7 @@ setopt NO_BEEP
 
 # プロンプト表示前にディレクトリの中身を表示する
 function cd_ls_precmd_hook() {
-  [[ "$(fc -nl -1)" =~ "^ *cd.*$" ]] && { ( /bin/ls --color|| /bin/ls -G) 2>/dev/null }
+  [[ "$(fc -nl -1)" =~ "^ *cd.*$" ]] && { ( /bin/ls --color|| /bin/ls -G &) 2>/dev/null }
 }
 add-zsh-hook precmd cd_ls_precmd_hook
 
