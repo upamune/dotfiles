@@ -247,6 +247,9 @@ NeoBundleLazy 'rhysd/clever-f.vim'
 " s-<<<<とかを使えるように
 NeoBundle 'kana/vim-submode'
 
+" ag コマンドをVimで使えるようにする
+NeoBundle 'rking/ag.vim'
+
 " lightline.vim (ステータスラインをかっこよく)
 NeoBundle 'itchyny/lightline.vim'
 set laststatus=2
