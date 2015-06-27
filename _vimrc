@@ -302,7 +302,10 @@ endfunction
 
 " VimからGistに投稿できるようにする
 NeoBundle 'lambdalisue/vim-gista'
-let g:gista#github_user = 'jajkeqos'
+let g:gista#github_user = 'upamune'
+
+" Vimから ag を使えるようにする
+NeoBundle "rking/ag.vim"
 
 
 """"""""""""""""""""""
