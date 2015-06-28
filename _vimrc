@@ -1,4 +1,5 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""
+
 "     __   _(_)_ __ ___  _ __ ___  | |__  _   _  "
 "     \ \ / / | '_ ` _ \| '__/ __| | '_ \| | | | "
 "  _   \ V /| | | | | | | | | (__  | |_) | |_| | "
@@ -240,7 +241,6 @@ nmap U :<C-u>GundoToggle<CR>
 " 移動系プラグイン {{{
 "   " ぬるぬるスクロール
 NeoBundleLazy 'yonchu/accelerated-smooth-scroll'
-NeoBundleLazy 'Lokaltog/vim-easymotion'
 NeoBundleLazy 'rhysd/clever-f.vim'
 " }}}
 
@@ -306,6 +306,22 @@ endfunction
 " VimからGistに投稿できるようにする
 NeoBundle 'lambdalisue/vim-gista'
 let g:gista#github_user = 'upamune'
+
+
+" Vim motions on speed! http://haya14busa.com/mastering-vim-easymotion/
+NeoBundle 'Lokaltog/vim-easymotion'
+let g:EasyMotion_do_mapping = 0
+let g:EasyMotion_smartcase = 1
+let g:EasyMotion_enter_jump_first = 1
+let g:EasyMotion_space_jump_first = 1
+let g:EasyMotion_startofline = 0
+" EASY MOTION !!!
+nmap <Space> <Plug>(easymotion-s2)
+xmap <Space> <Plug>(easymotion-s2)
+omap <Space> <Plug>(easymotion-s2)
+" 行移動をべんりにする
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
 
 
 """"""""""""""""""""""
