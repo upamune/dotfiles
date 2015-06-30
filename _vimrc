@@ -451,10 +451,9 @@ call submode#map('bufmove', 'n', '', '-', '<C-w>-')
 " \_/ \_/ \_/ \_/ \_/  "
 "                      "
 """"""""""""""""""""""""
-" colorscheme desert
+colorscheme desert
 syntax on
 set t_Co=256
-colorscheme Tomorrow-Night
 
 filetype plugin indent on
 
