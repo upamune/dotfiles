@@ -119,6 +119,9 @@ case ${OSTYPE} in
   ;;
   # For Linux
   linux*)
+    # xdg-open を openにエイリアス
+    alias open='xdg-open'
+
     # fcitxが存在したら環境変数を設定する
     if which fcitx > /dev/null 2>&1 ; then
       export GTK_IM_MODULE=fcitx
