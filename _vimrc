@@ -116,6 +116,9 @@ nnoremap sQ :<C-u>bd<CR>
 nnoremap sb :<C-u>Unite buffer_tab -buffer-name=file<CR>
 nnoremap sB :<C-u>Unite buffer -buffer-name=file<CR>
 
+" 選択時の<C-a>, <C-x>をべんりにする
+vnoremap <C-a> <C-a>gv
+vnoremap <C-x> <C-x>gv
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " _   _            ____                  _ _       "
