@@ -395,11 +395,10 @@ endif
 NeoBundle 'rhysd/vim-clang-format',{ 'depends' : 'kana/vim-operator-user' }
 let g:clang_format#style_options = {
             \ "AccessModifierOffset" : -4,
-            \ "AllowShortIfStatementsOnASingleLine" : "true",
             \ "AlwaysBreakTemplateDeclarations" : "true",
             \ "Standard" : "C++11"}
 " 保存時に自動でフォーマットする
-" let g:clang_format#auto_format = 1
+let g:clang_format#auto_format = 1
 
 """"""""""""""
 "  ___ _ _   "
