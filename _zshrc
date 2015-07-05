@@ -119,6 +119,13 @@ case ${OSTYPE} in
   ;;
   # For Linux
   linux*)
+
+    # CapsをCtrlに置換する
+    if [[ -f $HOME/.xmodmap ]]; then
+      xmodmap .xmodmap > /dev/null 2>&1
+    fi
+
+
     # xdg-open を openにエイリアス
     alias open='xdg-open'
 
