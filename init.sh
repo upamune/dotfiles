@@ -48,6 +48,17 @@ else
   echo "Replaced your tmux.conf"
 fi
 
+# .xmodmapをoldディレクトリに移動する
+if [[ -f $HOME/.xmodmap ]] ; then
+  mv $HOME/.xmodmap $CURRENT_PATH/old/_xmodmap
+  echo "Move your .xmodmap to old dir"
+  ln -s $CURRENT_PATH/_xmodmap $HOME/.xmodmap
+  echo "Replaced your .xmodmap"
+else
+  ln -s $CURRENT_PATH/_xmodmap $HOME/.xmodmap
+  echo "Replaced your .xmodmap"
+fi
+
 # Neobundleを導入する
 if [[ ! -d $HOME/.vim/bundle/neobundle.vim ]] ; then
   mkdir -p ~/.vim/bundle && git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
