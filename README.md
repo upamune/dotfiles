@@ -186,3 +186,6 @@ bitclust setup
 - ウィンドウ名を変更
   - ^t ,
 
+## xmodmap
+
+- CapsLk を Ctrlに置換する
