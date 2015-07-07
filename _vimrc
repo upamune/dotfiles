@@ -139,6 +139,8 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " \___\___|_||_\___|_| \__,_|_|"
 """"""""""""""""""""""""""""""""
 
+NeoBundle 'derekwyatt/vim-scala',{'type__protocol' : 'ssh' }
+
 " neocomplete (自動補完)
 NeoBundle 'Shougo/neocomplete.vim'
 let g:neocomplete#max_list = 10
