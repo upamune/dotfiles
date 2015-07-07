@@ -165,11 +165,6 @@ case ${OSTYPE} in
       nvm use v0.10.38 > /dev/null
       export PATH=$HOME/.nvm/v0.10.38/bin:$PATH
     fi
-
-    # $HOME/bin 以下にactivatorがあったらPATHを通す
-    if [ -d $HOME/bin/activator ] ; then
-      export PATH=$HOME/bin/activator:$PATH
-    fi
   ;;
 esac
 
