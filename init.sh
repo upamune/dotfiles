@@ -59,6 +59,17 @@ else
   echo "Replaced your .xmodmap"
 fi
 
+# .ideavimrcをoldディレクトリに移動する
+if [[ -f $HOME/.ideavimrc ]] ; then
+  mv $HOME/.ideavimrc $CURRENT_PATH/old/_ideavimrc
+  echo "Move your .ideavimrc to old dir"
+  ln -s $CURRENT_PATH/_ideavimrc $HOME/.ideavimrc
+  echo "Replaced your .ideavimrc"
+else
+  ln -s $CURRENT_PATH/_ideavimrc $HOME/.ideavimrc
+  echo "Replaced your .ideavimrc"
+fi
+
 # Neobundleを導入する
 if [[ ! -d $HOME/.vim/bundle/neobundle.vim ]] ; then
   mkdir -p ~/.vim/bundle && git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
