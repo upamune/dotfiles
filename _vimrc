@@ -1,26 +1,4 @@
-""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"     __   _(_)_ __ ___  _ __ ___  | |__  _   _  "
-"     \ \ / / | '_ ` _ \| '__/ __| | '_ \| | | | "
-"  _   \ V /| | | | | | | | | (__  | |_) | |_| | "
-" (_)   \_/ |_|_| |_| |_|_|  \___| |_.__/ \__, | "
-"                                         |___/  "
-"    _        _ _                                "
-"   (_) __ _ (_) | _____  __ _  ___  ___         "
-"   | |/ _` || | |/ / _ \/ _` |/ _ \/ __|        "
-"   | | (_| || |   <  __/ (_| | (_) \__ \        "
-"  _/ |\__,_|/ |_|\_\___|\__, |\___/|___/        "
-" |__/     |__/             |_|                  "
-""""""""""""""""""""""""""""""""""""""""""""""""""
-
-""""""""""""""""""""""""""
-" ____            _      "
-"| __ )  __ _ ___(_) ___ "
-"|  _ \ / _` / __| |/ __|"
-"| |_) | (_| \__ \ | (__ "
-"|____/ \__,_|___/_|\___|"
-"                        "
-""""""""""""""""""""""""""
+" Basic Settings {{{
 
 " タブ文字の代わりに半角スペースを使用する
 set expandtab
@@ -56,15 +34,10 @@ set infercase
 set showmatch
 set matchtime=1
 
+" }}}
 
-""""""""""""""""""""""""""""""""""""""
-" _  __          ____  _           _ "
-"| |/ /___ _   _| __ )(_)_ __   __| |"
-"| ' // _ \ | | |  _ \| | '_ \ / _` |"
-"| . \  __/ |_| | |_) | | | | | (_| |"
-"|_|\_\___|\__, |____/|_|_| |_|\__,_|"
-"          |___/                     "
-""""""""""""""""""""""""""""""""""""""
+" KeyMap {{{
+
 " jj or kkでESCする
 imap jj <Esc>
 imap kk <Esc>
@@ -120,24 +93,13 @@ nnoremap sB :<C-u>Unite buffer -buffer-name=file<CR>
 vnoremap <C-a> <C-a>gv
 vnoremap <C-x> <C-x>gv
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""
-" _   _            ____                  _ _       "
-"| \ | | ___  ___ | __ ) _   _ _ __   __| | | ___  "
-"|  \| |/ _ \/ _ \|  _ \| | | | '_ \ / _` | |/ _ \ "
-"| |\  |  __/ (_) | |_) | |_| | | | | (_| | |  __/ "
-"|_| \_|\___|\___/|____/ \__,_|_| |_|\__,_|_|\___| "
-""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}}
+
+" NeoBundle {{{
 set runtimepath+=~/.vim/bundle/neobundle.vim/
 " Required:
 call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
-
-""""""""""""""""""""""""""""""""
-"  ___                       _ "
-" / __|___ _ _  ___ _ _ __ _| |"
-"| (_ / -_) ' \/ -_) '_/ _` | |"
-" \___\___|_||_\___|_| \__,_|_|"
-""""""""""""""""""""""""""""""""
 
 NeoBundle 'derekwyatt/vim-scala',{'type__protocol' : 'ssh' }
 
@@ -312,7 +274,6 @@ endfunction
 NeoBundle 'lambdalisue/vim-gista'
 let g:gista#github_user = 'upamune'
 
-
 " Vim motions on speed! http://haya14busa.com/mastering-vim-easymotion/
 NeoBundle 'Lokaltog/vim-easymotion'
 let g:EasyMotion_do_mapping = 0
@@ -329,43 +290,28 @@ map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 
 
-""""""""""""""""""""""
-" ___      _         "
-"| _ \_  _| |__ _  _ "
-"|   / || | '_ \ || |"
-"|_|_\\_,_|_.__/\_, |"
-"               |__/ "
-""""""""""""""""""""""
+" Ruby{{{
 " Rsense Ruby用補完
 NeoBundle 'marcus/rsense'
 NeoBundle 'supermomonga/neocomplete-rsense.vim'
 let g:rsenseHome = '/usr/local/lib/rsense-0.3'
 let g:rsenseUseOmniFunc = 1
-
 " Neocomplete
 if !exists('g:neocomplete#force_omni_input_patterns')
   let g:neocomplete#force_omni_input_patterns = {}
 endif
 let g:neocomplete#force_omni_input_patterns.ruby = '[^.*\t]\.\w*\|\h\w*::'
-
 " Rubocop シンタックスチェック
 let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': ['ruby'] }
 let g:syntastic_ruby_checkers = ['rubocop']
-
 " ドキュメント参照
 NeoBundle 'thinca/vim-ref'
 NeoBundle 'yuku-t/vim-ref-ri'
-
 " Endを自動で挿入する
 NeoBundle 'tpope/vim-endwise'
+" }}}
 
-""""""""""""
-"  ___     "
-" / __|___ "
-"| (_ / _ \"
-" \___\___/"
-"          "
-""""""""""""
+" Golang{{{
 NeoBundle 'dgryski/vim-godef'
 NeoBundle 'vim-jp/vim-go-extra'
 let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': ['go'] }
@@ -375,25 +321,17 @@ let g:gofmt_command = 'goimports'
 au BufWritePre *.go Fmt
 au BufNewFile,BufRead *.go set sw=4 noexpandtab ts=4 completeopt=menu,preview
 au FileType go compiler go
-
 let g:tagbar_type_go = { 'ctagstype' : 'go', 'kinds'     : [ 'p:package', 'i:imports:1', 'c:constants', 'v:variables', 't:types', 'n:interfaces', 'w:fields', 'e:embedded', 'm:methods', 'r:constructor', 'f:functions' ], 'sro' : '.', 'kind2scope' : { 't' : 'ctype', 'n' : 'ntype' }, 'scope2kind' : { 'ctype' : 't', 'ntype' : 'n' }, 'ctagsbin'  : 'gotags', 'ctagsargs' : '-sort -silent' }
+" }}}
 
 
-"""""""""""""""""""
-"  ___  _     _   "
-" / __|| |_ _| |_ "
-"| (_|_   _|_   _|"
-" \___||_|   |_|  "
-"                 "
-"""""""""""""""""""
-
+" C++{{{
 if executable("clang++")
   let g:syntastic_cpp_compiler = 'g++'
   let g:syntastic_cpp_compiler_options = '--std=c++11'
   let g:quickrun_config['cpp/clang++11'] = { 'cmdopt': '--std=c++11 --stdlib=libc++', 'type': 'cpp/clang++' }
   let g:quickrun_config['cpp'] = {'type': 'cpp/clang++11'}
 endif
-
 NeoBundle 'rhysd/vim-clang-format',{ 'depends' : 'kana/vim-operator-user' }
 let g:clang_format#style_options = {
             \ "AccessModifierOffset" : -4,
@@ -401,43 +339,24 @@ let g:clang_format#style_options = {
             \ "Standard" : "C++11"}
 " 保存時に自動でフォーマットする
 let g:clang_format#auto_format = 1
+" }}}
 
-""""""""""""""
-"  ___ _ _   "
-" / __(_) |_ "
-"| (_ | |  _|"
-" \___|_|\__|"
-"            "
-""""""""""""""
-" gitを扱う
+" Git{{{
 NeoBundle 'gregsexton/gitv'
 NeoBundle 'tpope/vim-fugitive'
+" }}}
 
-
-""""""""""""""""""""""""""""
-"_   _ _____ __  __ _      "
-"| | | |_   _|  \/  | |    "
-"| |_| | | | | |\/| | |    "
-"|  _  | | | | |  | | |___ "
-"|_| |_| |_| |_|  |_|_____|"
-""""""""""""""""""""""""""""
+" HTML{{{
 NeoBundle 'amirh/HTML-AutoCloseTag'
 NeoBundle 'hail2u/vim-css3-syntax'
 NeoBundle 'gorodinskiy/vim-coloresque'
 NeoBundle 'tpope/vim-haml'
 NeoBundle 'mattn/emmet-vim'
-
-
-" syntax and filetype plugins {{{
-" JavaScript {{{
-NeoBundleLazy 'jelera/vim-javascript-syntax'
-NeoBundleLazy 'marijnh/tern_for_vim'
 " }}}
-
 
 call neobundle#end()
 NeoBundleCheck
-
+" }}}
 
 call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
 call submode#enter_with('bufmove', 'n', '', 's<', '<C-w><')
@@ -448,16 +367,10 @@ call submode#map('bufmove', 'n', '', '<', '<C-w><')
 call submode#map('bufmove', 'n', '', '+', '<C-w>+')
 call submode#map('bufmove', 'n', '', '-', '<C-w>-')
 
-""""""""""""""""""""""""
-"  _   _   _   _   _   "
-" / \ / \ / \ / \ / \  "
-"( c | o | l | o | r ) "
-" \_/ \_/ \_/ \_/ \_/  "
-"                      "
-""""""""""""""""""""""""
+" Color {{{
 colorscheme desert
 syntax on
 set t_Co=256
-
 filetype plugin indent on
+" }}}
 
