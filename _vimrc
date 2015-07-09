@@ -101,7 +101,7 @@ set runtimepath+=~/.vim/bundle/neobundle.vim/
 call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
-NeoBundle 'derekwyatt/vim-scala',{'type__protocol' : 'ssh' }
+NeoBundle 'derekwyatt/vim-scala'
 
 " neocomplete (自動補完)
 NeoBundle 'Shougo/neocomplete.vim'
