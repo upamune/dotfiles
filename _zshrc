@@ -122,6 +122,11 @@ case ${OSTYPE} in
       alias topcoder='javaws /usr/local/bin/ContestAppletProd.jnlp&'
     fi
 
+    # rbenv があったら初期化処理を追加する
+    if which rbenv > /dev/null 2>&1 ; then
+      eval "$(rbenv init -)"
+    fi
+
     # Ruby2.2 がインストールされてたらPATHを通す
     if [ -d $HOME/.gem/ruby/2.2.0/bin ]; then
       export PATH=$PATH:$HOME/.gem/ruby/2.2.0/bin
