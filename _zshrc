@@ -200,6 +200,7 @@ if [[ -f $HOME/.zsh/antigen/antigen.zsh ]]; then
   fi
 fi
 
+touch $HOME/.zgitrepo_user.config
 export ZGITREPO_USER_CONFIG_FILE=$HOME/.zgitrepo_user.config
 add-zsh-hook precmd zgit-repo-user-config
 
