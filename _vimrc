@@ -327,25 +327,17 @@ let g:tagbar_type_go = { 'ctagstype' : 'go', 'kinds'     : [ 'p:package', 'i:imp
 
 " C++{{{
 if executable("clang++")
-  let g:syntastic_cpp_compiler = 'g++'
+  let g:syntastic_cpp_compiler = 'clang++'
   let g:syntastic_cpp_compiler_options = '--std=c++11'
   let g:quickrun_config['cpp/clang++11'] = { 'cmdopt': '--std=c++11 --stdlib=libc++', 'type': 'cpp/clang++' }
   let g:quickrun_config['cpp'] = {'type': 'cpp/clang++11'}
 endif
 NeoBundle 'rhysd/vim-clang-format',{ 'depends' : 'kana/vim-operator-user' }
-let g:clang_format#style_options = {
-            \ "AccessModifierOffset" : -4,
-            \ "AlwaysBreakTemplateDeclarations" : "true",
-            \ "Standard" : "C++11"}
-" 保存時に自動でフォーマットする
+let g:clang_format#code_style = "llvm"
 let g:clang_format#auto_format = 1
-" }}}
-
 " Git{{{
 NeoBundle 'gregsexton/gitv'
 NeoBundle 'tpope/vim-fugitive'
-" }}}
-
 " HTML{{{
 NeoBundle 'amirh/HTML-AutoCloseTag'
 NeoBundle 'hail2u/vim-css3-syntax'
