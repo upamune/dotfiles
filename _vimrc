@@ -99,7 +99,15 @@ vnoremap <C-x> <C-x>gv
 set runtimepath+=~/.vim/bundle/neobundle.vim/
 " Required:
 call neobundle#begin(expand('~/.vim/bundle/'))
-NeoBundleFetch 'Shougo/neobundle.vim'
+" キャッシュを利用して高速化
+if neobundle#has_cache()
+  NeoBundleLoadCache
+else
+  NeoBundleFetch 'Shougo/neobundle.vim'
+  call neobundle#load_toml('~/.vim/neobundle.toml')
+  call neobundle#load_toml('~/.vim/neobundlelazy.toml', {'lazy' :1} )
+  NeoBundleSaveCache
+endif
 
 NeoBundle 'derekwyatt/vim-scala'
 NeoBundle 'cespare/vim-toml'
