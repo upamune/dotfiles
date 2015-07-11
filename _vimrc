@@ -93,50 +93,39 @@ nnoremap sB :<C-u>Unite buffer -buffer-name=file<CR>
 vnoremap <C-a> <C-a>gv
 vnoremap <C-x> <C-x>gv
 
-" }}}
-
 " NeoBundle {{{
 set runtimepath+=~/.vim/bundle/neobundle.vim/
 " Required:
 call neobundle#begin(expand('~/.vim/bundle/'))
-NeoBundleFetch 'Shougo/neobundle.vim'
+" キャッシュを利用して高速化
+if neobundle#load_cache()
+  NeoBundleFetch 'Shougo/neobundle.vim'
+  call neobundle#load_toml('~/.vim/neobundle.toml')
+  call neobundle#load_toml('~/.vim/neobundlelazy.toml', {'lazy' :1} )
+  NeoBundleSaveCache
+endif
 
-NeoBundle 'derekwyatt/vim-scala'
+call neobundle#end()
+NeoBundleCheck
 
 " neocomplete (自動補完)
-NeoBundle 'Shougo/neocomplete.vim'
 let g:neocomplete#max_list = 10
 let g:acp_enableAtStartup = 0
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
 
 " ヘルプ日本語化
-NeoBundle 'vim-jp/vimdoc-ja'
 set helplang=ja,en
 
 " Unite.vim
-NeoBundle 'Shougo/unite.vim'
 let g:unite_enable_start_insert=1
 let g:unite_source_history_yank_enable =1
 let g:unite_source_file_mru_limit = 200
 
-NeoBundle 'Shougo/unite-outline'
-
-" VimFiler (ファイルビューアー)
-NeoBundle 'Shougo/vimfiler'
-
-" いい感じにタグジャンプできるようになる
-NeoBundle 'majutsushi/tagbar'
-
-" 行の余計なスペースを可視化する
-NeoBundle 'bronson/vim-trailing-whitespace'
-if neobundle#tap('vim-trailing-whitespace')
-    " uniteでスペースが表示されるので、設定でOFFにします。
-    let g:extra_whitespace_ignored_filetypes = ['unite']
-endif
+" uniteでスペースが表示されるので、設定でOFFにします。
+let g:extra_whitespace_ignored_filetypes = ['unite']
 
 " マッチしたものすべてをインクリメンタルにハイライトする
-NeoBundle 'haya14busa/incsearch.vim',{ 'depends' : 'osyo-manga/vim-anzu' }
 map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
@@ -154,17 +143,14 @@ nmap  n <Plug>(incsearch-nohl)<Plug>(anzu-n-with-echo)
 nmap  N <Plug>(incsearch-nohl)<Plug>(anzu-N-with-echo)
 
 " indentLine ( インデントを表示する)
-NeoBundle 'Yggdroot/indentLine'
 
 " quickrun (コード実行)
-NeoBundle 'thinca/vim-quickrun'
 
 " QuickRunしたら右に分割して結果を表示
 let g:quickrun_config = {   "cpp/g++" : {       "cmdopt" : "-std=c++0x",       "hook/time/enable" : 1   },   "_" : {       "outputter/buffer/close_on_empty" : 1,       "runner" : "vimproc",       "runner/vimproc/updatetime" : 60,       "outputter/buffer/split" : ":botright 8sp",   },}
 set splitright
 
 " syntastic(シンタックスチェック)
-NeoBundle 'scrooloose/syntastic'
 let g:syntastic_enable_signs = 1
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '⚠'
@@ -174,19 +160,7 @@ let g:syntastic_check_on_open = 0
 "ファイル保存時にはチェックを実施
 let g:syntastic_check_on_save = 1
 
-" Color Schemes
-NeoBundle 'ujihisa/unite-colorscheme'
-NeoBundle 'google/vim-colorscheme-primary'
-NeoBundle 'w0ng/vim-hybrid'
-NeoBundle 'nanotech/jellybeans.vim'
-NeoBundle 'upamune/tomorrow-theme'
-
-" VimShell (Vimでシェルを使う)
-NeoBundle 'Shougo/vimshell.vim'
-NeoBundle 'Shougo/vimproc.vim', { 'build' : {     'windows' : 'tools\\update-dll-mingw',     'cygwin' : 'make -f make_cygwin.mak',     'mac' : 'make -f make_mac.mak',     'linux' : 'make',     'unix' : 'gmake',    }, }
-
 " neosnippet
-NeoBundle 'Shougo/neosnippet'
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
@@ -194,34 +168,19 @@ let g:neosnippet#enable_snipmate_compatibility = 1
 let g:neosnippet#snippets_directory='~/dotfiles/vim-snippet'
 
 " コメントをトグルする(\c)でできる
-NeoBundle "tyru/caw.vim.git"
 nmap <Leader>c <Plug>(caw:i:toggle)
 vmap <Leader>c <Plug>(caw:i:toggle)
 
 " Gundo
-NeoBundle "sjl/gundo.vim"
 " 移動と同時にプレビューしない
 let g:gundo_auto_preview = 0
 " Uでgundo開く
 nmap U :<C-u>GundoToggle<CR>
 
-" 移動系プラグイン {{{
-"   " ぬるぬるスクロール
-NeoBundleLazy 'yonchu/accelerated-smooth-scroll'
-NeoBundleLazy 'rhysd/clever-f.vim'
-" }}}
-
-" s-<<<<とかを使えるように
-NeoBundle 'kana/vim-submode'
-
-" ag コマンドをVimで使えるようにする
-NeoBundle 'rking/ag.vim'
-
 " lightline.vim (ステータスラインをかっこよく)
-NeoBundle 'itchyny/lightline.vim'
 set laststatus=2
 " syntasticがエラーの時赤色にする(:call lightline#update)
-      let g:lightline = { 'colorscheme': 'wombat', 'mode_map': {'c': 'NORMAL'}, 'active': {   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ] }, 'component_function': {   'modified': 'MyModified',   'readonly': 'MyReadonly',   'fugitive': 'MyFugitive',   'filename': 'MyFilename',   'fileformat': 'MyFileformat',   'filetype': 'MyFiletype',   'fileencoding': 'MyFileencoding',   'mode': 'MyMode' } }
+let g:lightline = { 'colorscheme': 'wombat', 'mode_map': {'c': 'NORMAL'}, 'active': {   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ] }, 'component_function': {   'modified': 'MyModified',   'readonly': 'MyReadonly',   'fugitive': 'MyFugitive',   'filename': 'MyFilename',   'fileformat': 'MyFileformat',   'filetype': 'MyFiletype',   'fileencoding': 'MyFileencoding',   'mode': 'MyMode' } }
 
 function! MyModified()
   return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
@@ -271,11 +230,9 @@ function! s:syntastic()
 endfunction
 
 " VimからGistに投稿できるようにする
-NeoBundle 'lambdalisue/vim-gista'
 let g:gista#github_user = 'upamune'
 
 " Vim motions on speed! http://haya14busa.com/mastering-vim-easymotion/
-NeoBundle 'Lokaltog/vim-easymotion'
 let g:EasyMotion_do_mapping = 0
 let g:EasyMotion_smartcase = 1
 let g:EasyMotion_enter_jump_first = 1
@@ -289,11 +246,8 @@ omap <Space> <Plug>(easymotion-s2)
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 
-
 " Ruby{{{
 " Rsense Ruby用補完
-NeoBundle 'marcus/rsense'
-NeoBundle 'supermomonga/neocomplete-rsense.vim'
 let g:rsenseHome = '/usr/local/lib/rsense-0.3'
 let g:rsenseUseOmniFunc = 1
 " Neocomplete
@@ -304,16 +258,9 @@ let g:neocomplete#force_omni_input_patterns.ruby = '[^.*\t]\.\w*\|\h\w*::'
 " Rubocop シンタックスチェック
 let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': ['ruby'] }
 let g:syntastic_ruby_checkers = ['rubocop']
-" ドキュメント参照
-NeoBundle 'thinca/vim-ref'
-NeoBundle 'yuku-t/vim-ref-ri'
-" Endを自動で挿入する
-NeoBundle 'tpope/vim-endwise'
 " }}}
 
 " Golang{{{
-NeoBundle 'dgryski/vim-godef'
-NeoBundle 'vim-jp/vim-go-extra'
 let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': ['go'] }
 let g:syntastic_go_checkers = ['go', 'golint']
 set path+=$GOPATH/src/**
@@ -324,7 +271,6 @@ au FileType go compiler go
 let g:tagbar_type_go = { 'ctagstype' : 'go', 'kinds'     : [ 'p:package', 'i:imports:1', 'c:constants', 'v:variables', 't:types', 'n:interfaces', 'w:fields', 'e:embedded', 'm:methods', 'r:constructor', 'f:functions' ], 'sro' : '.', 'kind2scope' : { 't' : 'ctype', 'n' : 'ntype' }, 'scope2kind' : { 'ctype' : 't', 'ntype' : 'n' }, 'ctagsbin'  : 'gotags', 'ctagsargs' : '-sort -silent' }
 " }}}
 
-
 " C++{{{
 if executable("clang++")
   let g:syntastic_cpp_compiler = 'clang++'
@@ -332,24 +278,8 @@ if executable("clang++")
   let g:quickrun_config['cpp/clang++11'] = { 'cmdopt': '--std=c++11 --stdlib=libc++', 'type': 'cpp/clang++' }
   let g:quickrun_config['cpp'] = {'type': 'cpp/clang++11'}
 endif
-NeoBundle 'rhysd/vim-clang-format',{ 'depends' : 'kana/vim-operator-user' }
 let g:clang_format#code_style = "llvm"
 let g:clang_format#auto_format = 1
-" Git{{{
-NeoBundle 'gregsexton/gitv'
-NeoBundle 'tpope/vim-fugitive'
-" HTML{{{
-NeoBundle 'amirh/HTML-AutoCloseTag'
-NeoBundle 'hail2u/vim-css3-syntax'
-NeoBundle 'gorodinskiy/vim-coloresque'
-NeoBundle 'tpope/vim-haml'
-NeoBundle 'mattn/emmet-vim'
-" }}}
-
-call neobundle#end()
-NeoBundleCheck
-" }}}
-
 call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
 call submode#enter_with('bufmove', 'n', '', 's<', '<C-w><')
 call submode#enter_with('bufmove', 'n', '', 's+', '<C-w>+')
@@ -358,6 +288,15 @@ call submode#map('bufmove', 'n', '', '>', '<C-w>>')
 call submode#map('bufmove', 'n', '', '<', '<C-w><')
 call submode#map('bufmove', 'n', '', '+', '<C-w>+')
 call submode#map('bufmove', 'n', '', '-', '<C-w>-')
+
+" FileType {{{
+
+augroup MyGroup
+  autocmd!
+  autocmd BufNewFile,BufRead *.toml set filetype=toml
+  autocmd BufNewFile,BufRead *.scala set filetype=scala
+augroup END
+" }}}
 
 " Color {{{
 colorscheme desert

@@ -1,0 +1,76 @@
+# syntax {{{
+[[plugins]]
+repository = 'scrooloose/syntastic'
+
+# appearance {{{
+[[plugins]]
+repository = 'itchyny/lightline.vim'
+
+# complement {{{
+[[plugins]]
+repository = 'Shougo/neocomplete.vim'
+
+# l10n {{{
+[[plugins]]
+repository = 'vim-jp/vimdoc-ja'
+
+# unite {{{
+[[plugins]]
+repository = 'Shougo/unite.vim'
+
+[[plugins]]
+repository = 'Shougo/unite-outline'
+
+# benry {{{
+
+[[plugins]]
+repository = 'tyru/caw.vim.git'
+
+[[plugins]]
+repository = 'kana/vim-submode'
+
+[[plugins]]
+repository = 'Shougo/vimproc.vim'
+
+  [plugins.build]
+  windows = 'tools\\update-dll-mingw'
+  cygwin = 'make -f make_cygwin.mak'
+  mac = 'make -f make_mac.mak'
+  unix = 'make -f make_unix.mak'
+
+# move {{{
+[[plugins]]
+repository = 'Lokaltog/vim-easymotion'
+
+# search {{{
+[[plugins]]
+repository = 'haya14busa/incsearch.vim'
+depends = 'osyo-manga/vim-anzu'
+
+# color {{{
+[[plugins]]
+repository = 'w0ng/vim-hybrid'
+
+[[plugins]]
+repository = 'nanotech/jellybeans.vim'
+
+[[plugins]]
+repository = 'upamune/tomorrow-theme'
+
+# optimize {{{
+[[plugins]]
+repository = 'Yggdroot/indentLine'
+
+[[plugins]]
+repository = 'bronson/vim-trailing-whitespace'
+
+# git {{{
+[[plugins]]
+repository = 'lambdalisue/vim-gista'
+
+[[plugins]]
+repository = 'gregsexton/gitv'
+
+[[plugins]]
+repository = 'tpope/vim-fugitive'
+
