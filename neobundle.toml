@@ -2,12 +2,6 @@
 [[plugins]]
 repository = 'scrooloose/syntastic'
 
-[[plugins]]
-repository = 'derekwyatt/vim-scala'
-
-[[plugins]]
-repository = 'cespare/vim-toml'
-
 # appearance {{{
 [[plugins]]
 repository = 'itchyny/lightline.vim'
@@ -104,51 +98,6 @@ repository = 'gregsexton/gitv'
 [[plugins]]
 repository = 'tpope/vim-fugitive'
 
-# ruby {{{
-[[plugins]]
-repository = 'marcus/rsense'
-
-[[plugins]]
-repository = 'supermomonga/neocomplete-rsense.vim'
-
-[[plugins]]
-repository = 'thinca/vim-ref'
-
-[[plugins]]
-repository = 'yuku-t/vim-ref-ri'
-
-[[plugins]]
-repository = 'tpope/vim-endwise'
-
-# go {{{
-[[plugins]]
-repository = 'dgryski/vim-godef'
-
-[[plugins]]
-repository = 'vim-jp/vim-go-extra'
-
-# clang {{{
-[[plugins]]
-repository = 'rhysd/vim-clang-format'
-depends = 'kana/vim-operator-user'
-
-# html {{{
-[[plugins]]
-repository = 'amirh/HTML-AutoCloseTag'
-
-[[plugins]]
-repository = 'hail2u/vim-css3-syntax'
-
-[[plugins]]
-repository = 'gorodinskiy/vim-coloresque'
-
-[[plugins]]
-repository = 'tpope/vim-haml'
-
-[[plugins]]
-repository = 'mattn/emmet-vim'
-
 # uncatigorize {{{
 [[plugins]]
 repository = 'Shougo/vimshell.vim'
-
