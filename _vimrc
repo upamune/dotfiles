@@ -289,6 +289,15 @@ call submode#map('bufmove', 'n', '', '<', '<C-w><')
 call submode#map('bufmove', 'n', '', '+', '<C-w>+')
 call submode#map('bufmove', 'n', '', '-', '<C-w>-')
 
+" FileType {{{
+
+augroup MyGroup
+  autocmd!
+  autocmd BufNewFile,BufRead *.toml set filetype=toml
+  autocmd BufNewFile,BufRead *.scala set filetype=scala
+augroup END
+" }}}
+
 " Color {{{
 colorscheme desert
 syntax on
