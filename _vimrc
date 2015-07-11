@@ -102,6 +102,7 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 NeoBundle 'derekwyatt/vim-scala'
+NeoBundle 'cespare/vim-toml'
 
 " neocomplete (自動補完)
 NeoBundle 'Shougo/neocomplete.vim'
