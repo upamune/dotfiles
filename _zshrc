@@ -100,6 +100,10 @@ case ${OSTYPE} in
   ;;
   # For Linux
   linux*)
+    # machinectl のエイリアスを設定する
+    if which machinectl > /dev/null 2>&1 ; then
+      alias mctl='machinectl'
+    fi
 
     # CapsをCtrlに置換する
     if [[ -f $HOME/.xmodmap ]]; then
