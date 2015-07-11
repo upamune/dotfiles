@@ -1,8 +1,34 @@
+# like ide {{{
 [[plugins]]
-repository = 'yonchu/accelerated-smooth-scroll'
+repository = 'Shougo/vimfiler'
+explorer = 1
+mappings = '<Plug>'
 
 [[plugins]]
-repository = 'rhysd/clever-f.vim'
+repository = 'majutsushi/tagbar'
+mappings = '<Plug>'
+
+[[plugins]]
+repository = 'thinca/vim-quickrun'
+mappings = '<Plug>'
+
+[[plugins]]
+repository = 'Shougo/neosnippet'
+insert = 1
+
+[[plugins]]
+repository = 'sjl/gundo.vim'
+mappings = '<Plug>'
+
+# search {{{
+[[plugins]]
+repository = 'rking/ag.vim'
+mappings = '<Plug>'
+
+# benrify {{{
+[[plugins]]
+repository = 'Shougo/vimshell.vim'
+mappings = '<Plug>'
 
 # ruby {{{
 [[plugins]]
