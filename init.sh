@@ -26,6 +26,28 @@ else
   echo "Replaced your vimrc"
 fi
 
+# TOMLファイルを .vim/ に配置
+mkdir -p $HOME/.vim
+if [[ -f $HOME/.vim/neobundle.toml ]] ; then
+  mv $HOME/.vim/neobundle.toml $CURRENT_PATH/old/neobundle.toml
+  echo "Move your neobundle.toml to old dir"
+  ln -s $CURRENT_PATH/neobundle.toml $HOME/.vim/neobundle.toml
+  echo "Replaced your neobundle.toml"
+else
+  ln -s $CURRENT_PATH/neobundle.toml $HOME/.vim/neobundle.toml
+  echo "Replaced your neobundle.toml"
+fi
+
+if [[ -f $HOME/.vim/neobundlelazy.toml ]] ; then
+  mv $HOME/.vim/neobundlelazy.toml $CURRENT_PATH/old/neobundlelazy.toml
+  echo "Move your neobundlelazy.toml to old dir"
+  ln -s $CURRENT_PATH/neobundlelazy.toml $HOME/.vim/neobundlelazy.toml
+  echo "Replaced your neobundlelazy.toml"
+else
+  ln -s $CURRENT_PATH/neobundlelazy.toml $HOME/.vim/neobundlelazy.toml
+  echo "Replaced your neobundlelazy.toml"
+fi
+
 # zshrcをoldディレクトリに移動する
 if [[ -f $HOME/.zshrc ]] ; then
   mv $HOME/.zshrc $CURRENT_PATH/old/_zshrc
