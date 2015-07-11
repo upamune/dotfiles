@@ -1,0 +1,154 @@
+# syntax {{{
+[[plugins]]
+repository = 'scrooloose/syntastic'
+
+[[plugins]]
+repository = 'derekwyatt/vim-scala'
+
+[[plugins]]
+repository = 'cespare/vim-toml'
+
+# appearance {{{
+[[plugins]]
+repository = 'itchyny/lightline.vim'
+
+# complement {{{
+[[plugins]]
+repository = 'Shougo/neocomplete.vim'
+
+# l10n {{{
+[[plugins]]
+repository = 'vim-jp/vimdoc-ja'
+
+# unite {{{
+[[plugins]]
+repository = 'Shougo/unite.vim'
+
+[[plugins]]
+repository = 'Shougo/unite-outline'
+
+# like IDE {{{
+[[plugins]]
+repository = 'Shougo/vimfiler'
+
+[[plugins]]
+repository = 'majutsushi/tagbar'
+
+[[plugins]]
+repository = 'thinca/vim-quickrun'
+
+# benry {{{
+[[plugins]]
+repository = 'Shougo/neosnippet'
+
+[[plugins]]
+repository = 'tyru/caw.vim.git'
+
+[[plugins]]
+repository = 'sjl/gundo.vim'
+
+[[plugins]]
+repository = 'kana/vim-submode'
+
+[[plugins]]
+repository = 'Shougo/vimproc.vim'
+
+[plugins.build]
+windows = 'tools\\update-dll-mingw'
+cygwin = 'make -f make_cygwin.mak'
+mac = 'make -f make_mac.mak'
+unix = 'make -f make_unix.mak'
+
+# move {{{
+[[plugins]]
+repository = 'Lokaltog/vim-easymotion'
+
+# search {{{
+[[plugins]]
+repository = 'haya14busa/incsearch.vim'
+depends = 'osyo-manga/vim-anzu'
+
+[[plugins]]
+repository = 'rking/ag.vim'
+
+# color {{{
+[[plugins]]
+repository = 'ujihisa/unite-colorscheme'
+
+[[plugins]]
+repository = 'google/vim-colorscheme-primary'
+
+[[plugins]]
+repository = 'w0ng/vim-hybrid'
+
+[[plugins]]
+repository = 'nanotech/jellybeans.vim'
+
+[[plugins]]
+repository = 'upamune/tomorrow-theme'
+
+# optimize {{{
+[[plugins]]
+repository = 'Yggdroot/indentLine'
+
+[[plugins]]
+repository = 'bronson/vim-trailing-whitespace'
+
+# git {{{
+[[plugins]]
+repository = 'lambdalisue/vim-gista'
+
+[[plugins]]
+repository = 'gregsexton/gitv'
+
+[[plugins]]
+repository = 'tpope/vim-fugitive'
+
+# ruby {{{
+[[plugins]]
+repository = 'marcus/rsense'
+
+[[plugins]]
+repository = 'supermomonga/neocomplete-rsense.vim'
+
+[[plugins]]
+repository = 'thinca/vim-ref'
+
+[[plugins]]
+repository = 'yuku-t/vim-ref-ri'
+
+[[plugins]]
+repository = 'tpope/vim-endwise'
+
+# go {{{
+[[plugins]]
+repository = 'dgryski/vim-godef'
+
+[[plugins]]
+repository = 'vim-jp/vim-go-extra'
+
+# clang {{{
+[[plugins]]
+repository = 'rhysd/vim-clang-format'
+depends = 'kana/vim-operator-user'
+
+# html {{{
+[[plugins]]
+repository = 'amirh/HTML-AutoCloseTag'
+
+[[plugins]]
+repository = 'hail2u/vim-css3-syntax'
+
+[[plugins]]
+repository = 'gorodinskiy/vim-coloresque'
+
+[[plugins]]
+repository = 'tpope/vim-haml'
+
+[[plugins]]
+repository = 'mattn/emmet-vim'
+
+# uncatigorize {{{
+[[plugins]]
+repository = 'Shougo/vimshell.vim'
+
