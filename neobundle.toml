@@ -21,25 +21,10 @@ repository = 'Shougo/unite.vim'
 [[plugins]]
 repository = 'Shougo/unite-outline'
 
-# like IDE {{{
-[[plugins]]
-repository = 'Shougo/vimfiler'
-
-[[plugins]]
-repository = 'majutsushi/tagbar'
-
-[[plugins]]
-repository = 'thinca/vim-quickrun'
-
 # benry {{{
-[[plugins]]
-repository = 'Shougo/neosnippet'
 
 [[plugins]]
 repository = 'tyru/caw.vim.git'
-
-[[plugins]]
-repository = 'sjl/gundo.vim'
 
 [[plugins]]
 repository = 'kana/vim-submode'
@@ -47,11 +32,11 @@ repository = 'kana/vim-submode'
 [[plugins]]
 repository = 'Shougo/vimproc.vim'
 
-[plugins.build]
-windows = 'tools\\update-dll-mingw'
-cygwin = 'make -f make_cygwin.mak'
-mac = 'make -f make_mac.mak'
-unix = 'make -f make_unix.mak'
+  [plugins.build]
+  windows = 'tools\\update-dll-mingw'
+  cygwin = 'make -f make_cygwin.mak'
+  mac = 'make -f make_mac.mak'
+  unix = 'make -f make_unix.mak'
 
 # move {{{
 [[plugins]]
@@ -62,16 +47,7 @@ repository = 'Lokaltog/vim-easymotion'
 repository = 'haya14busa/incsearch.vim'
 depends = 'osyo-manga/vim-anzu'
 
-[[plugins]]
-repository = 'rking/ag.vim'
-
 # color {{{
-[[plugins]]
-repository = 'ujihisa/unite-colorscheme'
-
-[[plugins]]
-repository = 'google/vim-colorscheme-primary'
-
 [[plugins]]
 repository = 'w0ng/vim-hybrid'
 
@@ -98,6 +74,3 @@ repository = 'gregsexton/gitv'
 [[plugins]]
 repository = 'tpope/vim-fugitive'
 
-# uncatigorize {{{
-[[plugins]]
-repository = 'Shougo/vimshell.vim'
