@@ -1,0 +1,6 @@
+[[plugins]]
+repository = 'yonchu/accelerated-smooth-scroll'
+
+[[plugins]]
+repository = 'rhysd/clever-f.vim'
+
