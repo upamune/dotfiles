@@ -1,0 +1,98 @@
+# like ide {{{
+[[plugins]]
+repository = 'Shougo/vimfiler'
+explorer = 1
+mappings = '<Plug>'
+
+[[plugins]]
+repository = 'majutsushi/tagbar'
+mappings = '<Plug>'
+
+[[plugins]]
+repository = 'thinca/vim-quickrun'
+mappings = '<Plug>'
+
+[[plugins]]
+repository = 'Shougo/neosnippet'
+insert = 1
+
+[[plugins]]
+repository = 'sjl/gundo.vim'
+mappings = '<Plug>'
+
+# search {{{
+[[plugins]]
+repository = 'rking/ag.vim'
+mappings = '<Plug>'
+
+# benrify {{{
+[[plugins]]
+repository = 'Shougo/vimshell.vim'
+mappings = '<Plug>'
+
+# ruby {{{
+[[plugins]]
+repository = 'marcus/rsense'
+filetypes = 'ruby'
+
+[[plugins]]
+repository = 'supermomonga/neocomplete-rsense.vim'
+filetypes = 'ruby'
+
+[[plugins]]
+repository = 'thinca/vim-ref'
+filetypes = 'ruby'
+
+[[plugins]]
+repository = 'yuku-t/vim-ref-ri'
+filetypes = 'ruby'
+
+[[plugins]]
+repository = 'tpope/vim-endwise'
+filetypes = 'ruby'
+
+# go {{{
+[[plugins]]
+repository = 'dgryski/vim-godef'
+filetypes = 'go'
+
+[[plugins]]
+repository = 'vim-jp/vim-go-extra'
+filetypes = 'go'
+
+# clang {{{
+[[plugins]]
+repository = 'rhysd/vim-clang-format'
+depends = 'kana/vim-operator-user'
+filetypes = 'cpp'
+
+# html {{{
+[[plugins]]
+repository = 'amirh/HTML-AutoCloseTag'
+filetypes = 'html'
+
+[[plugins]]
+repository = 'hail2u/vim-css3-syntax'
+filetypes = 'html'
+
+[[plugins]]
+repository = 'gorodinskiy/vim-coloresque'
+filetypes = 'html'
+
+[[plugins]]
+repository = 'tpope/vim-haml'
+filetypes = 'html'
+
+[[plugins]]
+repository = 'mattn/emmet-vim'
+filetypes = 'html'
+
+# toml {{{
+[[plugins]]
+repository = 'cespare/vim-toml'
+filetypes = 'toml'
+
+# scala {{{
+[[plugins]]
+repository = 'derekwyatt/vim-scala'
+filetypes = 'scala'
