@@ -102,12 +102,12 @@ case ${OSTYPE} in
   linux*)
     # systemctl のエイリアスを設定する
     if which systemctl > /dev/null 2>&1 ; then
-      alias sctl='systemctl'
+      alias -g sctl='systemctl'
     fi
 
     # machinectl のエイリアスを設定する
     if which machinectl > /dev/null 2>&1 ; then
-      alias mctl='machinectl'
+      alias -g mctl='machinectl'
     fi
 
     # CapsをCtrlに置換する
