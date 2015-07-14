@@ -24,6 +24,9 @@ repository = 'Shougo/unite-outline'
 # benry {{{
 
 [[plugins]]
+repository = "tpope/vim-surround"
+
+[[plugins]]
 repository = 'tyru/caw.vim.git'
 
 [[plugins]]
