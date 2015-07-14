@@ -151,9 +151,11 @@ map g# <Plug>(incsearch-nohl-g#)
 nmap  n <Plug>(incsearch-nohl)<Plug>(anzu-n-with-echo)
 nmap  N <Plug>(incsearch-nohl)<Plug>(anzu-N-with-echo)
 
-" indentLine ( インデントを表示する)
-
-" quickrun (コード実行)
+" 検索したあとに移動しない
+nnoremap * *N
+nnoremap # #N
+map * <Plug>(visualstar-*)N
+map # <Plug>(visualstar-#)N
 
 " QuickRunしたら右に分割して結果を表示
 let g:quickrun_config = {   "cpp/g++" : {       "cmdopt" : "-std=c++0x",       "hook/time/enable" : 1   },   "_" : {       "outputter/buffer/close_on_empty" : 1,       "runner" : "vimproc",       "runner/vimproc/updatetime" : 60,       "outputter/buffer/split" : ":botright 8sp",   },}

@@ -47,6 +47,9 @@ repository = 'Lokaltog/vim-easymotion'
 repository = 'haya14busa/incsearch.vim'
 depends = 'osyo-manga/vim-anzu'
 
+[[plugins]]
+repository = 'thinca/vim-visualstar'
+
 # color {{{
 [[plugins]]
 repository = 'w0ng/vim-hybrid'
