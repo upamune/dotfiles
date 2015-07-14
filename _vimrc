@@ -1,3 +1,18 @@
+" NeoBundle {{{
+set runtimepath+=~/.vim/bundle/neobundle.vim/
+" Required:
+call neobundle#begin(expand('~/.vim/bundle/'))
+" キャッシュを利用して高速化
+if neobundle#load_cache()
+  NeoBundleFetch 'Shougo/neobundle.vim'
+  call neobundle#load_toml('~/.vim/neobundle.toml')
+  call neobundle#load_toml('~/.vim/neobundlelazy.toml', {'lazy' :1} )
+  NeoBundleSaveCache
+endif
+
+call neobundle#end()
+NeoBundleCheck
+
 " Basic Settings {{{
 
 " タブ文字の代わりに半角スペースを使用する
@@ -101,21 +116,6 @@ call submode#map('bufmove', 'n', '', '-', '<C-w>-')
 " 選択時の<C-a>, <C-x>をべんりにする
 vnoremap <C-a> <C-a>gv
 vnoremap <C-x> <C-x>gv
-
-" NeoBundle {{{
-set runtimepath+=~/.vim/bundle/neobundle.vim/
-" Required:
-call neobundle#begin(expand('~/.vim/bundle/'))
-" キャッシュを利用して高速化
-if neobundle#load_cache()
-  NeoBundleFetch 'Shougo/neobundle.vim'
-  call neobundle#load_toml('~/.vim/neobundle.toml')
-  call neobundle#load_toml('~/.vim/neobundlelazy.toml', {'lazy' :1} )
-  NeoBundleSaveCache
-endif
-
-call neobundle#end()
-NeoBundleCheck
 
 " neocomplete (自動補完)
 let g:neocomplete#max_list = 10
