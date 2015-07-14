@@ -26,6 +26,8 @@ chmod u+x init.sh
 
 g/ => incsearch-stay
 
+ys{motion}{surround} => surround.vim
+
 ### インサートモード
 
 上矢印キー => Gundoのトグルj
@@ -35,6 +37,11 @@ g/ => incsearch-stay
 下矢印キー => インサートモードのままファイル保存
 
 左矢印キー => VimFilerを開く
+
+
+### ヴィジュアルモード
+
+選択して ```*``` or ```#``` で選択した文字列を検索できる
 
 ### 便利コマンド
 - 行末の無駄な空白を削除する
