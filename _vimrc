@@ -49,6 +49,9 @@ set infercase
 set showmatch
 set matchtime=1
 
+" コマンドラインでの補完をべんりにする
+set wildmenu
+
 " }}}
 
 " KeyMap {{{
