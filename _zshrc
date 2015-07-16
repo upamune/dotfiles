@@ -78,6 +78,11 @@ if which go > /dev/null 2>&1 ; then
   export PATH=$PATH:$GOPATH/bin
 fi
 
+# rbenv があったら初期化処理を追加する
+if which rbenv > /dev/null 2>&1 ; then
+  eval "$(rbenv init -)"
+fi
+
 #OS 別設定
 case ${OSTYPE} in
   # For MacOS
@@ -126,11 +131,6 @@ case ${OSTYPE} in
       alias topcoder='javaws /usr/local/bin/ContestAppletProd.jnlp&'
     fi
 
-    # rbenv があったら初期化処理を追加する
-    if which rbenv > /dev/null 2>&1 ; then
-      eval "$(rbenv init -)"
-    fi
-
     # Ruby2.2 がインストールされてたらPATHを通す
     if [ -d $HOME/.gem/ruby/2.2.0/bin ]; then
       export PATH=$PATH:$HOME/.gem/ruby/2.2.0/bin
@@ -140,6 +140,7 @@ case ${OSTYPE} in
     if [ -d /usr/local/heroku ]; then
       PATH=/usr/local/heroku/bin:$PATH
     fi
+
     # xselが存在したらCでクリップボードにコピーできるようにする
     if which xsel > /dev/null 2>&1 ; then
       alias -g C='| xsel --input --clipboard'
@@ -154,6 +155,7 @@ case ${OSTYPE} in
     if [ -d $HOME/.nvm ] ; then
       source /usr/share/nvm/init-nvm.sh
     fi
+
     # nvmが存在したらnvmのinitとnodeのバージョンを指定する
     if which nvm > /dev/null 2>&1 ; then
       nvm use v0.10.38 > /dev/null
