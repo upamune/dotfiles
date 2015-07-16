@@ -145,6 +145,9 @@ bitclust setup
     - C => | pbcopy
   - Linux
     - C => | xsel --input --clipboard
+    - sctl => systemctl
+    - mctl => machinectl
+    - open => xdg-open
 
 ### キーバインド
   - Ctrl-r => 履歴をインクリメンタルサーチする(後方)
