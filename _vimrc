@@ -77,6 +77,9 @@ nmap <Right> <C-w><
 nmap <Down> <C-w>+
 nmap <Left> <C-w>>
 
+" コマンドライン上でC-aで先頭に飛べる
+cnoremap <C-A> <Home>
+
 " インサートモード時の矢印キー
 inoremap <Up> <ESC>:<C-u>GundoToggle<CR>
 inoremap <Right> <Esc>:QuickRun<CR>
