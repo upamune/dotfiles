@@ -87,7 +87,6 @@ fi
 case ${OSTYPE} in
   # For MacOS
   darwin*)
-
     # Cでクリップボードにコピーできるようにする
     if which pbcopy > /dev/null 2>&1 ; then
       alias -g C='| pbcopy'
@@ -172,8 +171,16 @@ if [[ -f $HOME/.zsh/antigen/antigen.zsh ]]; then
   antigen bundle mollifier/anyframe
   antigen bundle m4i/cdd
   antigen bundle upamune/zgit-repo-user-config
-  antigen theme amuse
   antigen apply
+
+  PROMPT='%{$fg_bold[green]%}${PWD/#$HOME/~}%{$reset_color%}$(git_prompt_info) ⌚ %{$fg_bold[red]%}%*%{$reset_color%}
+$ '
+
+  ZSH_THEME_GIT_PROMPT_PREFIX=" on %{$fg[magenta]%}⭠ "
+  ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
+  ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[red]%}!"
+  ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[green]%}?"
+  ZSH_THEME_GIT_PROMPT_CLEAN=""
 
   # zsh-completions の設定
   fpath=($HOME/.zsh/zsh-completions/src(N-/) $fpath)
@@ -232,3 +239,9 @@ if which tmux > /dev/null 2>&1 ; then
   fi
 fi
 
+# oh-my-zsh が R を指定しているので、それより後に書く必要がある
+# 検索時に大文字小文字を区別しないが、大文字で検索すると大文字だけヒットする
+# ファイル名、現在位置を表示
+# ANSI Color Escape Sequenceを色表示
+# 1行を折り返さない
+export LESS='-iMRS'
