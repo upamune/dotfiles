@@ -102,6 +102,11 @@ if [[ ! -d $HOME/.zsh/antigen ]] ; then
   mkdir -p ~/.zsh/ && cd ~/.zsh && git clone https://github.com/zsh-users/antigen.git
 fi
 
+# tpm を導入する
+if [[ ! -d $HOME/.tmux/plugins/tpm ]] ; then
+  mkdir -p $HOME/.tmux/plugins/tpm && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+fi
+
 echo """
 
     _    _ _   ____                     _
