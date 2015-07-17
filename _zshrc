@@ -205,6 +205,9 @@ if [[ -f $HOME/.zsh/antigen/antigen.zsh ]]; then
   # Ctrl-XBでブランチをpecoで切り替える
   bindkey "^x^b" anyframe-widget-checkout-git-branch
 
+  # Ctrl-XKでkillするプロセスをpecoで選ぶ
+  bindkey "^x^k" anyframe-widget-kill
+
   # cdd の設定
   if [[ -f $HOME/.antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-m4i-SLASH-cdd.git/cdd ]]; then
     source $HOME/.antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-m4i-SLASH-cdd.git/cdd
