@@ -268,6 +268,12 @@ omap <Space> <Plug>(easymotion-s2)
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 
+" Yankをべんりにする
+nnoremap <silent> <F7> :YRShow<CR>
+let g:yankring_max_history = 10
+let g:yankring_window_height = 13
+let g:yankring_history_dir = expand('$HOME')
+let g:yankring_history_file = '.yankring_history'
 " Ruby{{{
 " Rsense Ruby用補完
 let g:rsenseHome = '/usr/local/lib/rsense-0.3'
