@@ -28,6 +28,8 @@ g/ => incsearch-stay
 
 ys{motion}{surround} => surround.vim
 
+F7 => YankRing.vim (コピー履歴を参照できる)
+
 ### インサートモード
 
 上矢印キー => Gundoのトグルj

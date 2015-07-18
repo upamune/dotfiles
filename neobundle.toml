@@ -24,6 +24,9 @@ repository = 'Shougo/unite-outline'
 # benry {{{
 
 [[plugins]]
+repository = "vim-scripts/YankRing.vim"
+
+[[plugins]]
 repository = "tpope/vim-surround"
 
 [[plugins]]
@@ -44,6 +47,9 @@ repository = 'Shougo/vimproc.vim'
 # move {{{
 [[plugins]]
 repository = 'Lokaltog/vim-easymotion'
+
+[[plugins]]
+repository = 'deris/vim-shot-f'
 
 # search {{{
 [[plugins]]
