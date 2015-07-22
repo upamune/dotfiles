@@ -80,6 +80,31 @@ nmap <Left> <C-w>>
 " コマンドライン上でC-aで先頭に飛べる
 cnoremap <C-A> <Home>
 
+" コマンドライン上でC-kでカーソル以下を削除する
+cnoremap <C-K> <C-\>e<SID>KillLine()<CR>
+function! <SID>KillLine()
+  call <SID>saveUndoHistory(getcmdline(), getcmdpos())
+  let l:cmd = getcmdline()
+  let l:rem = strpart(l:cmd, getcmdpos() - 1)
+  if ('' != l:rem)
+    let @c = l:rem
+  endif
+  let l:ret = strpart(l:cmd, 0, getcmdpos() - 1)
+  call <SID>saveUndoHistory(l:ret, getcmdpos())
+  return l:ret
+endfunction
+let s:oldcmdline = [ ]
+function! <SID>saveUndoHistory(cmdline, cmdpos)
+  if len(s:oldcmdline) == 0 || a:cmdline != s:oldcmdline[0][0]
+    call insert(s:oldcmdline, [ a:cmdline, a:cmdpos ], 0)
+  else
+    let s:oldcmdline[0][1] = a:cmdpos
+  endif
+  if len(s:oldcmdline) > 100
+    call remove(s:oldcmdline, 100)
+  endif
+endfunction
+
 " インサートモード時の矢印キー
 inoremap <Up> <ESC>:<C-u>GundoToggle<CR>
 inoremap <Right> <Esc>:QuickRun<CR>
