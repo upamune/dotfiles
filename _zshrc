@@ -55,18 +55,22 @@ setopt NO_BEEP
 
 # プロンプト表示前にディレクトリの中身を表示する
 function cd_ls_precmd_hook() {
-  [[ "$(fc -nl -1)" =~ "^ *cd.*$" ]] && { ( /bin/ls --color|| /bin/ls -G &) 2>/dev/null }
+  ( /bin/ls --color|| /bin/ls -G &) 2>/dev/null
 }
-add-zsh-hook precmd cd_ls_precmd_hook
+add-zsh-hook chpwd cd_ls_precmd_hook
 
 # エイリアス
-alias c='clear'
-alias h='history'
-alias cp='cp -i'
+alias l='ls -lah'
+alias la='ls -lAh'
+alias ll='ls -lh'
+alias ls='ls --color=tty'
 alias mv='mv -i'
-alias mkdir='mkdir -p'
-alias vimconfig='vim ~/.vimrc'
-alias zshconfig='vim ~/.zshrc'
+alias -g c='clear'
+alias -g cp='cp -i'
+alias -g grep='grep --color=auto --exclude-dir={.bzr,.cvs,.git,.hg,.svn}'
+alias -g mkdir='mkdir -p'
+alias -g vimconfig='vim ~/.vimrc'
+alias -g zshconfig='vim ~/.zshrc'
 alias -g L='| less'
 alias -g G='| grep'
 alias -g v='gvim'
