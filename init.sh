@@ -38,6 +38,29 @@ else
   echo "Replaced your neobundle.toml"
 fi
 
+# nvimrcをoldディレクトリに移動する
+if [[ -f $HOME/.nvimrc ]] ; then
+  mv $HOME/.nvimrc $CURRENT_PATH/old/_vimrc
+  echo "Move your nvimrc to old dir"
+  ln -s $CURRENT_PATH/_vimrc $HOME/.nvimrc
+  echo "Replaced your nvimrc"
+else
+  ln -s $CURRENT_PATH/_vimrc $HOME/.nvimrc
+  echo "Replaced your nvimrc"
+fi
+
+# TOMLファイルを .nvim/ に配置
+mkdir -p $HOME/.nvim
+if [[ -f $HOME/.nvim/neobundle.toml ]] ; then
+  mv $HOME/.nvim/neobundle.toml $CURRENT_PATH/old/neobundle.toml
+  echo "Move your neobundle.toml to old dir"
+  ln -s $CURRENT_PATH/neobundle.toml $HOME/.nvim/neobundle.toml
+  echo "Replaced your neobundle.toml"
+else
+  ln -s $CURRENT_PATH/neobundle.toml $HOME/.nvim/neobundle.toml
+  echo "Replaced your neobundle.toml"
+fi
+
 if [[ -f $HOME/.vim/neobundlelazy.toml ]] ; then
   mv $HOME/.vim/neobundlelazy.toml $CURRENT_PATH/old/neobundlelazy.toml
   echo "Move your neobundlelazy.toml to old dir"
