@@ -157,6 +157,7 @@ bitclust setup
   - Ctrl-x + Ctrl-p => pecoを使って履歴からコマンドを挿入する
   - Ctrl-x + w => pecoでtmuxのウィンドウを切り替える
   - Ctrl-x + Ctrl-d => pecoでcdrを表示する
+  - Ctrl-x + Ctrl-g => ghqで管理してるリポジトリをpecoで絞り込む
 
 
 ## tmux

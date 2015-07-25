@@ -220,7 +220,7 @@ fi
 zle clear-screen
 }
 zle -N peco-src
-bindkey '^xg' peco-src
+bindkey '^x^g' peco-src
 
 # Ctrl-XCでcdrをpecoで開く
 bindkey "^x^d" anyframe-widget-cdr
