@@ -55,7 +55,7 @@ setopt NO_BEEP
 
 # プロンプト表示前にディレクトリの中身を表示する
 function cd_ls_precmd_hook() {
-  ( /bin/ls --color|| /bin/ls -G &) 2>/dev/null
+( /bin/ls --color|| /bin/ls -G &) 2>/dev/null
 }
 add-zsh-hook chpwd cd_ls_precmd_hook
 
@@ -78,7 +78,7 @@ alias -g vi='vim'
 
 if which go > /dev/null 2>&1 ; then
   # For Go
-  export GOPATH=~/go
+  export GOPATH=~/
   export PATH=$PATH:$GOPATH/bin
 fi
 
@@ -91,79 +91,79 @@ fi
 case ${OSTYPE} in
   # For MacOS
   darwin*)
-    # Cでクリップボードにコピーできるようにする
-    if which pbcopy > /dev/null 2>&1 ; then
-      alias -g C='| pbcopy'
-    fi
+  # Cでクリップボードにコピーできるようにする
+  if which pbcopy > /dev/null 2>&1 ; then
+    alias -g C='| pbcopy'
+  fi
 
-    # nvmがインストールされていたら環境変数を設定する
-    if [[ -d $HOME/.nvm ]] ; then
-      export NVM_DIR=$HOME/.nvm
-      source $(brew --prefix nvm)/nvm.sh
-    fi
+  # nvmがインストールされていたら環境変数を設定する
+  if [[ -d $HOME/.nvm ]] ; then
+    export NVM_DIR=$HOME/.nvm
+    source $(brew --prefix nvm)/nvm.sh
+  fi
   ;;
   # For Linux
   linux*)
-    # systemctl のエイリアスを設定する
-    if which systemctl > /dev/null 2>&1 ; then
-      alias -g sctl='systemctl'
-    fi
+  # systemctl のエイリアスを設定する
+  if which systemctl > /dev/null 2>&1 ; then
+    alias -g sctl='systemctl'
+  fi
 
-    # machinectl のエイリアスを設定する
-    if which machinectl > /dev/null 2>&1 ; then
-      alias -g mctl='machinectl'
-    fi
+  # machinectl のエイリアスを設定する
+  if which machinectl > /dev/null 2>&1 ; then
+    alias -g mctl='machinectl'
+  fi
 
-    # CapsをCtrlに置換する
-    if [[ -f $HOME/.xmodmap ]]; then
-      xmodmap .xmodmap > /dev/null 2>&1
-    fi
+  # CapsをCtrlに置換する
+  if [[ -f $HOME/.xmodmap ]]; then
+    xmodmap .xmodmap > /dev/null 2>&1
+  fi
 
-    # xdg-open を openにエイリアス
-    alias open='xdg-open'
+  # xdg-open を openにエイリアス
+  alias open='xdg-open'
 
-    # fcitxが存在したら環境変数を設定する
-    if which fcitx > /dev/null 2>&1 ; then
-      export GTK_IM_MODULE=fcitx
-      export QT_IM_MODULE=fcitx
-      export XMODIFIERS="@im=fcitx"
-    fi
+  # fcitxが存在したら環境変数を設定する
+  if which fcitx > /dev/null 2>&1 ; then
+    export GTK_IM_MODULE=fcitx
+    export QT_IM_MODULE=fcitx
+    export XMODIFIERS="@im=fcitx"
+  fi
 
-    # javaws が存在したらtopcoderにエイリアス
-    if which javaws > /dev/null 2>&1 ; then
-      alias topcoder='javaws /usr/local/bin/ContestAppletProd.jnlp&'
-    fi
+  # javaws が存在したらtopcoderにエイリアス
+  if which javaws > /dev/null 2>&1 ; then
+    alias topcoder='javaws /usr/local/bin/ContestAppletProd.jnlp&'
+  fi
 
-    # Ruby2.2 がインストールされてたらPATHを通す
-    if [ -d $HOME/.gem/ruby/2.2.0/bin ]; then
-      export PATH=$PATH:$HOME/.gem/ruby/2.2.0/bin
-    fi
+  # Ruby2.2 がインストールされてたらPATHを通す
+  if [ -d $HOME/.gem/ruby/2.2.0/bin ]; then
+    export PATH=$PATH:$HOME/.gem/ruby/2.2.0/bin
+  fi
 
-    # herokuが存在したらPATHを通す
-    if [ -d /usr/local/heroku ]; then
-      PATH=/usr/local/heroku/bin:$PATH
-    fi
+  # herokuが存在したらPATHを通す
+  if [ -d /usr/local/heroku ]; then
+    PATH=/usr/local/heroku/bin:$PATH
+  fi
 
-    # xselが存在したらCでクリップボードにコピーできるようにする
-    if which xsel > /dev/null 2>&1 ; then
-      alias -g C='| xsel --input --clipboard'
-    fi
+  # xselが存在したらCでクリップボードにコピーできるようにする
+  if which xsel > /dev/null 2>&1 ; then
+    alias -g C='| xsel --input --clipboard'
+  fi
 
-    # addon-sdk が存在したらエイリアス
-    if [ -d /opt/addon-sdk ] ; then
-      alias addon-sdk='cd /opt/addon-sdk && source bin/activate; cd -'
-    fi
+  # addon-sdk が存在したらエイリアス
+  if [ -d /opt/addon-sdk ] ; then
+    alias addon-sdk='cd /opt/addon-sdk && source bin/activate; cd -'
+  fi
 
-    # HOME直下に.nvmが存在したら環境変数を設定する
-    if [ -d $HOME/.nvm ] ; then
-      source /usr/share/nvm/init-nvm.sh
-    fi
+  # HOME直下に.nvmが存在したら環境変数を設定する
+  if [ -d $HOME/.nvm ] ; then
+    source /usr/share/nvm/init-nvm.sh
+  fi
 
-    # nvmが存在したらnvmのinitとnodeのバージョンを指定する
-    if which nvm > /dev/null 2>&1 ; then
-      nvm use v0.10.38 > /dev/null
-      export PATH=$HOME/.nvm/v0.10.38/bin:$PATH
-    fi
+  # nvmが存在したらnvmのinitとnodeのバージョンを指定する
+  if which nvm > /dev/null 2>&1 ; then
+    nvm use v0.10.38 > /dev/null
+    export PATH=$HOME/.nvm/v0.10.38/bin:$PATH
+  fi
   ;;
 esac
 
@@ -192,40 +192,52 @@ $ '
   # anyframe の設定
   # Ctrl-XPでコマンドを挿入できるようにする
   function peco-put-history() {
-    builtin history -n -r 1 \
-      | anyframe-selector-auto "$LBUFFER" \
-      | anyframe-action-put
-  }
-  zle -N peco-put-history
-  bindkey '^x^p' peco-put-history
-  # Ctrl-xwでtmuxのウィンドウを切り替えられるようにする
-  function peco-tmux() {
-   local i=$(tmux lsw | awk '/active.$/ {print NR-1}')
-   local f='#{window_index}: #{window_name}#{window_flags} #{pane_current_path}'
-  tmux lsw -F "$f" \
-    | anyframe-selector-auto "" --initial-index $i \
-    | cut -d ':' -f 1 \
-    | anyframe-action-execute tmux select-window -t
+  builtin history -n -r 1 \
+    | anyframe-selector-auto "$LBUFFER" \
+    | anyframe-action-put
+}
+zle -N peco-put-history
+bindkey '^x^p' peco-put-history
+# Ctrl-xwでtmuxのウィンドウを切り替えられるようにする
+function peco-tmux() {
+local i=$(tmux lsw | awk '/active.$/ {print NR-1}')
+local f='#{window_index}: #{window_name}#{window_flags} #{pane_current_path}'
+tmux lsw -F "$f" \
+  | anyframe-selector-auto "" --initial-index $i \
+  | cut -d ':' -f 1 \
+  | anyframe-action-execute tmux select-window -t
   }
   zle -N peco-tmux
   bindkey '^xw' peco-tmux
 
-  # Ctrl-XCでcdrをpecoで開く
-  bindkey "^x^d" anyframe-widget-cdr
+# ghq + peco
+function peco-src () {
+local selected_dir=$(ghq list -p | peco --query "$LBUFFER")
+if [ -n "$selected_dir" ]; then
+  BUFFER="cd ${selected_dir}"
+  zle accept-line
+fi
+zle clear-screen
+}
+zle -N peco-src
+bindkey '^xg' peco-src
 
-  # Ctrl-XBでブランチをpecoで切り替える
-  bindkey "^x^b" anyframe-widget-checkout-git-branch
+# Ctrl-XCでcdrをpecoで開く
+bindkey "^x^d" anyframe-widget-cdr
 
-  # Ctrl-XKでkillするプロセスをpecoで選ぶ
-  bindkey "^x^k" anyframe-widget-kill
+# Ctrl-XBでブランチをpecoで切り替える
+bindkey "^x^b" anyframe-widget-checkout-git-branch
 
-  # cdd の設定
-  if [[ -f $HOME/.antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-m4i-SLASH-cdd.git/cdd ]]; then
-    source $HOME/.antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-m4i-SLASH-cdd.git/cdd
-    touch $CDD_FILE
-    autoload -Uz add-zsh-hook
-    add-zsh-hook chpwd _cdd_chpwd
-  fi
+# Ctrl-XKでkillするプロセスをpecoで選ぶ
+bindkey "^x^k" anyframe-widget-kill
+
+# cdd の設定
+if [[ -f $HOME/.antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-m4i-SLASH-cdd.git/cdd ]]; then
+  source $HOME/.antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-m4i-SLASH-cdd.git/cdd
+  touch $CDD_FILE
+  autoload -Uz add-zsh-hook
+  add-zsh-hook chpwd _cdd_chpwd
+fi
 fi
 
 touch $HOME/.zgitrepo_user.config
