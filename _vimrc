@@ -65,6 +65,10 @@ nnoremap q: <Nop>
 nnoremap q/ <Nop>
 nnoremap q? <Nop>
 
+" 行移動を便利にする
+nnoremap j gj
+nnoremap k gk
+
 " ノーマルモード時だけ ; と : を入れ替える (US用)
 nnoremap ; :
 
