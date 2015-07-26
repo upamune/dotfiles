@@ -108,6 +108,10 @@ function do_enter() {
 zle -N do_enter
 bindkey '^m' do_enter
 
+function zman() {
+  PAGER="less -g -s '+/^       "$1"'" man zshall
+}
+
 # エイリアス
 alias l='ls -lah'
 alias la='ls -lAh'
