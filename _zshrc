@@ -53,11 +53,41 @@ setopt NO_FLOW_CONTROL
 # beep音を無効にする
 setopt NO_BEEP
 
-# プロンプト表示前にディレクトリの中身を表示する
-function cd_ls_precmd_hook() {
-( /bin/ls --color|| /bin/ls -G &) 2>/dev/null
+# cd したら ls する(大量のファイル/ディレクトリがあるときは省略する)
+add-zsh-hook chpwd ls_abbrev
+ls_abbrev() {
+  # -a : Do not ignore entries starting with ..
+  # -C : Force multi-column output.
+  # -F : Append indicator (one of */=>@|) to entries.
+  local cmd_ls='ls'
+  local -a opt_ls
+  opt_ls=('-CF' '--color=always')
+  case "${OSTYPE}" in
+    freebsd*|darwin*)
+      if type gls > /dev/null 2>&1; then
+        cmd_ls='gls'
+      else
+        # -G : Enable colorized output.
+        opt_ls=('-aCFG')
+      fi
+      ;;
+  esac
+
+  local ls_result
+  ls_result=$(CLICOLOR_FORCE=1 COLUMNS=$COLUMNS command $cmd_ls ${opt_ls[@]} | sed $'/^\e\[[0-9;]*m$/d')
+
+  local ls_lines=$(echo "$ls_result" | wc -l | tr -d ' ')
+
+  if [ $ls_lines -gt 10 ]; then
+    echo "$ls_result" | head -n 5
+    echo '...'
+    echo "$ls_result" | tail -n 5
+    echo "$(command ls -1 -A | wc -l | tr -d ' ') files exist"
+  else
+    echo "$ls_result"
+  fi
 }
-add-zsh-hook chpwd cd_ls_precmd_hook
+
 
 # エイリアス
 alias l='ls -lah'
@@ -261,3 +291,5 @@ fi
 # ANSI Color Escape Sequenceを色表示
 # 1行を折り返さない
 export LESS='-iMRS'
+
+
