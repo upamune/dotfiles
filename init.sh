@@ -115,6 +115,17 @@ else
   echo "Replaced your .ideavimrc"
 fi
 
+# .agignoreをoldディレクトリに移動する
+if [[ -f $HOME/.agignore ]] ; then
+  mv $HOME/.agignore $CURRENT_PATH/old/_agignore
+  echo "Move your .agignore to old dir"
+  ln -s $CURRENT_PATH/_agignore $HOME/.agignore
+  echo "Replaced your .agignore"
+else
+  ln -s $CURRENT_PATH/_agignore $HOME/.agignore
+  echo "Replaced your .agignore"
+fi
+
 # Neobundleを導入する
 if [[ ! -d $HOME/.vim/bundle/neobundle.vim ]] ; then
   mkdir -p ~/.vim/bundle && git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
