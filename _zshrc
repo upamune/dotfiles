@@ -113,10 +113,6 @@ function zman() {
 }
 
 # エイリアス
-alias l='ls -lah'
-alias la='ls -lAh'
-alias ll='ls -lh'
-alias ls='ls --color=tty'
 alias mv='mv -i'
 alias -g c='clear'
 alias -g cp='cp -i'
