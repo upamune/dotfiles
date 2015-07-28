@@ -17,7 +17,9 @@ set showmatch
 set matchtime=1
 
 imap jj <Esc>
-imap kk <Esc>
+nnoremap j gj
+nnoremap k gk
+
 nnoremap ; :
 nnoremap Y y$
 syntax on
