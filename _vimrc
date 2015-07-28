@@ -56,9 +56,8 @@ set wildmenu
 
 " KeyMap {{{
 
-" jj or kkでESCする
+" jj でESCする
 imap jj <Esc>
-imap kk <Esc>
 
 " コマンド検索、検索履歴を無効化する
 nnoremap q: <Nop>
