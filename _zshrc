@@ -114,7 +114,6 @@ function zman() {
 
 # エイリアス
 alias mv='mv -i'
-alias -g c='clear'
 alias -g cp='cp -i'
 alias -g grep='grep --color=auto --exclude-dir={.bzr,.cvs,.git,.hg,.svn}'
 alias -g mkdir='mkdir -p'
@@ -124,6 +123,12 @@ alias -g L='| less'
 alias -g G='| grep'
 alias -g v='gvim'
 alias -g vi='vim'
+
+# Git
+alias g='git'
+alias -g B='`git branch -a | peco --prompt "GIT BRANCH>" | head -n 1 | sed -e "s/^\*\s*//g"`'
+alias -g R='`git remote | peco --prompt "GIT REMOTE>" | head -n 1`'
+
 
 if which go > /dev/null 2>&1 ; then
   # For Go
