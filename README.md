@@ -151,6 +151,14 @@ bitclust setup
     - mctl => machinectl
     - open => xdg-open
 
+### Git系
+
+- g => git
+- g p => git pull
+- g pu => git push
+- g puu R B => git push -u origin something
+- g b => git checkout -b
+
 ### キーバインド
   - Ctrl-r => 履歴をインクリメンタルサーチする(後方)
   - Ctrl-s => 履歴をインクリメンタルサーチする(前方)
