@@ -148,7 +148,8 @@ git config --global alias.pu 'push'
 git config --global alias.puu 'push -u'
 git config --global alias.b 'checkout -b'
 git config --global user.name "upamune"
-git config --global uesr.email "jajkeqos@gmail.com"
+git config --global user.email "jajkeqos@gmail.com"
+git config --global ghq.root "$HOME/src"
 
 echo """
 
