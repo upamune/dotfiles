@@ -148,7 +148,24 @@ git config --global alias.pu 'push'
 git config --global alias.puu 'push -u'
 git config --global alias.b 'checkout -b'
 git config --global user.name "upamune"
-git config --global uesr.email "jajkeqos@gmail.com"
+git config --global user.email "jajkeqos@gmail.com"
+git config --global ghq.root "$HOME/src"
+
+# Go ツールのインストール
+
+if which go > /dev/null 2>&1; then
+  go get -v code.google.com/p/rog-go/exp/cmd/godef
+  go get -v github.com/golang/lint/golint
+  go get -v github.com/jstemmer/gotags
+  go get -v github.com/motemen/ghq
+  go get -v github.com/nsf/gocode
+  go get -v github.com/peco/peco
+  go get -v github.com/upamune/tw
+  go get -v golang.org/x/tools/cmd/cover
+  go get -v golang.org/x/tools/cmd/godoc
+  go get -v golang.org/x/tools/cmd/goimports
+  go get -v golang.org/x/tools/cmd/vet
+fi
 
 echo """
 
