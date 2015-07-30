@@ -89,28 +89,8 @@ ls_abbrev() {
 }
 
 # 空でEnterを押すと ls した結果と git status が表示される
-function do_enter() {
-  if [ -n "$BUFFER" ]; then
-    zle accept-line
-    return 0
-  fi
-  echo
-  ls_abbrev
-  if [ "$(git rev-parse --is-inside-work-tree 2> /dev/null)" = 'true' ]; then
-    echo
-    echo -e "\e[0;33m--- git status ---\e[0m"
-    git status -sb
-    echo "\n"
-  fi
-  zle reset-prompt
-  return 0
-}
 zle -N do_enter
 bindkey '^m' do_enter
-
-function zman() {
-  PAGER="less -g -s '+/^       "$1"'" man zshall
-}
 
 # エイリアス
 alias mv='mv -i'
@@ -128,7 +108,6 @@ alias -g vi='vim'
 alias g='git'
 alias -g B='`git branch -a | peco --prompt "GIT BRANCH>" | head -n 1 | sed -e "s/^\*\s*//g"`'
 alias -g R='`git remote | peco --prompt "GIT REMOTE>" | head -n 1`'
-
 
 if which go > /dev/null 2>&1 ; then
   # For Go
@@ -232,7 +211,7 @@ if [[ -f $HOME/.zsh/antigen/antigen.zsh ]]; then
   antigen apply
 
   PROMPT='%{$fg_bold[green]%}${PWD/#$HOME/~}%{$reset_color%}$(git_prompt_info) ⌚ %{$fg_bold[red]%}%*%{$reset_color%}
-$ '
+  $ '
 
   ZSH_THEME_GIT_PROMPT_PREFIX=" on %{$fg[magenta]%}⭠ "
   ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
@@ -245,58 +224,32 @@ $ '
 
   # anyframe の設定
   # Ctrl-XPでコマンドを挿入できるようにする
-  function peco-put-history() {
-  builtin history -n -r 1 \
-    | anyframe-selector-auto "$LBUFFER" \
-    | anyframe-action-put
-}
-zle -N peco-put-history
-bindkey '^x^p' peco-put-history
-# Ctrl-xwでtmuxのウィンドウを切り替えられるようにする
-function peco-tmux() {
-local i=$(tmux lsw | awk '/active.$/ {print NR-1}')
-local f='#{window_index}: #{window_name}#{window_flags} #{pane_current_path}'
-tmux lsw -F "$f" \
-  | anyframe-selector-auto "" --initial-index $i \
-  | cut -d ':' -f 1 \
-  | anyframe-action-execute tmux select-window -t
-  }
+  zle -N peco-put-history
+  bindkey '^x^p' peco-put-history
+  # Ctrl-xwでtmuxのウィンドウを切り替えられるようにする
   zle -N peco-tmux
   bindkey '^xw' peco-tmux
 
-# ghq + peco
-function peco-src () {
-local selected_dir=$(ghq list -p | peco --query "$LBUFFER")
-if [ -n "$selected_dir" ]; then
-  BUFFER="cd ${selected_dir}"
-  zle accept-line
-fi
-zle clear-screen
-}
-zle -N peco-src
-bindkey '^x^g' peco-src
+  # ghq + peco
+  zle -N peco-src
+  bindkey '^x^g' peco-src
 
-# agvim (agで検索したやつをVimで開く)
-function agvim () {
-  vim $(ag $@ | peco --query "$LBUFFER" | awk -F : '{print "-c " $2 " " $1}')
-}
+  # Ctrl-XCでcdrをpecoで開く
+  bindkey "^x^d" anyframe-widget-cdr
 
-# Ctrl-XCでcdrをpecoで開く
-bindkey "^x^d" anyframe-widget-cdr
+  # Ctrl-XBでブランチをpecoで切り替える
+  bindkey "^x^b" anyframe-widget-checkout-git-branch
 
-# Ctrl-XBでブランチをpecoで切り替える
-bindkey "^x^b" anyframe-widget-checkout-git-branch
+  # Ctrl-XKでkillするプロセスをpecoで選ぶ
+  bindkey "^x^k" anyframe-widget-kill
 
-# Ctrl-XKでkillするプロセスをpecoで選ぶ
-bindkey "^x^k" anyframe-widget-kill
-
-# cdd の設定
-if [[ -f $HOME/.antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-m4i-SLASH-cdd.git/cdd ]]; then
-  source $HOME/.antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-m4i-SLASH-cdd.git/cdd
-  touch $CDD_FILE
-  autoload -Uz add-zsh-hook
-  add-zsh-hook chpwd _cdd_chpwd
-fi
+  # cdd の設定
+  if [[ -f $HOME/.antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-m4i-SLASH-cdd.git/cdd ]]; then
+    source $HOME/.antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-m4i-SLASH-cdd.git/cdd
+    touch $CDD_FILE
+    autoload -Uz add-zsh-hook
+    add-zsh-hook chpwd _cdd_chpwd
+  fi
 fi
 
 touch $HOME/.zgitrepo_user.config
@@ -321,4 +274,52 @@ fi
 # 1行を折り返さない
 export LESS='-iMRS'
 
+# Functions
+function do_enter() {
+if [ -n "$BUFFER" ]; then
+  zle accept-line
+  return 0
+fi
+echo
+ls_abbrev
+if [ "$(git rev-parse --is-inside-work-tree 2> /dev/null)" = 'true' ]; then
+  echo
+  echo -e "\e[0;33m--- git status ---\e[0m"
+  git status -sb
+  echo "\n"
+fi
+zle reset-prompt
+return 0
+  }
 
+  function zman() {
+  PAGER="less -g -s '+/^       "$1"'" man zshall
+}
+
+function peco-put-history() {
+builtin history -n -r 1 \
+  | anyframe-selector-auto "$LBUFFER" \
+  | anyframe-action-put
+}
+
+function peco-tmux() {
+local i=$(tmux lsw | awk '/active.$/ {print NR-1}')
+local f='#{window_index}: #{window_name}#{window_flags} #{pane_current_path}'
+tmux lsw -F "$f" \
+  | anyframe-selector-auto "" --initial-index $i \
+  | cut -d ':' -f 1 \
+  | anyframe-action-execute tmux select-window -t
+}
+
+function peco-src () {
+local selected_dir=$(ghq list -p | peco --query "$LBUFFER")
+if [ -n "$selected_dir" ]; then
+  BUFFER="cd ${selected_dir}"
+  zle accept-line
+fi
+zle clear-screen
+}
+
+function agvim () {
+vim $(ag $@ | peco --query "$LBUFFER" | awk -F : '{print "-c " $2 " " $1}')
+}
