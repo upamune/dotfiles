@@ -1,6 +1,6 @@
 # 環境変数
 export LANG=ja_JP.UTF-8
-export PATH="/home/upamune/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH="$HOME/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 #git 補完できるように
 fpath=(~/.zsh/complention $fpath)
 # 色を使用出来るようにする
@@ -112,7 +112,6 @@ alias -g R='`git remote | peco --prompt "GIT REMOTE>" | head -n 1`'
 if which go > /dev/null 2>&1 ; then
   # For Go
   export GOPATH=~/
-  export PATH=$PATH:$GOPATH/bin
 fi
 
 # rbenv があったら初期化処理を追加する
