@@ -1,6 +1,7 @@
 # 環境変数
 export LANG=ja_JP.UTF-8
 export PATH="$HOME/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export EDITOR=vim
 #git 補完できるように
 fpath=(~/.zsh/complention $fpath)
 # 色を使用出来るようにする
@@ -210,7 +211,7 @@ if [[ -f $HOME/.zsh/antigen/antigen.zsh ]]; then
   antigen apply
 
   PROMPT='%{$fg_bold[green]%}${PWD/#$HOME/~}%{$reset_color%}$(git_prompt_info) ⌚ %{$fg_bold[red]%}%*%{$reset_color%}
-  $ '
+$ '
 
   ZSH_THEME_GIT_PROMPT_PREFIX=" on %{$fg[magenta]%}⭠ "
   ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
