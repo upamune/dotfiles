@@ -124,6 +124,8 @@ fi
 case ${OSTYPE} in
   # For MacOS
   darwin*)
+  # Brew Cask 用の設定
+  export HOMEBREW_CASK_OPTS="—appdir=/Applications"
   # Cでクリップボードにコピーできるようにする
   if which pbcopy > /dev/null 2>&1 ; then
     alias -g C='| pbcopy'
