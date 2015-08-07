@@ -144,14 +144,15 @@ fi
 
 # Git の設定
 git config --global alias.a 'add'
+git config --global alias.b 'checkout -b'
 git config --global alias.c 'commit -v'
+git config --global alias.d 'diff'
 git config --global alias.p 'pull'
 git config --global alias.pu 'push'
 git config --global alias.puu 'push -u'
-git config --global alias.b 'checkout -b'
-git config --global user.name "upamune"
-git config --global user.email "jajkeqos@gmail.com"
 git config --global ghq.root "$HOME/src"
+git config --global user.email "jajkeqos@gmail.com"
+git config --global user.name "upamune"
 
 # Go ツールのインストール
 
