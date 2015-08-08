@@ -170,6 +170,11 @@ if which go > /dev/null 2>&1; then
   # go get -v golang.org/x/tools/cmd/vet
 fi
 
+if which pip > /dev/null 2>&1; then
+  sudo pip install virtualenv
+  sudo pip install virtualenvwrapper
+fi
+
 echo """
 
     _    _ _   ____                     _
