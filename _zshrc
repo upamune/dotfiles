@@ -327,7 +327,7 @@ tmux lsw -F "$f" \
 function peco-src () {
 local selected_dir=$(ghq list -p | peco --query "$LBUFFER")
 if [ -n "$selected_dir" ]; then
-  BUFFER="cd ${selected_dir}"
+  BUFFER="builtin cd ${selected_dir}"
   zle accept-line
 fi
 zle clear-screen
@@ -336,7 +336,3 @@ zle clear-screen
 function agvim () {
 vim $(ag $@ | peco --query "$LBUFFER" | awk -F : '{print "-c " $2 " " $1}')
 }
-# enhancd
-if [ -f "/home/upamune/.enhancd/zsh/enhancd.zsh" ]; then
-    source "/home/upamune/.enhancd/zsh/enhancd.zsh"
-fi
