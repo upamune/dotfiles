@@ -96,3 +96,20 @@ filetypes = 'toml'
 [[plugins]]
 repository = 'derekwyatt/vim-scala'
 filetypes = 'scala'
+
+# python {{{
+[[plugins]]
+repository = 'davidhalter/jedi-vim'
+filetypes = 'python'
+
+[[plugins]]
+repository = 'andviro/flake8-vim'
+filetypes = 'python'
+
+[[plugins]]
+repository = 'hynek/vim-python-pep8-indent'
+filetypes = 'python'
+
+[[plugins]]
+repository = 'jmcantrell/vim-virtualenv'
+filetypes = 'python'

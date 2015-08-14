@@ -173,6 +173,7 @@ fi
 if which pip > /dev/null 2>&1; then
   sudo pip install virtualenv
   sudo pip install virtualenvwrapper
+  sudo pip install flake8
 fi
 
 echo """
