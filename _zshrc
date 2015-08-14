@@ -217,6 +217,7 @@ if [[ -f $HOME/.zsh/antigen/antigen.zsh ]]; then
   antigen bundle mollifier/anyframe
   antigen bundle m4i/cdd
   antigen bundle upamune/zgit-repo-user-config
+  antigen bundle b4b4r07/enhancd
   antigen apply
 
   PROMPT='%{$fg_bold[green]%}${PWD/#$HOME/~}%{$reset_color%}$(git_prompt_info) ⌚ %{$fg_bold[red]%}%*%{$reset_color%}
@@ -230,6 +231,9 @@ $ '
 
   # zsh-completions の設定
   fpath=($HOME/.zsh/zsh-completions/src(N-/) $fpath)
+
+  # enhancd の設定
+  export ENHANCD_FILTER=peco
 
   # anyframe の設定
   # Ctrl-XPでコマンドを挿入できるようにする
