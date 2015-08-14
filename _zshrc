@@ -1,3 +1,5 @@
+# vim:filetype=zsh
+
 # 環境変数
 export LANG=ja_JP.UTF-8
 export PATH="$HOME/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
@@ -330,3 +332,7 @@ zle clear-screen
 function agvim () {
 vim $(ag $@ | peco --query "$LBUFFER" | awk -F : '{print "-c " $2 " " $1}')
 }
+# enhancd
+if [ -f "/home/upamune/.enhancd/zsh/enhancd.zsh" ]; then
+    source "/home/upamune/.enhancd/zsh/enhancd.zsh"
+fi
