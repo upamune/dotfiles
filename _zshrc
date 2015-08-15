@@ -257,6 +257,21 @@ $ '
   # Ctrl-XKでkillするプロセスをpecoで選ぶ
   bindkey "^x^k" anyframe-widget-kill
 
+  # Ctrl-XKでkillするプロセスをpecoで選ぶ
+  bindkey "^x^k" anyframe-widget-kill
+
+  # tw の設定
+  if which tw > /dev/null 2>&1 ; then
+    # Ctrl-XTRでRT
+    zle -N peco-retweet-tweet
+    bindkey "^x^r" peco-retweet-tweet
+
+    # Ctrl-XTFでFAV
+    zle -N peco-favorite-tweet
+    bindkey "^x^f" peco-favorite-tweet
+
+  fi
+
   # cdd の設定
   if [[ -f $HOME/.antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-m4i-SLASH-cdd.git/cdd ]]; then
     source $HOME/.antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-m4i-SLASH-cdd.git/cdd
@@ -336,4 +351,16 @@ zle clear-screen
 
 function agvim () {
 vim $(ag $@ | peco --query "$LBUFFER" | awk -F : '{print "-c " $2 " " $1}')
+}
+
+function peco-delete-tweet() {
+tw tl 100 --with-id --user $1 | peco --prompt "TWEET> " | awk '{print $NF}' | tw del --pipe
+}
+
+function peco-retweet-tweet() {
+tw tl 100 --with-id | peco --prompt "TWEET> " | awk '{print $NF}' | tw rt --pipe
+}
+
+function peco-favorite-tweet() {
+tw tl 100 --with-id | peco --prompt "TWEET> " | awk '{print $NF}' | tw fav --pipe
 }
