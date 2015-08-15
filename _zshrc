@@ -45,6 +45,7 @@ setopt AUTO_CD
 # 最近移動したディレクトリに移動できるようにする
 autoload -Uz add-zsh-hook
 autoload -Uz chpwd_recent_dirs cdr
+zstyle ":chpwd:*" recent-dirs-max 500
 add-zsh-hook chpwd chpwd_recent_dirs
 
 # Ctrl-Dでzshを終了しない
