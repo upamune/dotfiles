@@ -59,6 +59,9 @@ depends = 'osyo-manga/vim-anzu'
 [[plugins]]
 repository = 'thinca/vim-visualstar'
 
+[[plugins]]
+repository = 'KabbAmine/zeavim.vim'
+
 # color {{{
 [[plugins]]
 repository = 'w0ng/vim-hybrid'
