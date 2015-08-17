@@ -220,6 +220,7 @@ if [[ -f $HOME/.zsh/antigen/antigen.zsh ]]; then
   antigen bundle upamune/zgit-repo-user-config
   antigen bundle b4b4r07/enhancd
   antigen apply
+  antigen update
 
   PROMPT='%{$fg_bold[green]%}${PWD/#$HOME/~}%{$reset_color%}$(git_prompt_info) ⌚ %{$fg_bold[red]%}%*%{$reset_color%}
 $ '
