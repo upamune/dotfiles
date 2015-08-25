@@ -24,6 +24,9 @@ repository = 'Shougo/unite-outline'
 # benry {{{
 
 [[plugins]]
+repository = "wakatime/vim-wakatime"
+
+[[plugins]]
 repository = "vim-scripts/YankRing.vim"
 
 [[plugins]]
