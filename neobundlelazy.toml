@@ -51,6 +51,13 @@ filetypes = 'ruby'
 repository = 'tpope/vim-endwise'
 filetypes = 'ruby'
 
+# elixir {{{
+[[plugins]]
+repository = 'elixir-lang/vim-elixir'
+
+[[plugins]]
+repository = 'carlosgaldino/elixir-snippets'
+
 # go {{{
 [[plugins]]
 repository = 'dgryski/vim-godef'
