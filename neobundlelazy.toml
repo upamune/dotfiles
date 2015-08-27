@@ -17,6 +17,10 @@ repository = 'Shougo/neosnippet'
 insert = 1
 
 [[plugins]]
+repository = 'Shougo/neosnippet-snippets'
+insert = 1
+
+[[plugins]]
 repository = 'sjl/gundo.vim'
 mappings = '<Plug>'
 
@@ -50,13 +54,6 @@ filetypes = 'ruby'
 [[plugins]]
 repository = 'tpope/vim-endwise'
 filetypes = 'ruby'
-
-# elixir {{{
-[[plugins]]
-repository = 'elixir-lang/vim-elixir'
-
-[[plugins]]
-repository = 'carlosgaldino/elixir-snippets'
 
 # go {{{
 [[plugins]]
