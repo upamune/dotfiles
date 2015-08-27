@@ -92,7 +92,3 @@ repository = 'gregsexton/gitv'
 [[plugins]]
 repository = 'tpope/vim-fugitive'
 
-# elixir {{{
-[[plugins]]
-repository = 'elixir-lang/vim-elixir'
-
