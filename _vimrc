@@ -337,12 +337,21 @@ endif
 let g:clang_format#code_style = "llvm"
 let g:clang_format#auto_format = 1
 
+" Elixir {{{
+augroup Elixir
+  autocmd!
+  autocmd BufNewFile,BufRead *.ex  imap >> \|><Space>
+  autocmd BufNewFile,BufRead *.exs imap >> \|><Space>
+augroup END
+
 " FileType {{{
 
 augroup MyGroup
   autocmd!
   autocmd BufNewFile,BufRead *.toml set filetype=toml
   autocmd BufNewFile,BufRead *.scala set filetype=scala
+  autocmd BufNewFile,BufRead *.ex set filetype=elixir
+  autocmd BufNewFile,BufRead *.exs set filetype=elixir
 augroup END
 " }}}
 
