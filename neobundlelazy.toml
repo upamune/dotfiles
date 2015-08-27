@@ -117,3 +117,10 @@ filetypes = 'python'
 [[plugins]]
 repository = 'jmcantrell/vim-virtualenv'
 filetypes = 'python'
+
+# elixir {{{
+[[plugins]]
+repository = 'elixir-lang/vim-elixir'
+filetypes = 'elixir'
+
+
