@@ -345,7 +345,7 @@ augroup Elixir
 augroup END
 let g:syntastic_enable_elixir_checker = 1
 let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': ['elixir'] }
-let g:syntastic_elixir_checker = 'elixir'
+let g:syntastic_elixir_checkers = ['elixir']
 
 " FileType {{{
 
