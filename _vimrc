@@ -343,6 +343,9 @@ augroup Elixir
   autocmd BufNewFile,BufRead *.ex  imap >> \|><Space>
   autocmd BufNewFile,BufRead *.exs imap >> \|><Space>
 augroup END
+let g:syntastic_enable_elixir_checker = 1
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': ['elixir'] }
+let g:syntastic_elixir_checker = 'elixir'
 
 " FileType {{{
 
