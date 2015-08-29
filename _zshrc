@@ -197,6 +197,10 @@ case ${OSTYPE} in
     alias addon-sdk='cd /opt/addon-sdk && source bin/activate; cd -'
   fi
 
+  if which docker > /dev/null 2>&1 ; then
+    alias -g P='`docker ps | tail -n +2 | peco | cut -d" " -f1`'
+  fi
+
   # HOME直下に.nvmが存在したら環境変数を設定する
   if [ -d $HOME/.nvm ] ; then
     source /usr/share/nvm/init-nvm.sh
