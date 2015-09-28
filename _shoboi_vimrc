@@ -1,0 +1,254 @@
+" NeoBundle {{{
+set runtimepath+=~/.vim/bundle/neobundle.vim/
+" Required:
+call neobundle#begin(expand('~/.vim/bundle/'))
+" キャッシュを利用して高速化
+if neobundle#load_cache()
+  NeoBundleFetch 'Shougo/neobundle.vim'
+  call neobundle#load_toml('~/.vim/shoboi_neobundle.toml')
+  NeoBundleSaveCache
+endif
+
+call neobundle#end()
+NeoBundleCheck
+
+" Basic Settings {{{
+
+" タブ文字の代わりに半角スペースを使用する
+set expandtab
+" タブ幅を半角スペース2つ分にする
+set shiftwidth=2
+set smartindent
+set smarttab
+
+" バックスペースでなんでも消せるようにする
+set backspace=indent,eol,start
+
+"行番号を表示する
+set number
+
+" 現在現在行をハイライトする
+set cursorline
+
+" ゴミが生まれないようにする
+set nowritebackup
+set nobackup
+set noswapfile
+set noundofile
+
+" UTF-8
+set encoding=UTF-8
+set fileencoding=UTF-8
+set termencoding=UTF-8
+
+" 補完するときに大文字小文字を区別しない
+set infercase
+
+" カッコを対応させる
+set showmatch
+set matchtime=1
+
+" コマンドラインでの補完をべんりにする
+set wildmenu
+
+" }}}
+
+" KeyMap {{{
+
+" jj でESCする
+imap jj <Esc>
+
+" コマンド検索、検索履歴を無効化する
+nnoremap q: <Nop>
+nnoremap q/ <Nop>
+nnoremap q? <Nop>
+
+" 行移動を便利にする
+nnoremap j gj
+nnoremap k gk
+
+" ノーマルモード時だけ ; と : を入れ替える (US用)
+nnoremap ; :
+
+" Yを行末までのヤンクにする
+nnoremap Y y$
+
+" ノーマルモード時矢印キーでバッファのリサイズ
+nmap <UP> <C-w>-
+nmap <Right> <C-w><
+nmap <Down> <C-w>+
+nmap <Left> <C-w>>
+
+" コマンドライン上でC-aで先頭に飛べる
+cnoremap <C-A> <Home>
+
+" コマンドライン上でC-kでカーソル以下を削除する
+cnoremap <C-K> <C-\>e<SID>KillLine()<CR>
+function! <SID>KillLine()
+  call <SID>saveUndoHistory(getcmdline(), getcmdpos())
+  let l:cmd = getcmdline()
+  let l:rem = strpart(l:cmd, getcmdpos() - 1)
+  if ('' != l:rem)
+    let @c = l:rem
+  endif
+  let l:ret = strpart(l:cmd, 0, getcmdpos() - 1)
+  call <SID>saveUndoHistory(l:ret, getcmdpos())
+  return l:ret
+endfunction
+let s:oldcmdline = [ ]
+function! <SID>saveUndoHistory(cmdline, cmdpos)
+  if len(s:oldcmdline) == 0 || a:cmdline != s:oldcmdline[0][0]
+    call insert(s:oldcmdline, [ a:cmdline, a:cmdpos ], 0)
+  else
+    let s:oldcmdline[0][1] = a:cmdpos
+  endif
+  if len(s:oldcmdline) > 100
+    call remove(s:oldcmdline, 100)
+  endif
+endfunction
+
+" 3倍のスピードでヘルプを参照できるッ!!
+nnoremap <C-h>  :<C-u>help<Space>
+
+" 画面分割＆タブ関係
+nnoremap s <Nop>
+nnoremap sj <C-w>j
+nnoremap sk <C-w>k
+nnoremap sl <C-w>l
+nnoremap sh <C-w>h
+nnoremap sJ <C-w>J
+nnoremap sK <C-w>K
+nnoremap sL <C-w>L
+nnoremap sH <C-w>H
+nnoremap sr <C-w>r
+nnoremap s= <C-w>=
+nnoremap sw <C-w>w
+nnoremap so <C-w>_<C-w>|
+nnoremap sO <C-w>=
+nnoremap sN :<C-u>bn<CR>
+nnoremap sP :<C-u>bp<CR>
+nnoremap st :<C-u>tabnew<CR>
+nnoremap sT :<C-u>Unite tab<CR>
+nnoremap ss :<C-u>sp<CR>
+nnoremap sv :<C-u>vs<CR>
+nnoremap sq :<C-u>q<CR>
+nnoremap sQ :<C-u>bd<CR>
+nnoremap sb :<C-u>Unite buffer_tab -buffer-name=file<CR>
+nnoremap sB :<C-u>Unite buffer -buffer-name=file<CR>
+
+call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
+call submode#enter_with('bufmove', 'n', '', 's<', '<C-w><')
+call submode#enter_with('bufmove', 'n', '', 's+', '<C-w>+')
+call submode#enter_with('bufmove', 'n', '', 's-', '<C-w>-')
+call submode#map('bufmove', 'n', '', '>', '<C-w>>')
+call submode#map('bufmove', 'n', '', '<', '<C-w><')
+call submode#map('bufmove', 'n', '', '+', '<C-w>+')
+call submode#map('bufmove', 'n', '', '-', '<C-w>-')
+
+" 選択時の<C-a>, <C-x>をべんりにする
+vnoremap <C-a> <C-a>gv
+vnoremap <C-x> <C-x>gv
+
+" ヘルプ日本語化
+set helplang=ja,en
+
+" マッチしたものすべてをインクリメンタルにハイライトする
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
+" 検索後カーソル移動したらハイライトすべて消す
+set hlsearch
+let g:incsearch#auto_nohlsearch = 1
+map   n <Plug>(incsearch-nohl-n)
+map   N <Plug>(incsearch-nohl-N)
+map *  <Plug>(incsearch-nohl-*)
+map #  <Plug>(incsearch-nohl-#)
+map g* <Plug>(incsearch-nohl-g*)
+map g# <Plug>(incsearch-nohl-g#)
+" 検索時にヒット件数を出す
+nmap  n <Plug>(incsearch-nohl)<Plug>(anzu-n-with-echo)
+nmap  N <Plug>(incsearch-nohl)<Plug>(anzu-N-with-echo)
+
+" 検索したあとに移動しない
+nnoremap * *N
+nnoremap # #N
+map * <Plug>(visualstar-*)N
+map # <Plug>(visualstar-#)N
+
+" コメントをトグルする(\c)でできる
+nmap <Leader>c <Plug>(caw:i:toggle)
+vmap <Leader>c <Plug>(caw:i:toggle)
+
+" lightline.vim (ステータスラインをかっこよく)
+set laststatus=2
+" syntasticがエラーの時赤色にする(:call lightline#update)
+let g:lightline = { 'colorscheme': 'wombat', 'mode_map': {'c': 'NORMAL'}, 'active': {   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ] }, 'component_function': {   'modified': 'MyModified',   'readonly': 'MyReadonly',   'fugitive': 'MyFugitive',   'filename': 'MyFilename',   'fileformat': 'MyFileformat',   'filetype': 'MyFiletype',   'fileencoding': 'MyFileencoding',   'mode': 'MyMode' } }
+
+function! MyModified()
+  return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+endfunction
+
+function! MyReadonly()
+  return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? 'x' : ''
+endfunction
+
+function! MyFilename()
+  return ('' != MyReadonly() ? MyReadonly() . ' ' : '') . (&ft == 'vimfiler' ? vimfiler#get_status_string() :  &ft == 'unite' ? unite#get_status_string() :  &ft == 'vimshell' ? vimshell#get_status_string() : '' != expand('%:t') ? expand('%:t') : '[No Name]') . ('' != MyModified() ? ' ' . MyModified() : '')
+endfunction
+
+function! MyFugitive()
+  try
+    if &ft !~? 'vimfiler\|gundo' && exists('*fugitive#head')
+      return fugitive#head()
+    endif
+  catch
+  endtry
+  return ''
+endfunction
+
+function! MyFileformat()
+  return winwidth(0) > 70 ? &fileformat : ''
+endfunction
+
+function! MyFiletype()
+  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
+endfunction
+
+function! MyFileencoding()
+  return winwidth(0) > 70 ? (strlen(&fenc) ? &fenc : &enc) : ''
+endfunction
+
+function! MyMode()
+  return winwidth(0) > 60 ? lightline#mode() : ''
+endfunction
+let g:syntastic_mode_map = { 'mode': 'passive' }
+augroup AutoSyntastic
+  autocmd!
+  autocmd BufWritePost *.c,*.cpp call s:syntastic()
+augroup END
+function! s:syntastic()
+  SyntasticCheck
+  call lightline#update()
+endfunction
+
+" Vim motions on speed! http://haya14busa.com/mastering-vim-easymotion/
+let g:EasyMotion_do_mapping = 0
+let g:EasyMotion_smartcase = 1
+let g:EasyMotion_enter_jump_first = 1
+let g:EasyMotion_space_jump_first = 1
+let g:EasyMotion_startofline = 0
+" EASY MOTION !!!
+nmap <Space> <Plug>(easymotion-s2)
+xmap <Space> <Plug>(easymotion-s2)
+omap <Space> <Plug>(easymotion-s2)
+" 行移動をべんりにする
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+
+" Color {{{
+colorscheme hybrid
+syntax on
+set t_Co=256
+filetype plugin indent on
+" }}}
+

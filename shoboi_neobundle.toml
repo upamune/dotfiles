@@ -1,0 +1,52 @@
+# appearance {{{
+[[plugins]]
+repository = 'itchyny/lightline.vim'
+
+# l10n {{{
+[[plugins]]
+repository = 'vim-jp/vimdoc-ja'
+
+# benry {{{
+[[plugins]]
+repository = "tpope/vim-surround"
+
+[[plugins]]
+repository = 'tyru/caw.vim.git'
+
+[[plugins]]
+repository = 'kana/vim-submode'
+
+# move {{{
+[[plugins]]
+repository = 'Lokaltog/vim-easymotion'
+
+[[plugins]]
+repository = 'deris/vim-shot-f'
+
+# search {{{
+[[plugins]]
+repository = 'haya14busa/incsearch.vim'
+depends = 'osyo-manga/vim-anzu'
+
+[[plugins]]
+repository = 'thinca/vim-visualstar'
+
+# color {{{
+[[plugins]]
+repository = 'w0ng/vim-hybrid'
+
+# optimize {{{
+[[plugins]]
+repository = 'Yggdroot/indentLine'
+
+[[plugins]]
+repository = 'bronson/vim-trailing-whitespace'
+
+# git {{{
+
+[[plugins]]
+repository = 'gregsexton/gitv'
+
+[[plugins]]
+repository = 'tpope/vim-fugitive'
+
