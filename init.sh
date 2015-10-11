@@ -50,12 +50,14 @@ fi
 
 # nvimrcをoldディレクトリに移動する
 if [[ -f $HOME/.nvimrc ]] ; then
-  cp $HOME/.nvimrc $CURRENT_PATH/old/_vimrc && rm $HOME/.nvimrc $CURRENT_PATH/old/_vimrc
+  cp $HOME/.nvimrc $CURRENT_PATH/old/_nvimrc && rm $HOME/.nvimrc
   echo "Move your nvimrc to old dir"
-  ln -s $CURRENT_PATH/_vimrc $HOME/.nvimrc
+  ln -s $CURRENT_PATH/_nvimrc $HOME/.nvimrc
+  ln -s $CURRENT_PATH/nvimfiles/* $HOME/.vim/
   echo "Replaced your nvimrc"
 else
-  ln -s $CURRENT_PATH/_vimrc $HOME/.nvimrc
+  ln -s $CURRENT_PATH/_nvimrc $HOME/.nvimrc
+  ln -s $CURRENT_PATH/nvimfiles/* $HOME/.vim/
   echo "Replaced your nvimrc"
 fi
 

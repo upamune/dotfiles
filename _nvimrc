@@ -1,0 +1,24 @@
+" Basic
+if filereadable(expand('~/.vim/basic.vim'))
+  source ~/.vim/basic.vim
+endif
+
+" KeyBindings
+if filereadable(expand('~/.vim/keybindings.vim'))
+  source ~/.vim/keybindings.vim
+endif
+
+" Plugins
+if filereadable(expand('~/.vim/plugins.vim'))
+  source ~/.vim/plugins.vim
+endif
+
+" Languages
+" Python
+if filereadable(expand('~/.vim/python.vim'))
+  source ~/.vim/python.vim
+endif
+" Golang
+if filereadable(expand('~/.vim/golang.vim'))
+  source ~/.vim/golang.vim
+endif
