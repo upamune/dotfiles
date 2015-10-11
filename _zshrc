@@ -142,11 +142,6 @@ case ${OSTYPE} in
   ;;
   # For Linux
   linux*)
-  # vitualenvwrapperのスクリプトを実行する
-  if which virtualenvwrapper.sh > /dev/null 2>&1 ; then
-    export WORKON_HOME=$HOME/.virtualenvs
-    source `which virtualenvwrapper.sh`
-  fi
   # systemctl のエイリアスを設定する
   if which systemctl > /dev/null 2>&1 ; then
     alias -g sctl='systemctl'
@@ -213,6 +208,12 @@ case ${OSTYPE} in
   fi
   ;;
 esac
+
+# vitualenvwrapperのスクリプトを実行する
+if which virtualenvwrapper.sh > /dev/null 2>&1 ; then
+  export WORKON_HOME=$HOME/.virtualenvs
+  source `which virtualenvwrapper.sh`
+fi
 
 if [[ -f $HOME/.zsh/antigen/antigen.zsh ]]; then
   source $HOME/.zsh/antigen/antigen.zsh
