@@ -1,6 +1,11 @@
 NeoBundle 'dgryski/vim-godef'
 NeoBundle 'fatih/vim-go'
 
+augroup Golang
+  autocmd!
+  autocmd FileType go setlocal completeopt-=preview
+augroup END
+
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
