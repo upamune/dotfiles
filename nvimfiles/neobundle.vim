@@ -8,3 +8,4 @@ runtime! nvimfiles/extras/*.vim
 call neobundle#end()
 NeoBundleCheck
 
+filetype plugin indent on
