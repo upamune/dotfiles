@@ -54,11 +54,11 @@ if [[ -f $HOME/.nvimrc ]] ; then
   cp $HOME/.nvimrc $CURRENT_PATH/old/_nvimrc && rm $HOME/.nvimrc
   echo "Move your nvimrc to old dir"
   ln -s $CURRENT_PATH/_nvimrc $HOME/.nvimrc
-  ln -s $CURRENT_PATH/nvimfiles/* $HOME/.nvim/
+  ln -s $CURRENT_PATH/nvimfiles $HOME/.nvim/
   echo "Replaced your nvimrc"
 else
   ln -s $CURRENT_PATH/_nvimrc $HOME/.nvimrc
-  ln -s $CURRENT_PATH/nvimfiles/* $HOME/.nvim/
+  ln -s $CURRENT_PATH/nvimfiles $HOME/.nvim/
   echo "Replaced your nvimrc"
 fi
 
@@ -118,9 +118,14 @@ else
   echo "Replaced your .agignore"
 fi
 
-# Neobundleを導入する
+# Neobundleを導入する for Vim
 if [[ ! -d $HOME/.vim/bundle/neobundle.vim ]] ; then
   mkdir -p ~/.vim/bundle && git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
+fi
+
+# Neobundleを導入する for NeoVim
+if [[ ! -d $HOME/.nvim/bundle/neobundle.vim ]] ; then
+  mkdir -p ~/.nvim/bundle && git clone https://github.com/Shougo/neobundle.vim ~/.nvim/bundle/neobundle.vim
 fi
 
 # Antigenを導入する
