@@ -11,6 +11,6 @@ NeoBundleCheck
 " these syntax, color settings must be written after neobundle#end
 syntax enable
 set background=dark
-colorscheme hybrid
+colorscheme desert
 
 filetype plugin indent on
