@@ -6,5 +6,7 @@ let g:deoplete#enable_smart_case = 1
 if !exists('g:deoplete#omni#input_patterns')
   let g:deoplete#omni#input_patterns = {}
 endif
+
 let g:deoplete#omni#input_patterns.python = '\h\w*\|[^. \t]\.\w*'
+let g:deoplete#omni#input_patterns.go = '\h\w*\.\?'
 
