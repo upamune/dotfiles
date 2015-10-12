@@ -8,4 +8,9 @@ runtime! nvimfiles/extras/*.vim
 call neobundle#end()
 NeoBundleCheck
 
+" these syntax, color settings must be written after neobundle#end
+syntax enable
+set background=dark
+colorscheme hybrid
+
 filetype plugin indent on
