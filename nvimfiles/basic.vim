@@ -26,3 +26,5 @@ set infercase
 set showmatch
 set matchtime=1
 
+
+set imdisable

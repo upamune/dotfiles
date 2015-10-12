@@ -35,5 +35,3 @@ nnoremap sO <C-w>=
 nnoremap ss :<C-u>sp<CR>
 nnoremap sv :<C-u>vs<CR>
 nnoremap sq :<C-u>q<CR>
-
-
