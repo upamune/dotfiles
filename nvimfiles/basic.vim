@@ -25,6 +25,3 @@ set infercase
 " カッコを対応させる
 set showmatch
 set matchtime=1
-
-
-set imdisable
