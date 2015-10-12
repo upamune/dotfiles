@@ -1,0 +1,2 @@
+NeoBundle 'Shougo/unite-outline'
+
