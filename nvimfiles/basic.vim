@@ -21,7 +21,14 @@ set termencoding=UTF-8
 
 " 大文字小文字を区別しない
 set infercase
+set ignorecase
+set smartcase
 
 " カッコを対応させる
 set showmatch
 set matchtime=1
+
+" inc search
+set hlsearch
+set incsearch
+

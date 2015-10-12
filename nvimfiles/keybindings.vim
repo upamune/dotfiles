@@ -18,6 +18,9 @@ nnoremap Y y$
 " コマンドライン上でC-aで先頭に飛べるようにする
 cnoremap <C-A> <Home>
 
+" noh
+nnoremap <Esc> :nohlsearch<CR>
+
 " 画面分割関係
 nnoremap s <Nop>
 nnoremap sj <C-w>j
