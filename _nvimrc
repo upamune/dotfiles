@@ -1,24 +1,24 @@
 " Basic
-if filereadable(expand('~/.vim/basic.vim'))
-  source ~/.vim/basic.vim
+if filereadable(expand('~/.nvim/basic.vim'))
+  source ~/.nvim/basic.vim
 endif
 
 " KeyBindings
-if filereadable(expand('~/.vim/keybindings.vim'))
-  source ~/.vim/keybindings.vim
+if filereadable(expand('~/.nvim/keybindings.vim'))
+  source ~/.nvim/keybindings.vim
 endif
 
 " Plugins
-if filereadable(expand('~/.vim/plugins.vim'))
-  source ~/.vim/plugins.vim
+if filereadable(expand('~/.nvim/plugins.vim'))
+  source ~/.nvim/plugins.vim
 endif
 
 " Languages
 " Python
-if filereadable(expand('~/.vim/python.vim'))
-  source ~/.vim/python.vim
+if filereadable(expand('~/.nvim/python.vim'))
+  source ~/.nvim/python.vim
 endif
 " Golang
-if filereadable(expand('~/.vim/golang.vim'))
-  source ~/.vim/golang.vim
+if filereadable(expand('~/.nvim/golang.vim'))
+  source ~/.nvim/golang.vim
 endif
