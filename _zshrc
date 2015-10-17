@@ -370,3 +370,7 @@ tw tl 100 --with-id | peco --prompt "TWEET> " | awk '{print $NF}' | tw rt --pipe
 function peco-favorite-tweet() {
 tw tl 100 --with-id | peco --prompt "TWEET> " | awk '{print $NF}' | tw fav --pipe
 }
+
+if [ -d $HOME/google-cloud-sdk ]; then
+  source '/Users/upamune/google-cloud-sdk/path.zsh.inc'
+fi
