@@ -159,6 +159,7 @@ if which go > /dev/null 2>&1; then
   go get -v github.com/motemen/ghq
   go get -v github.com/nsf/gocode
   go get -v github.com/peco/peco
+  go get -v github.com/peco/peco/cmd/peco
   go get -v github.com/upamune/tw
   go get -v golang.org/x/tools/cmd/goimports
   # go get -v golang.org/x/tools/cmd/cover
