@@ -198,15 +198,10 @@ case ${OSTYPE} in
   fi
 
   # HOME直下に.nvmが存在したら環境変数を設定する
-  if [ -d $HOME/.nvm ] ; then
+  if [ -d /usr/share/nvm ] ; then
     source /usr/share/nvm/init-nvm.sh
   fi
 
-  # nvmが存在したらnvmのinitとnodeのバージョンを指定する
-  if which nvm > /dev/null 2>&1 ; then
-    nvm use v0.10.38 > /dev/null
-    export PATH=$HOME/.nvm/v0.10.38/bin:$PATH
-  fi
   ;;
 esac
 
