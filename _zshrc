@@ -368,5 +368,5 @@ tw tl 100 --with-id | peco --prompt "TWEET> " | awk '{print $NF}' | tw fav --pip
 }
 
 if [ -d $HOME/google-cloud-sdk ]; then
-  source '/Users/upamune/google-cloud-sdk/path.zsh.inc'
+  source $HOME/google-cloud-sdk/path.zsh.inc
 fi
