@@ -198,15 +198,10 @@ case ${OSTYPE} in
   fi
 
   # HOME直下に.nvmが存在したら環境変数を設定する
-  if [ -d $HOME/.nvm ] ; then
+  if [ -d /usr/share/nvm ] ; then
     source /usr/share/nvm/init-nvm.sh
   fi
 
-  # nvmが存在したらnvmのinitとnodeのバージョンを指定する
-  if which nvm > /dev/null 2>&1 ; then
-    nvm use v0.10.38 > /dev/null
-    export PATH=$HOME/.nvm/v0.10.38/bin:$PATH
-  fi
   ;;
 esac
 
@@ -225,6 +220,7 @@ if [[ -f $HOME/.zsh/antigen/antigen.zsh ]]; then
   antigen bundle m4i/cdd
   antigen bundle upamune/zgit-repo-user-config
   antigen bundle b4b4r07/enhancd
+  antigen bundle b4b4r07/emoji-cli
   antigen apply
 
   PROMPT='%{$fg_bold[green]%}${PWD/#$HOME/~}%{$reset_color%}$(git_prompt_info) ⌚ %{$fg_bold[red]%}%*%{$reset_color%}
@@ -295,9 +291,9 @@ add-zsh-hook precmd zgit-repo-user-config
 if which tmux > /dev/null 2>&1 ; then
   if [ -z $TMUX ] ; then
     if [ -z `tmux ls` ] ; then
-      tmux
+      tmux -2
     else
-      tmux attach
+      tmux attach -2
     fi
   fi
 fi
@@ -372,5 +368,5 @@ tw tl 100 --with-id | peco --prompt "TWEET> " | awk '{print $NF}' | tw fav --pip
 }
 
 if [ -d $HOME/google-cloud-sdk ]; then
-  source '/Users/upamune/google-cloud-sdk/path.zsh.inc'
+  source $HOME/google-cloud-sdk/path.zsh.inc
 fi
