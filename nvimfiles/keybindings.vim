@@ -1,5 +1,9 @@
 imap jj <Esc>
 
+" DelとBackspaceをつぶす
+nnoremap <Del> <Nop>
+nnoremap <BS> <Nop>
+
 " コマンド検索, 検索履歴を無効にする
 nnoremap q: <Nop>
 nnoremap q/ <Nop>
