@@ -291,9 +291,9 @@ add-zsh-hook precmd zgit-repo-user-config
 if which tmux > /dev/null 2>&1 ; then
   if [ -z $TMUX ] ; then
     if [ -z `tmux ls` ] ; then
-      tmux
+      tmux -2
     else
-      tmux attach
+      tmux attach -2
     fi
   fi
 fi
