@@ -1,5 +1,6 @@
 NeoBundleLazy 'dgryski/vim-godef', {'autoload': {'filetypes': ['go']}}
 NeoBundleLazy 'fatih/vim-go', {'autoload': {'filetypes': ['go']}}
+NeoBundleLazy 'vim-jp/vim-go-extra', {'autoload': {'filetypes': ['go']}}
 
 augroup Golang
   autocmd!
