@@ -1,6 +1,6 @@
-NeoBundle 'hynek/vim-python-pep8-indent'
-NeoBundle 'jmcantrell/vim-virtualenv'
-NeoBundle 'davidhalter/jedi-vim'
+NeoBundleLazy 'hynek/vim-python-pep8-indent', {'autoload': {'filetypes': ['python']}}
+NeoBundleLazy 'jmcantrell/vim-virtualenv', {'autoload': {'filetypes': ['python']}}
+NeoBundleLazy 'davidhalter/jedi-vim', {'autoload': {'filetypes': ['python']}}
 
 augroup Python
   autocmd!

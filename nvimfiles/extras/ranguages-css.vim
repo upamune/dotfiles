@@ -1,4 +1,4 @@
-NeoBundle 'hail2u/vim-css3-syntax'
+NeoBundleLazy 'hail2u/vim-css3-syntax', {'autoload': {'filetypes': ['css']}}
 
 augroup css
   autocmd!
