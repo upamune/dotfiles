@@ -3,7 +3,11 @@
 # 環境変数
 export LANG=ja_JP.UTF-8
 export PATH="$HOME/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-export EDITOR=vim
+if which nvim > /dev/null 2>&1; then
+  export EDITOR=nvim
+else
+  export EDITOR=vim
+fi
 #git 補完できるように
 fpath=(~/.zsh/complention $fpath)
 # 色を使用出来るようにする
