@@ -1,7 +1,7 @@
-NeoBundle 'pangloss/vim-javascript'
-NeoBundle 'othree/yajs.vim'
-NeoBundle 'othree/javascript-libraries-syntax.vim'
-NeoBundle 'mattn/jscomplete-vim'
+NeoBundleLazy 'pangloss/vim-javascript', {'autoload': {'filetypes': ['javascript']}}
+NeoBundleLazy 'othree/yajs.vim', {'autoload': {'filetypes': ['javascript']}}
+NeoBundleLazy 'othree/javascript-libraries-syntax.vim', {'autoload': {'filetypes': ['javascript']}}
+NeoBundleLazy 'mattn/jscomplete-vim', {'autoload': {'filetypes': ['javascript']}}
 
 augroup JavaScript
   autocmd!

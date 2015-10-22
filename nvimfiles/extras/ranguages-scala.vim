@@ -1,2 +1,2 @@
-NeoBundle 'derekwyatt/vim-scala'
+NeoBundleLazy 'derekwyatt/vim-scala', {'autoload': {'filetypes': ['scala']}}
 
