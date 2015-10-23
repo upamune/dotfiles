@@ -147,7 +147,7 @@ git config --global alias.p 'pull'
 git config --global alias.pu 'push'
 git config --global alias.puu 'push -u'
 git config --global ghq.root "$HOME/src"
-git config --golbal core.editor vim
+git config --global core.editor vim
 git config --global user.email "jajkeqos@gmail.com"
 git config --global user.name "upamune"
 
