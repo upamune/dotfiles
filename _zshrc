@@ -297,7 +297,7 @@ if which tmux > /dev/null 2>&1 ; then
     if [ -z `tmux ls` ] ; then
       tmux -2
     else
-      tmux attach -2
+      tmux -2 attach
     fi
   fi
 fi

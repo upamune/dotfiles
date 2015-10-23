@@ -1,11 +1,5 @@
 imap jj <Esc>
 
-" Syugyo
-nnoremap jj <Nop>
-nnoremap kk <Nop>
-nnoremap l <Nop>
-nnoremap h <Nop>
-
 " DelとBackspaceをつぶす
 nnoremap <Del> <Nop>
 nnoremap <BS> <Nop>
