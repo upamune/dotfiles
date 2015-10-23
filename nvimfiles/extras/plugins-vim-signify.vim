@@ -1,0 +1,1 @@
+NeoBundle 'mhinz/vim-signify'
