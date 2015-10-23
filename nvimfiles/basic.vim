@@ -32,3 +32,5 @@ set matchtime=1
 set hlsearch
 set incsearch
 
+" Shift-K :help
+set keywordprg=:help
