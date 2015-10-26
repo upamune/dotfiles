@@ -9,4 +9,3 @@ endif
 
 let g:deoplete#omni#input_patterns.python = '\h\w*\|[^. \t]\.\w*'
 let g:deoplete#omni#input_patterns.go = '\h\w*\.\?'
-let g:deoplete#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
