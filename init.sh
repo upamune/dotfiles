@@ -49,16 +49,22 @@ else
 fi
 
 # nvimrcをoldディレクトリに移動する
+NVIM_CONF_DIR=$HOME/.config/nvim
 mkdir -p $HOME/.nvim
+mkdir -p $NVIM_CONF_DIR
 if [[ -f $HOME/.nvimrc ]] ; then
   cp $HOME/.nvimrc $CURRENT_PATH/old/_nvimrc && rm $HOME/.nvimrc
   echo "Move your nvimrc to old dir"
   ln -s $CURRENT_PATH/_nvimrc $HOME/.nvimrc
   ln -s $CURRENT_PATH/nvimfiles $HOME/.nvim/
+  ln -s $CURRENT_PATH/_nvimrc $NVIM_CONF_DIR/init.vim
+  ln -s $CURRENT_PATH/nvimfiles $NVIM_CONF_DIR/
   echo "Replaced your nvimrc"
 else
   ln -s $CURRENT_PATH/_nvimrc $HOME/.nvimrc
   ln -s $CURRENT_PATH/nvimfiles $HOME/.nvim/
+  ln -s $CURRENT_PATH/_nvimrc $NVIM_CONF_DIR/init.vim
+  ln -s $CURRENT_PATH/nvimfiles $NVIM_CONF_DIR/
   echo "Replaced your nvimrc"
 fi
 
