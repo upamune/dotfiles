@@ -156,6 +156,7 @@ git config --global ghq.root "$HOME/src"
 git config --global core.editor vim
 git config --global user.email "jajkeqos@gmail.com"
 git config --global user.name "upamune"
+git config --global diff.algorithm histogram
 
 # Go ツールのインストール
 
