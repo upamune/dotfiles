@@ -1,5 +1,29 @@
 # vim:filetype=zsh
 
+# options
+setopt append_history
+setopt auto_cd
+setopt auto_remove_slash
+setopt brace_ccl
+setopt correct
+setopt correct_all
+setopt extended_history
+setopt hist_expire_dups_first
+setopt hist_find_no_dups
+setopt hist_ignore_all_dups
+setopt hist_ignore_space
+setopt hist_no_functions
+setopt hist_no_store
+setopt hist_reduce_blanks
+setopt hist_save_nodups
+setopt hist_verify
+setopt inc_append_history
+setopt no_beep
+setopt no_hist_beep
+setopt no_list_beep
+setopt print_eight_bit
+setopt share_history
+
 # autoloads
 # U: 展開される関数の内部で alias の展開をしない
 # z: zsh 形式で読み込む
@@ -23,6 +47,7 @@ bindkey -e
 # Plugins
 source ~/.zplug/zplug
 zplug "b4b4r07/zplug"
+zplug "sorin-ionescu/prezto"
 
 # Install plugins if there are plugins that have not been installed
 zplug check || zplug install
