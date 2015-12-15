@@ -1,5 +1,21 @@
 # vim:filetype=zsh
 
+# autoloads
+# U: 展開される関数の内部で alias の展開をしない
+# z: zsh 形式で読み込む
+autoload -Uz add-zsh-hook
+autoload -Uz colors; colors
+autoload -Uz colors; colors
+autoload -Uz compinit; compinit -u
+autoload -Uz compinit; compinit -u
+autoload -Uz history-search-end
+autoload -Uz modify-current-argument
+autoload -Uz run-help
+autoload -Uz run-help-git
+autoload -Uz smart-insert-last-word
+autoload -Uz vcs_info
+autoload -Uz zcalc
+autoload -Uz zmv
 
 # Plugins
 source ~/.zplug/zplug
