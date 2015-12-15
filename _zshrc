@@ -17,6 +17,9 @@ autoload -Uz vcs_info
 autoload -Uz zcalc
 autoload -Uz zmv
 
+# Emacs Keybind
+bindkey -e
+
 # Plugins
 source ~/.zplug/zplug
 zplug "b4b4r07/zplug"
