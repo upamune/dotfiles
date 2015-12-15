@@ -134,9 +134,9 @@ if [[ ! -d $HOME/.nvim/bundle/neobundle.vim ]] ; then
   mkdir -p ~/.nvim/bundle && git clone https://github.com/Shougo/neobundle.vim ~/.nvim/bundle/neobundle.vim
 fi
 
-# Antigenを導入する
-if [[ ! -d $HOME/.zsh/antigen ]] ; then
-  mkdir -p ~/.zsh/ && cd ~/.zsh && git clone https://github.com/zsh-users/antigen.git
+# zplugを導入する
+if [[ ! -f $HOME/.zplug/zplug ]] ; then
+  curl -fLo ~/.zplug/zplug --create-dirs https://git.io/zplug
 fi
 
 # tpm を導入する
