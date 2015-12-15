@@ -13,7 +13,7 @@ nnoremap q? <Nop>
 nnoremap j gj
 nnoremap k gk
 
-" US用に; を : にする
+" US用に; を : にする 
 nnoremap ; :
 
 " Yの挙動を正しくする
@@ -42,3 +42,15 @@ nnoremap sO <C-w>=
 nnoremap ss :<C-u>sp<CR>
 nnoremap sv :<C-u>vs<CR>
 nnoremap sq :<C-u>q<CR>
+nnoremap s> <C-w>>
+nnoremap s+ <C-w>+
+nnoremap s- <C-w>-
+nnoremap s< <C-w><
+
+" :terminal 関係
+tnoremap <Esc> <C-\><C-n>
+tnoremap jj <C-\><C-n>
+tnoremap sh <C-\><C-n><C-w>h
+tnoremap sj <C-\><C-n><C-w>j
+tnoremap sk <C-\><C-n><C-w>k
+tnoremap sl <C-\><C-n><C-w>l
