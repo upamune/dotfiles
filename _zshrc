@@ -1,65 +1,143 @@
 # vim:filetype=zsh
+stty stop undef
+
+# fpath
+fpath=($HOME/.zsh/zsh-completions/src(N-/) $fpath)
+fpath=($HOME/.zsh/complention $fpath)
 
 # 環境変数
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+HIST_STAMPS="mm/dd/yyyy"
 export LANG=ja_JP.UTF-8
 export PATH="$HOME/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-if which nvim > /dev/null 2>&1; then
-  export EDITOR=nvim
-else
-  export EDITOR=vim
-fi
-#git 補完できるように
-fpath=(~/.zsh/complention $fpath)
-# 色を使用出来るようにする
-autoload -Uz colors
-colors
-# 補完機能を有効にする
-autoload -Uz compinit
-compinit
+export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
+export ENHANCD_FILTER="fzf"
+
+# options
+setopt always_last_prompt
+setopt append_history
+setopt auto_cd
+setopt auto_menu
+setopt auto_param_keys
+setopt auto_remove_slash
+setopt brace_ccl
+setopt complete_in_word
+setopt correct
+setopt correct_all
+setopt extended_glob
+setopt extended_history
+setopt globdots
+setopt hist_expire_dups_first
+setopt hist_find_no_dups
+setopt hist_ignore_all_dups
+setopt hist_ignore_space
+setopt hist_no_functions
+setopt hist_no_store
+setopt hist_reduce_blanks
+setopt hist_save_nodups
+setopt hist_verify
+setopt inc_append_history
+setopt list_types
+setopt magic_equal_subst
+setopt mark_dirs
+setopt no_beep
+setopt no_hist_beep
+setopt no_list_beep
+setopt print_eight_bit
+setopt share_history
+
+# autoloads
+# U: 展開される関数の内部で alias の展開をしない
+# z: zsh 形式で読み込む
+autoload -Uz add-zsh-hook
+autoload -Uz colors; colors
+autoload -Uz colors; colors
+autoload -Uz compinit; compinit -u
+autoload -Uz compinit; compinit -u
+autoload -Uz history-search-end
+autoload -Uz modify-current-argument
+autoload -Uz run-help
+autoload -Uz run-help-git
+autoload -Uz smart-insert-last-word
+autoload -Uz vcs_info
+autoload -Uz zcalc
+autoload -Uz zmv
+
+# styles
+# 補完関数の表示を強化する
+zstyle ':completion:*:default' menu select=2
+zstyle ':completion:*' verbose yes
+zstyle ':completion:*' completer _expand _complete _match _prefix _approximate _list _history
+zstyle ':completion:*:messages' format '%F{YELLOW}%d'$DEFAULT
+zstyle ':completion:*:warnings' format '%F{RED}No matches for:''%F{YELLOW} %d'$DEFAULT
+zstyle ':completion:*:descriptions' format '%F{YELLOW}completing %B%d%b'$DEFAULT
+zstyle ':completion:*:options' description 'yes'
+zstyle ':completion:*:descriptions' format '%F{yellow}Completing %B%d%b%f'$DEFAULT
 # 補完時に大文字と小文字を区別しない
 zstyle ':complention:*' matcher-list 'm:{a-z}={A-Z}'
-# C-w の挙動を変える(細かく消す)
-autoload -Uz select-word-style
-select-word-style default
-zstyle ':zle:*' word-chars " /=;@:{},|"
-zstyle ':zle:*' word-style unspecified
-# Emacs 風キーバインドにする
+# マッチ種別を別々に表示
+zstyle ':completion:*' group-name ''
+# セパレータを設定する
+zstyle ':completion:*' list-separator '-->'
+zstyle ':completion:*:manuals' separate-sections true
+# ファイル補完候補に色を付ける
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+
+# Keybind
 bindkey -e
-# ヒストリの設定
-HISTFILE=~/.zsh_history
-HISTSIZE=1000000
-SAVEHIST=1000000
-HIST_STAMPS="mm/dd/yyyy"
-# ヒストリに保存するときに余分なスペースを削除する
-setopt hist_reduce_blanks
-# 同時に起動したzshの間でヒストリを共有する
-setopt share_history
-# 同じコマンドをヒストリに残さない
-setopt hist_ignore_all_dups
-# 履歴をインクリメンタルサーチできるようにする
-bindkey '^r' history-incremental-pattern-search-backward
-bindkey '^s' history-incremental-pattern-search-forward
+bindkey "\e[Z" reverse-menu-complete
 
-# '#' 以降をコメントとして扱う
-setopt interactive_comments
+# Plugins
+source ~/.zplug/zplug
+zplug "b4b4r07/zplug"
+zplug "nojhan/liquidprompt"
+zplug "b4b4r07/enhancd", of:enhancd.sh
+zplug "mollifier/anyframe"
+zplug "mollifier/cd-gitroot"
+zplug "junegunn/fzf", as:command, of:bin/fzf-tmux
+zplug "junegunn/fzf-bin", \
+    as:command, \
+    from:gh-r, \
+    file:fzf, \
+    of:"*linux*amd64*"
+zplug "stedolan/jq", from:gh-r, as:command \
+    | zplug "b4b4r07/emoji-cli", if:"which jq"
+# after executing compinit command
+zplug "zsh-users/zsh-syntax-highlighting", nice:10
+# Install plugins if there are plugins that have not been installed
+zplug check || zplug install
+# source plugins and add commands to $PATH
+zplug load
 
-# ディレクトリ名だけでcdできるようにする
-setopt AUTO_CD
+# alias
+alias mv='mv -i'
+alias -g cp='cp -i'
+alias -g grep='grep --color=auto --exclude-dir={.bzr,.cvs,.git,.hg,.svn}'
+alias -g mkdir='mkdir -p'
+alias -g vimconfig='vim ~/.vimrc'
+alias -g zshconfig='vim ~/.zshrc'
+alias -g L='| less'
+alias -g G='| grep'
+alias -g v='vim'
+alias -g vi='vim'
+alias -g vim='nvim'
+alias g='git'
+alias -g B='`git branch -a | peco --prompt "GIT BRANCH>" | head -n 1 | sed -e "s/^\*\s*//g"`'
+alias -g R='`git remote | peco --prompt "GIT REMOTE>" | head -n 1`'
+alias cdu='cd-gitroot'
 
-# 最近移動したディレクトリに移動できるようにする
-autoload -Uz add-zsh-hook
-autoload -Uz chpwd_recent_dirs cdr
-zstyle ":chpwd:*" recent-dirs-max 500
-add-zsh-hook chpwd chpwd_recent_dirs
-
-# Ctrl-Dでzshを終了しない
-setopt IGNORE_EOF
-
-# Ctrl-Q/Ctrl-Sのフローコントロールを無効にする
-setopt NO_FLOW_CONTROL
-
-# beep音を無効にする
-setopt NO_BEEP
+# tmuxがインストールされていたら自動的に起動してアタッチする
+if which tmux > /dev/null 2>&1 ; then
+  if [ -z $TMUX ] ; then
+    if [ -z `tmux ls` ] ; then
+      tmux -2
+    else
+      tmux -2 attach
+    fi
+  fi
+fi
 
 # cd したら ls する(大量のファイル/ディレクトリがあるときは省略する)
 add-zsh-hook chpwd ls_abbrev
@@ -100,24 +178,8 @@ ls_abbrev() {
 zle -N do_enter
 bindkey '^m' do_enter
 
+
 # エイリアス
-alias mv='mv -i'
-alias -g cp='cp -i'
-alias -g grep='grep --color=auto --exclude-dir={.bzr,.cvs,.git,.hg,.svn}'
-alias -g mkdir='mkdir -p'
-alias -g vimconfig='vim ~/.vimrc'
-alias -g zshconfig='vim ~/.zshrc'
-alias -g L='| less'
-alias -g G='| grep'
-alias -g v='gvim'
-alias -g vi='vim'
-alias -g vim='nvim'
-
-# Git
-alias g='git'
-alias -g B='`git branch -a | peco --prompt "GIT BRANCH>" | head -n 1 | sed -e "s/^\*\s*//g"`'
-alias -g R='`git remote | peco --prompt "GIT REMOTE>" | head -n 1`'
-
 if which go > /dev/null 2>&1 ; then
   # For Go
   export GOPATH=~/
@@ -126,6 +188,12 @@ fi
 # rbenv があったら初期化処理を追加する
 if which rbenv > /dev/null 2>&1 ; then
   eval "$(rbenv init -)"
+fi
+
+# vitualenvwrapperのスクリプトを実行する
+if which virtualenvwrapper.sh > /dev/null 2>&1 ; then
+  export WORKON_HOME=$HOME/.virtualenvs
+  source `which virtualenvwrapper.sh`
 fi
 
 #OS 別設定
@@ -209,101 +277,6 @@ case ${OSTYPE} in
   ;;
 esac
 
-# vitualenvwrapperのスクリプトを実行する
-if which virtualenvwrapper.sh > /dev/null 2>&1 ; then
-  export WORKON_HOME=$HOME/.virtualenvs
-  source `which virtualenvwrapper.sh`
-fi
-
-if [[ -f $HOME/.zsh/antigen/antigen.zsh ]]; then
-  source $HOME/.zsh/antigen/antigen.zsh
-  antigen use oh-my-zsh
-  antigen bundle zsh-users/zsh-completions src
-  antigen bundle zsh-users/zsh-syntax-highlighting
-  antigen bundle mollifier/anyframe
-  antigen bundle m4i/cdd
-  antigen bundle upamune/zgit-repo-user-config
-  antigen bundle b4b4r07/enhancd
-  antigen bundle b4b4r07/emoji-cli
-  antigen apply
-
-  PROMPT='%{$fg_bold[green]%}${PWD/#$HOME/~}%{$reset_color%}$(git_prompt_info) ⌚ %{$fg_bold[red]%}%*%{$reset_color%}
-$ '
-
-  RPROMPT='%{$fg_bold[green]%}%n%{$reset_color%}@%{$fg_bold[blue]%}%m%{$reset_color%}'
-
-  ZSH_THEME_GIT_PROMPT_PREFIX=" on %{$fg[magenta]%}⭠ "
-  ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
-  ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[red]%}!"
-  ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[green]%}?"
-  ZSH_THEME_GIT_PROMPT_CLEAN=""
-
-  # zsh-completions の設定
-  fpath=($HOME/.zsh/zsh-completions/src(N-/) $fpath)
-
-  # enhancd の設定
-  export ENHANCD_FILTER=peco
-
-  # anyframe の設定
-  # Ctrl-XPでコマンドを挿入できるようにする
-  zle -N peco-put-history
-  bindkey '^x^p' peco-put-history
-  # Ctrl-xwでtmuxのウィンドウを切り替えられるようにする
-  zle -N peco-tmux
-  bindkey '^xw' peco-tmux
-
-  # ghq + peco
-  zle -N peco-src
-  bindkey '^x^g' peco-src
-
-  # Ctrl-XCでcdrをpecoで開く
-  bindkey "^x^d" anyframe-widget-cdr
-
-  # Ctrl-XBでブランチをpecoで切り替える
-  bindkey "^x^b" anyframe-widget-checkout-git-branch
-
-  # Ctrl-XKでkillするプロセスをpecoで選ぶ
-  bindkey "^x^k" anyframe-widget-kill
-
-  # Ctrl-XKでkillするプロセスをpecoで選ぶ
-  bindkey "^x^k" anyframe-widget-kill
-
-  # tw の設定
-  if which tw > /dev/null 2>&1 ; then
-    # Ctrl-XTRでRT
-    zle -N peco-retweet-tweet
-    bindkey "^x^r" peco-retweet-tweet
-
-    # Ctrl-XTFでFAV
-    zle -N peco-favorite-tweet
-    bindkey "^x^f" peco-favorite-tweet
-
-  fi
-
-  # cdd の設定
-  if [[ -f $HOME/.antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-m4i-SLASH-cdd.git/cdd ]]; then
-    source $HOME/.antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-m4i-SLASH-cdd.git/cdd
-    touch $CDD_FILE
-    autoload -Uz add-zsh-hook
-    add-zsh-hook chpwd _cdd_chpwd
-  fi
-fi
-
-touch $HOME/.zgitrepo_user.config
-export ZGITREPO_USER_CONFIG_FILE=$HOME/.zgitrepo_user.config
-add-zsh-hook precmd zgit-repo-user-config
-
-# tmuxがインストールされていたら自動的に起動してアタッチする
-if which tmux > /dev/null 2>&1 ; then
-  if [ -z $TMUX ] ; then
-    if [ -z `tmux ls` ] ; then
-      tmux -2
-    else
-      tmux -2 attach
-    fi
-  fi
-fi
-
 # oh-my-zsh が R を指定しているので、それより後に書く必要がある
 # 検索時に大文字小文字を区別しないが、大文字で検索すると大文字だけヒットする
 # ファイル名、現在位置を表示
@@ -329,50 +302,83 @@ zle reset-prompt
 return 0
   }
 
-  function zman() {
-  PAGER="less -g -s '+/^       "$1"'" man zshall
-}
+  # fzf の設定
+  if zplug check junegunn/fzf-bin; then
+    export FZF_DEFAULT_OPTS='
+    --extended
+    --cycle
+    --multi
+    --bind ctrl-b:page-down,ctrl-d:page-up
+    --color fg:188,bg:233,hl:103,fg+:222,bg+:234,hl+:104
+    --color info:183,prompt:110,spinner:107,pointer:167,marker:215
+    '
+    # fh - repeat history
+    fh() {
+      eval $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf-tmux +s --tac | sed 's/ *[0-9]* *//')
+    }
+    # cdf - cd into the directory of the selected file
+    cdf() {
+      local file
+      local dir
+      file=$(fzf-tmux +m -q "$1") && dir=$(dirname "$file") && cd "$dir"
+    }
 
-function peco-put-history() {
+    # fe [FUZZY PATTERN] - Open the selected file with the default editor
+    #   - Bypass fuzzy finder if there's only one match (--select-1)
+    #   - Exit if there's no match (--exit-0)
+    fe() {
+      IFS='
+      '
+      local declare files=($(fzf-tmux --query="$1" --select-1 --exit-0))
+      [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
+    }
+
+    # Modified version where you can press
+    #   - CTRL-O to open with `open` command,
+    #   - CTRL-E or Enter key to open with the $EDITOR
+    fo() {
+      local out file key
+      out=$(fzf-tmux --query="$1" --exit-0 --expect=ctrl-o,ctrl-e)
+      key=$(head -1 <<< "$out")
+      file=$(head -2 <<< "$out" | tail -1)
+      if [ -n "$file" ]; then
+        [ "$key" = ctrl-o ] && open "$file" || ${EDITOR:-vim} "$file"
+      fi
+    }
+fi
+
+# anyframe の設定
+if zplug check mollifier/anyframe; then
+  # Ctrl-XPでコマンドを挿入できるようにする
+  zle -N fzf-put-history
+  bindkey '^x^p' fzf-put-history
+
+  # ghq + fzf
+  zle -N fzf-src
+  bindkey '^x^g' fzf-src
+
+  # Ctrl-XCでcdrをfzfで開く
+  bindkey "^x^d" anyframe-widget-cdr
+
+  # Ctrl-XBでブランチをfzfで切り替える
+  bindkey "^x^b" anyframe-widget-checkout-git-branch
+
+  # Ctrl-XKでkillするプロセスをfzfで選ぶ
+  bindkey "^x^k" anyframe-widget-kill
+fi
+
+function fzf-put-history() {
 builtin history -n -r 1 \
   | anyframe-selector-auto "$LBUFFER" \
   | anyframe-action-put
 }
 
-function peco-tmux() {
-local i=$(tmux lsw | awk '/active.$/ {print NR-1}')
-local f='#{window_index}: #{window_name}#{window_flags} #{pane_current_path}'
-tmux lsw -F "$f" \
-  | anyframe-selector-auto "" --initial-index $i \
-  | cut -d ':' -f 1 \
-  | anyframe-action-execute tmux select-window -t
-}
 
-function peco-src () {
-local selected_dir=$(ghq list -p | peco --query "$LBUFFER")
+function fzf-src () {
+local selected_dir=$(ghq list -p | fzf-tmux --query "$LBUFFER")
 if [ -n "$selected_dir" ]; then
   BUFFER="builtin cd ${selected_dir}"
   zle accept-line
 fi
 zle clear-screen
 }
-
-function agvim () {
-vim $(ag $@ | peco --query "$LBUFFER" | awk -F : '{print "-c " $2 " " $1}')
-}
-
-function peco-delete-tweet() {
-tw tl 100 --with-id --user $1 | peco --prompt "TWEET> " | awk '{print $NF}' | tw del --pipe
-}
-
-function peco-retweet-tweet() {
-tw tl 100 --with-id | peco --prompt "TWEET> " | awk '{print $NF}' | tw rt --pipe
-}
-
-function peco-favorite-tweet() {
-tw tl 100 --with-id | peco --prompt "TWEET> " | awk '{print $NF}' | tw fav --pipe
-}
-
-if [ -d $HOME/google-cloud-sdk ]; then
-  source $HOME/google-cloud-sdk/path.zsh.inc
-fi
