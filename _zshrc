@@ -1,5 +1,10 @@
 # vim:filetype=zsh
 
+# fpath
+fpath=($HOME/.zsh/zsh-completions/src(N-/) $fpath)
+fpath=($HOME/.zsh/complention $fpath)
+
+
 # options
 setopt append_history
 setopt auto_cd
@@ -54,3 +59,33 @@ zplug check || zplug install
 # source plugins and add commands to $PATH
 zplug load
 
+# alias
+alias mv='mv -i'
+alias -g cp='cp -i'
+alias -g grep='grep --color=auto --exclude-dir={.bzr,.cvs,.git,.hg,.svn}'
+alias -g mkdir='mkdir -p'
+alias -g vimconfig='vim ~/.vimrc'
+alias -g zshconfig='vim ~/.zshrc'
+alias -g L='| less'
+alias -g G='| grep'
+alias -g v='gvim'
+alias -g vi='vim'
+alias -g vim='nvim'
+
+# Git
+alias g='git'
+alias -g B='`git branch -a | peco --prompt "GIT BRANCH>" | head -n 1 | sed -e "s/^\*\s*//g"`'
+alias -g R='`git remote | peco --prompt "GIT REMOTE>" | head -n 1`'
+
+
+
+# tmuxがインストールされていたら自動的に起動してアタッチする
+if which tmux > /dev/null 2>&1 ; then
+  if [ -z $TMUX ] ; then
+    if [ -z `tmux ls` ] ; then
+      tmux -2
+    else
+      tmux -2 attach
+    fi
+  fi
+fi
