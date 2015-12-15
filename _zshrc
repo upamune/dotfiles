@@ -13,6 +13,7 @@ HIST_STAMPS="mm/dd/yyyy"
 export LANG=ja_JP.UTF-8
 export PATH="$HOME/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
+export ENHANCD_FILTER="fzf"
 
 # options
 setopt always_last_prompt
@@ -95,6 +96,7 @@ zplug "nojhan/liquidprompt"
 zplug "b4b4r07/enhancd", of:enhancd.sh
 zplug "mollifier/anyframe"
 zplug "mollifier/cd-gitroot"
+zplug "junegunn/fzf", as:command, of:bin/fzf-tmux
 zplug "junegunn/fzf-bin", \
     as:command, \
     from:gh-r, \
@@ -299,3 +301,84 @@ fi
 zle reset-prompt
 return 0
   }
+
+  # fzf の設定
+  if zplug check junegunn/fzf-bin; then
+    export FZF_DEFAULT_OPTS='
+    --extended
+    --cycle
+    --multi
+    --bind ctrl-b:page-down,ctrl-d:page-up
+    --color fg:188,bg:233,hl:103,fg+:222,bg+:234,hl+:104
+    --color info:183,prompt:110,spinner:107,pointer:167,marker:215
+    '
+    # fh - repeat history
+    fh() {
+      eval $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf-tmux +s --tac | sed 's/ *[0-9]* *//')
+    }
+    # cdf - cd into the directory of the selected file
+    cdf() {
+      local file
+      local dir
+      file=$(fzf-tmux +m -q "$1") && dir=$(dirname "$file") && cd "$dir"
+    }
+
+    # fe [FUZZY PATTERN] - Open the selected file with the default editor
+    #   - Bypass fuzzy finder if there's only one match (--select-1)
+    #   - Exit if there's no match (--exit-0)
+    fe() {
+      IFS='
+      '
+      local declare files=($(fzf-tmux --query="$1" --select-1 --exit-0))
+      [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
+    }
+
+    # Modified version where you can press
+    #   - CTRL-O to open with `open` command,
+    #   - CTRL-E or Enter key to open with the $EDITOR
+    fo() {
+      local out file key
+      out=$(fzf-tmux --query="$1" --exit-0 --expect=ctrl-o,ctrl-e)
+      key=$(head -1 <<< "$out")
+      file=$(head -2 <<< "$out" | tail -1)
+      if [ -n "$file" ]; then
+        [ "$key" = ctrl-o ] && open "$file" || ${EDITOR:-vim} "$file"
+      fi
+    }
+fi
+
+# anyframe の設定
+if zplug check mollifier/anyframe; then
+  # Ctrl-XPでコマンドを挿入できるようにする
+  zle -N fzf-put-history
+  bindkey '^x^p' fzf-put-history
+
+  # ghq + fzf
+  zle -N fzf-src
+  bindkey '^x^g' fzf-src
+
+  # Ctrl-XCでcdrをfzfで開く
+  bindkey "^x^d" anyframe-widget-cdr
+
+  # Ctrl-XBでブランチをfzfで切り替える
+  bindkey "^x^b" anyframe-widget-checkout-git-branch
+
+  # Ctrl-XKでkillするプロセスをfzfで選ぶ
+  bindkey "^x^k" anyframe-widget-kill
+fi
+
+function fzf-put-history() {
+builtin history -n -r 1 \
+  | anyframe-selector-auto "$LBUFFER" \
+  | anyframe-action-put
+}
+
+
+function fzf-src () {
+local selected_dir=$(ghq list -p | fzf-tmux --query "$LBUFFER")
+if [ -n "$selected_dir" ]; then
+  BUFFER="builtin cd ${selected_dir}"
+  zle accept-line
+fi
+zle clear-screen
+}
