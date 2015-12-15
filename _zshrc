@@ -47,7 +47,7 @@ bindkey -e
 # Plugins
 source ~/.zplug/zplug
 zplug "b4b4r07/zplug"
-zplug "sorin-ionescu/prezto"
+zplug "nojhan/liquidprompt"
 
 # Install plugins if there are plugins that have not been installed
 zplug check || zplug install
