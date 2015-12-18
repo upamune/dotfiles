@@ -13,6 +13,8 @@ HIST_STAMPS="mm/dd/yyyy"
 export LANG=ja_JP.UTF-8
 export PATH="$HOME/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
+export LP_PS1_POSTFIX="
+ > "
 export ENHANCD_FILTER="fzf"
 
 # options
@@ -24,8 +26,6 @@ setopt auto_param_keys
 setopt auto_remove_slash
 setopt brace_ccl
 setopt complete_in_word
-setopt correct
-setopt correct_all
 setopt extended_glob
 setopt extended_history
 setopt globdots
@@ -96,6 +96,7 @@ zplug "nojhan/liquidprompt"
 zplug "b4b4r07/enhancd", of:enhancd.sh
 zplug "mollifier/anyframe"
 zplug "mollifier/cd-gitroot"
+zplug "upamune/tw", as:command, from:gh-r, file:tw
 zplug "junegunn/fzf", as:command, of:bin/fzf-tmux
 zplug "junegunn/fzf-bin", \
     as:command, \
@@ -127,6 +128,8 @@ alias g='git'
 alias -g B='`git branch -a | peco --prompt "GIT BRANCH>" | head -n 1 | sed -e "s/^\*\s*//g"`'
 alias -g R='`git remote | peco --prompt "GIT REMOTE>" | head -n 1`'
 alias cdu='cd-gitroot'
+alias cdd="cd $GOPATH/src/github.com/$USER"
+alias gd="godic search "
 
 # tmuxがインストールされていたら自動的に起動してアタッチする
 if which tmux > /dev/null 2>&1 ; then
@@ -381,4 +384,8 @@ if [ -n "$selected_dir" ]; then
   zle accept-line
 fi
 zle clear-screen
+}
+
+function vv () {
+vim $( sift -n "$@" | fzf | awk -F : '{print "+"$2" " $1}')
 }
