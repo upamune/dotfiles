@@ -16,6 +16,7 @@ export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46
 export LP_PS1_POSTFIX="
  > "
 export ENHANCD_FILTER="fzf"
+export GOPATH=~/
 
 # options
 setopt always_last_prompt
@@ -91,20 +92,25 @@ bindkey "\e[Z" reverse-menu-complete
 
 # Plugins
 source ~/.zplug/zplug
+export ZPLUG_PROTOCOL="SSH"
 zplug "b4b4r07/zplug"
 zplug "nojhan/liquidprompt"
 zplug "b4b4r07/enhancd", of:enhancd.sh
 zplug "mollifier/anyframe"
 zplug "mollifier/cd-gitroot"
 zplug "upamune/tw", as:command, from:gh-r, file:tw
+zplug "upamune/miscripts"
 zplug "junegunn/fzf", as:command, of:bin/fzf-tmux
 zplug "junegunn/fzf-bin", \
     as:command, \
     from:gh-r, \
     file:fzf, \
     of:"*linux*amd64*"
-zplug "stedolan/jq", from:gh-r, as:command \
-    | zplug "b4b4r07/emoji-cli", if:"which jq"
+zplug "stedolan/jq", \
+    as:command, \
+    file:jq, \
+    from:gh-r \
+    | zplug "b4b4r07/emoji-cli"
 # after executing compinit command
 zplug "zsh-users/zsh-syntax-highlighting", nice:10
 # Install plugins if there are plugins that have not been installed
@@ -113,12 +119,15 @@ zplug check || zplug install
 zplug load
 
 # alias
+alias ls='ls --color'
+alias l='ls'
 alias mv='mv -i'
 alias -g cp='cp -i'
 alias -g grep='grep --color=auto --exclude-dir={.bzr,.cvs,.git,.hg,.svn}'
 alias -g mkdir='mkdir -p'
 alias -g vimconfig='vim ~/.vimrc'
 alias -g zshconfig='vim ~/.zshrc'
+alias -g C='| xsel --input --clipboard'
 alias -g L='| less'
 alias -g G='| grep'
 alias -g v='vim'
@@ -130,6 +139,21 @@ alias -g R='`git remote | peco --prompt "GIT REMOTE>" | head -n 1`'
 alias cdu='cd-gitroot'
 alias cdd="cd $GOPATH/src/github.com/$USER"
 alias gd="godic search "
+
+# git settings
+git config --global alias.a 'add'
+git config --global alias.b 'checkout -b'
+git config --global alias.c 'commit -v'
+git config --global alias.d 'diff'
+git config --global alias.o 'checkout'
+git config --global alias.p 'pull'
+git config --global alias.pu 'push'
+git config --global alias.puu 'push -u'
+git config --global ghq.root "$HOME/src"
+git config --global core.editor vim
+git config --global user.email "jajkeqos@gmail.com"
+git config --global user.name "upamune"
+git config --global diff.algorithm histogram
 
 # tmuxがインストールされていたら自動的に起動してアタッチする
 if which tmux > /dev/null 2>&1 ; then
@@ -182,11 +206,6 @@ zle -N do_enter
 bindkey '^m' do_enter
 
 
-# エイリアス
-if which go > /dev/null 2>&1 ; then
-  # For Go
-  export GOPATH=~/
-fi
 
 # rbenv があったら初期化処理を追加する
 if which rbenv > /dev/null 2>&1 ; then
@@ -304,6 +323,12 @@ fi
 zle reset-prompt
 return 0
   }
+
+  # miscripts にパスを通す
+  if zplug check upamune/miscripts; then
+    source $ZPLUG_HOME/repos/upamune/miscripts/sh/*
+    export PATH="$ZPLUG_HOME/repos/upamune/miscripts/sh:$PATH"
+  fi
 
   # fzf の設定
   if zplug check junegunn/fzf-bin; then
