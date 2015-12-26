@@ -22,6 +22,10 @@ nnoremap Y y$
 " コマンドライン上でC-aで先頭に飛べるようにする
 cnoremap <C-A> <Home>
 
+" ShiftTab でインデントを減らす
+nnoremap <S-Tab> <<
+inoremap <S-Tab> <C-d>
+
 " noh
 nnoremap <Esc> :nohlsearch<CR>
 

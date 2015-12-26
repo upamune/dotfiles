@@ -34,3 +34,6 @@ set incsearch
 
 " Shift-K :help
 set keywordprg=:help
+
+" クリップボードを有効にする
+set clipboard+=unnamedplus
