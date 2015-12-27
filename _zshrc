@@ -237,6 +237,10 @@ case ${OSTYPE} in
   ;;
   # For Linux
   linux*)
+
+  export PATH=$ANDROID_HOME/tools:$PATH
+  export PATH=$ANDROID_HOME/platform-tools:$PATH
+
   # systemctl のエイリアスを設定する
   if which systemctl > /dev/null 2>&1 ; then
     alias -g sctl='systemctl'
