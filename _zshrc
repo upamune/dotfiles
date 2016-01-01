@@ -229,11 +229,6 @@ case ${OSTYPE} in
     alias -g C='| pbcopy'
   fi
 
-  # nvmがインストールされていたら環境変数を設定する
-  if [[ -d $HOME/.nvm ]] ; then
-    export NVM_DIR=$HOME/.nvm
-    source $(brew --prefix nvm)/nvm.sh
-  fi
   ;;
   # For Linux
   linux*)
@@ -241,6 +236,10 @@ case ${OSTYPE} in
   export PATH=$ANDROID_HOME/tools:$PATH
   export PATH=$ANDROID_HOME/platform-tools:$PATH
 
+  if [[ -d $HOME/.nvm ]] ; then
+    export NVM_DIR=$HOME/.nvm
+    source /usr/share/nvm/init-nvm.sh
+  fi
   # systemctl のエイリアスを設定する
   if which systemctl > /dev/null 2>&1 ; then
     alias -g sctl='systemctl'
@@ -293,11 +292,6 @@ case ${OSTYPE} in
 
   if which docker > /dev/null 2>&1 ; then
     alias -g P='`docker ps | tail -n +2 | peco | cut -d" " -f1`'
-  fi
-
-  # HOME直下に.nvmが存在したら環境変数を設定する
-  if [ -d /usr/share/nvm ] ; then
-    source /usr/share/nvm/init-nvm.sh
   fi
 
   ;;
