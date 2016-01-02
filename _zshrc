@@ -98,6 +98,7 @@ zplug "nojhan/liquidprompt"
 zplug "b4b4r07/enhancd", of:enhancd.sh
 zplug "mollifier/anyframe"
 zplug "mollifier/cd-gitroot"
+zplug "holman/spark", as:command, of:spark, file:spark
 zplug "upamune/tw", as:command, from:gh-r, file:tw
 zplug "upamune/miscripts"
 zplug "junegunn/fzf", as:command, of:bin/fzf-tmux
