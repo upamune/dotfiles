@@ -14,6 +14,8 @@ set fileencoding=UTF-8
 set termencoding=UTF-8
 set infercase
 set showmatch
+set visualbell
+set noerrorbells
 set matchtime=1
 
 imap jj <Esc>
