@@ -131,6 +131,7 @@ alias -g zshconfig='vim ~/.zshrc'
 alias -g C='| xsel --input --clipboard'
 alias -g L='| less'
 alias -g G='| grep'
+alias -g N='&& notify'
 alias -g v='vim'
 alias -g vi='vim'
 alias -g vim='nvim'
@@ -274,6 +275,7 @@ case ${OSTYPE} in
   # Ruby2.2 がインストールされてたらPATHを通す
   if [ -d $HOME/.gem/ruby/2.2.0/bin ]; then
     export PATH=$PATH:$HOME/.gem/ruby/2.2.0/bin
+    export PATH=$PATH:$HOME/.gem/ruby/2.3.0/bin
   fi
 
   # herokuが存在したらPATHを通す
