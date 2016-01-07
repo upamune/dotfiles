@@ -232,6 +232,11 @@ case ${OSTYPE} in
     alias -g C='| pbcopy'
   fi
 
+  if [[ -d $HOME/.nvm ]] ; then
+    export NVM_DIR=$HOME/.nvm
+    source /usr/share/nvm/init-nvm.sh
+  fi
+
   ;;
   # For Linux
   linux*)
