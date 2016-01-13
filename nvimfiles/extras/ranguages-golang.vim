@@ -2,9 +2,11 @@ NeoBundleLazy 'dgryski/vim-godef', {'autoload': {'filetypes': ['go']}}
 NeoBundleLazy 'fatih/vim-go', {'autoload': {'filetypes': ['go']}}
 NeoBundleLazy 'vim-jp/vim-go-extra', {'autoload': {'filetypes': ['go']}}
 
-augroup Golang
+augroup golang
   autocmd!
   autocmd FileType go setlocal completeopt-=preview
+  autocmd FileType go :highlight goErr cterm=bold ctermfg=214
+  autocmd FileType go :match goErr /\<err\>/
 augroup END
 
 let g:go_highlight_functions = 1
