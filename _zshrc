@@ -114,6 +114,7 @@ zplug "stedolan/jq", \
     | zplug "b4b4r07/emoji-cli"
 # after executing compinit command
 zplug "zsh-users/zsh-syntax-highlighting", nice:10
+zplug "zsh-users/zsh-completions", nice:10
 # Install plugins if there are plugins that have not been installed
 zplug check || zplug install
 # source plugins and add commands to $PATH
