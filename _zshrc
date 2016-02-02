@@ -101,6 +101,7 @@ zplug "mollifier/cd-gitroot"
 zplug "holman/spark", as:command, of:spark, file:spark
 zplug "upamune/tw", as:command, from:gh-r, file:tw
 zplug "upamune/miscripts"
+zplug "tj/n", as:command, of:bin/n
 zplug "junegunn/fzf", as:command, of:bin/fzf-tmux
 zplug "junegunn/fzf-bin", \
     as:command, \
