@@ -31,8 +31,11 @@ zplug "mollifier/cd-gitroot"
 zplug "mollifier/anyframe"
 zplug "upamune/tw", as:command, from:gh-r, file:tw
 zplug "upamune/miscripts"
-zplug "tarruda/zsh-autosuggestions"
-
+zplug "junegunn/fzf-bin", \
+    as:command, \
+    file:fzf, \
+    from:gh-r \
+    | zplug "b4b4r07/zsh-gomi", if:"which fzf"plug "tarruda/zsh-autosuggestions"
 zplug "stedolan/jq", \
     as:command, \
     file:jq, \
