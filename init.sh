@@ -1,10 +1,12 @@
-#!/bin/bash
+#!/bin/zsh
 
 # git が 必要
 
 # カレントディレクトリのパスを取得
 CURRENT_PATH=`pwd`
 echo $CURRENT_PATH
+
+
 
 # カレントディレクトリ直下にoldディレクトリがなければ作成する
 if [[ ! -d $CURRENT_PATH/old ]] ; then
@@ -13,6 +15,24 @@ if [[ ! -d $CURRENT_PATH/old ]] ; then
 else
   rm -fr $CURRENT_PATH/old
   mkdir old
+fi
+
+if [[ ! -d $HOME/.zprezto ]] ; then
+  git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+  setopt EXTENDED_GLOB
+  for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
+    ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
+  done
+fi
+
+if [[ -f $HOME/.zpreztorc ]] ; then
+  cp $HOME/.zpreztorc $CURRENT_PATH/old/_zpreztorc && rm $HOME/.zpreztorc
+  echo "Move your zpreztorc to old dir"
+  ln -s $CURRENT_PATH/_zpreztorc $HOME/.zpreztorc
+  echo "Replaced your zpreztorc"
+else
+  ln -s $CURRENT_PATH/_zpreztorc $HOME/.zpreztorc
+  echo "Replaced your zpreztorc"
 fi
 
 # vimrcをoldディレクトリに移動する
@@ -78,6 +98,17 @@ if [[ -f $HOME/.zshrc ]] ; then
 else
   ln -s $CURRENT_PATH/_zshrc $HOME/.zshrc
   echo "Replaced your zshrc"
+fi
+
+# zpreztorcをoldディレクトリに移動する
+if [[ -f $HOME/.zpreztorc ]] ; then
+  cp $HOME/.zpreztorc $CURRENT_PATH/old/_zpreztorc && rm $HOME/.zpreztorc
+  echo "Move your zpreztorc to old dir"
+  ln -s $CURRENT_PATH/_zpreztorc $HOME/.zpreztorc
+  echo "Replaced your zpreztorc"
+else
+  ln -s $CURRENT_PATH/_zpreztorc $HOME/.zpreztorc
+  echo "Replaced your zpreztorc"
 fi
 
 # tmux.confをoldディレクトリに移動する

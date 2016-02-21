@@ -1,3 +1,7 @@
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi
+
 # vim:filetype=zsh
 stty stop undef
 
@@ -12,102 +16,23 @@ SAVEHIST=10000
 HIST_STAMPS="mm/dd/yyyy"
 export LANG=ja_JP.UTF-8
 export PATH="$HOME/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
-export LP_PS1_POSTFIX="
- > "
-export ENHANCD_FILTER="fzf"
 export GOPATH=~/
-
-# options
-setopt always_last_prompt
-setopt append_history
-setopt auto_cd
-setopt auto_menu
-setopt auto_param_keys
-setopt auto_remove_slash
-setopt brace_ccl
-setopt complete_in_word
-setopt extended_glob
-setopt extended_history
-setopt globdots
-setopt hist_expire_dups_first
-setopt hist_find_no_dups
-setopt hist_ignore_all_dups
-setopt hist_ignore_space
-setopt hist_no_functions
-setopt hist_no_store
-setopt hist_reduce_blanks
-setopt hist_save_nodups
-setopt hist_verify
-setopt inc_append_history
-setopt list_types
-setopt magic_equal_subst
-setopt mark_dirs
-setopt no_beep
-setopt no_hist_beep
-setopt no_list_beep
-setopt print_eight_bit
-setopt share_history
-
-# autoloads
-# U: 展開される関数の内部で alias の展開をしない
-# z: zsh 形式で読み込む
-autoload -Uz add-zsh-hook
-autoload -Uz colors; colors
-autoload -Uz colors; colors
-autoload -Uz compinit; compinit -u
-autoload -Uz compinit; compinit -u
-autoload -Uz history-search-end
-autoload -Uz modify-current-argument
-autoload -Uz run-help
-autoload -Uz run-help-git
-autoload -Uz smart-insert-last-word
-autoload -Uz vcs_info
-autoload -Uz zcalc
-autoload -Uz zmv
-
-# styles
-# 補完関数の表示を強化する
-zstyle ':completion:*:default' menu select=2
-zstyle ':completion:*' verbose yes
-zstyle ':completion:*' completer _expand _complete _match _prefix _approximate _list _history
-zstyle ':completion:*:messages' format '%F{YELLOW}%d'$DEFAULT
-zstyle ':completion:*:warnings' format '%F{RED}No matches for:''%F{YELLOW} %d'$DEFAULT
-zstyle ':completion:*:descriptions' format '%F{YELLOW}completing %B%d%b'$DEFAULT
-zstyle ':completion:*:options' description 'yes'
-zstyle ':completion:*:descriptions' format '%F{yellow}Completing %B%d%b%f'$DEFAULT
-# 補完時に大文字と小文字を区別しない
-zstyle ':complention:*' matcher-list 'm:{a-z}={A-Z}'
-# マッチ種別を別々に表示
-zstyle ':completion:*' group-name ''
-# セパレータを設定する
-zstyle ':completion:*' list-separator '-->'
-zstyle ':completion:*:manuals' separate-sections true
-# ファイル補完候補に色を付ける
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+export ENHANCD_FILTER=peco
 
 # Keybind
 bindkey -e
-bindkey "\e[Z" reverse-menu-complete
 
 # Plugins
 source ~/.zplug/zplug
 export ZPLUG_PROTOCOL="SSH"
 zplug "b4b4r07/zplug"
-zplug "nojhan/liquidprompt"
 zplug "b4b4r07/enhancd", of:enhancd.sh
-zplug "mollifier/anyframe"
 zplug "mollifier/cd-gitroot"
-zplug "holman/spark", as:command, of:spark, file:spark
+zplug "mollifier/anyframe"
 zplug "upamune/tw", as:command, from:gh-r, file:tw
 zplug "upamune/miscripts"
-zplug "tj/n", as:command, of:bin/n
-zplug "junegunn/fzf", as:command, of:bin/fzf-tmux
-zplug "junegunn/fzf-bin", \
-    as:command, \
-    from:gh-r, \
-    file:fzf, \
-    of:"*linux*amd64*"
+zplug "tarruda/zsh-autosuggestions"
+
 zplug "stedolan/jq", \
     as:command, \
     file:jq, \
@@ -116,15 +41,30 @@ zplug "stedolan/jq", \
 # after executing compinit command
 zplug "zsh-users/zsh-syntax-highlighting", nice:10
 zplug "zsh-users/zsh-completions", nice:10
-# Install plugins if there are plugins that have not been installed
-zplug check || zplug install
-# source plugins and add commands to $PATH
+if ! zplug check ; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
+
 zplug load
+
+if which tmux > /dev/null 2>&1 ; then
+  if [ -z $TMUX ] ; then
+    if [ -z `tmux ls` ] ; then
+      tmux -2
+    else
+      tmux -2 attach
+    fi
+  fi
+fi
 
 # alias
 alias ls='ls --color'
 alias l='ls'
 alias mv='mv -i'
+alias rm='gomi'
 alias -g cp='cp -i'
 alias -g grep='grep --color=auto --exclude-dir={.bzr,.cvs,.git,.hg,.svn}'
 alias -g mkdir='mkdir -p'
@@ -159,17 +99,6 @@ git config --global user.email "jajkeqos@gmail.com"
 git config --global user.name "upamune"
 git config --global github.user upamune
 git config --global diff.algorithm histogram
-
-# tmuxがインストールされていたら自動的に起動してアタッチする
-if which tmux > /dev/null 2>&1 ; then
-  if [ -z $TMUX ] ; then
-    if [ -z `tmux ls` ] ; then
-      tmux -2
-    else
-      tmux -2 attach
-    fi
-  fi
-fi
 
 # cd したら ls する(大量のファイル/ディレクトリがあるときは省略する)
 add-zsh-hook chpwd ls_abbrev
@@ -209,8 +138,6 @@ ls_abbrev() {
 # 空でEnterを押すと ls した結果と git status が表示される
 zle -N do_enter
 bindkey '^m' do_enter
-
-
 
 # rbenv があったら初期化処理を追加する
 if which rbenv > /dev/null 2>&1 ; then
@@ -339,87 +266,24 @@ return 0
     export PATH="$ZPLUG_HOME/repos/upamune/miscripts/sh:$PATH"
   fi
 
-  # fzf の設定
-  if zplug check junegunn/fzf-bin; then
-    export FZF_DEFAULT_OPTS='
-    --extended
-    --cycle
-    --multi
-    --bind ctrl-b:page-down,ctrl-d:page-up
-    --color fg:188,bg:233,hl:103,fg+:222,bg+:234,hl+:104
-    --color info:183,prompt:110,spinner:107,pointer:167,marker:215
-    '
-    # fh - repeat history
-    fh() {
-      eval $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf-tmux +s --tac | sed 's/ *[0-9]* *//')
-    }
-    # cdf - cd into the directory of the selected file
-    cdf() {
-      local file
-      local dir
-      file=$(fzf-tmux +m -q "$1") && dir=$(dirname "$file") && cd "$dir"
-    }
-
-    # fe [FUZZY PATTERN] - Open the selected file with the default editor
-    #   - Bypass fuzzy finder if there's only one match (--select-1)
-    #   - Exit if there's no match (--exit-0)
-    fe() {
-      IFS='
-      '
-      local declare files=($(fzf-tmux --query="$1" --select-1 --exit-0))
-      [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
-    }
-
-    # Modified version where you can press
-    #   - CTRL-O to open with `open` command,
-    #   - CTRL-E or Enter key to open with the $EDITOR
-    fo() {
-      local out file key
-      out=$(fzf-tmux --query="$1" --exit-0 --expect=ctrl-o,ctrl-e)
-      key=$(head -1 <<< "$out")
-      file=$(head -2 <<< "$out" | tail -1)
-      if [ -n "$file" ]; then
-        [ "$key" = ctrl-o ] && open "$file" || ${EDITOR:-vim} "$file"
+  # anyframe の設定
+  if zplug check mollifier/anyframe; then
+    bindkey '^x^p' anyframe-widget-put-history
+    bindkey '^x^g' anyframe-widget-cd-ghq-repository
+    bindkey '^x^k' anyframe-widget-kill
+    bindkey '^x^e' anyframe-widget-insert-git-branch
+  fi
+function peco-branch () {
+    local branch=$(git branch -a | peco | tr -d ' ' | tr -d '*')
+    if [ -n "$branch" ]; then
+      if [ -n "$LBUFFER" ]; then
+        local new_left="${LBUFFER%\ } $branch"
+      else
+        local new_left="$branch"
       fi
-    }
-fi
-
-# anyframe の設定
-if zplug check mollifier/anyframe; then
-  # Ctrl-XPでコマンドを挿入できるようにする
-  zle -N fzf-put-history
-  bindkey '^x^p' fzf-put-history
-
-  # ghq + fzf
-  zle -N fzf-src
-  bindkey '^x^g' fzf-src
-
-  # Ctrl-XCでcdrをfzfで開く
-  bindkey "^x^d" anyframe-widget-cdr
-
-  # Ctrl-XBでブランチをfzfで切り替える
-  bindkey "^x^b" anyframe-widget-checkout-git-branch
-
-  # Ctrl-XKでkillするプロセスをfzfで選ぶ
-  bindkey "^x^k" anyframe-widget-kill
-fi
-
-function fzf-put-history() {
-builtin history -n -r 1 \
-  | anyframe-selector-auto "$LBUFFER" \
-  | anyframe-action-put
+      BUFFER=${new_left}${RBUFFER}
+      CURSOR=${#new_left}
+    fi
 }
-
-
-function fzf-src () {
-local selected_dir=$(ghq list -p | fzf-tmux --query "$LBUFFER")
-if [ -n "$selected_dir" ]; then
-  BUFFER="builtin cd ${selected_dir}"
-  zle accept-line
-fi
-zle clear-screen
-}
-
-function vv () {
-vim $( sift -n "$@" | fzf | awk -F : '{print "+"$2" " $1}')
-}
+zle -N peco-branch
+bindkey '^x^b' peco-branch # C-x b でブランチ選択
