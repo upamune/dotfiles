@@ -1,1 +1,1 @@
-NeoBundle "osyo-manga/vim-brightest"
+Plug 'osyo-manga/vim-brightest'

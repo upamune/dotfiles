@@ -1,4 +1,4 @@
-NeoBundle 'benekastah/neomake'
+Plug 'benekastah/neomake'
 
 augroup AutoNeomake
   autocmd!

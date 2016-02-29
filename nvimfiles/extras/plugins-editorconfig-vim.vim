@@ -1,1 +1,1 @@
-NeoBundle "editorconfig/editorconfig-vim"
+Plug 'editorconfig/editorconfig-vim'

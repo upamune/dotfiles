@@ -1,4 +1,4 @@
-NeoBundle 'Shougo/unite.vim', {'depends': 'Shougo/neomru.vim'}
+Plug 'Shougo/unite.vim'
 
 nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
 let g:unite_enable_start_insert=1

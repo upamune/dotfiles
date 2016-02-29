@@ -1,4 +1,4 @@
-NeoBundle 'itchyny/lightline.vim'
+Plug 'itchyny/lightline.vim'
 
 let g:lightline = {
       \ 'colorscheme': 'wombat',

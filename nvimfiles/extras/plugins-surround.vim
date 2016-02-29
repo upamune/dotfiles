@@ -1,1 +1,1 @@
-NeoBundle 'tpope/vim-surround'
+Plug 'tpope/vim-surround'

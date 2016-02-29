@@ -1,1 +1,1 @@
-NeoBundle 'kassio/neoterm'
+Plug 'kassio/neoterm'

@@ -1,4 +1,4 @@
-NeoBundle 'thinca/vim-visualstar'
+Plug 'thinca/vim-visualstar'
 
 nnoremap * *N
 nnoremap # #N

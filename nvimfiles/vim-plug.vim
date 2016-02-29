@@ -8,14 +8,14 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'junegunn/vim-plug',
         \ {'dir': '~/.config/nvim/plugged/vim-plug/autoload'}
 
-  runtime! nvimfiles/extras/*.nvim
+  runtime! nvimfiles/extras/*.vim
 
 call plug#end()
 
 " these syntax, color settings must be written after neobundle#end
 syntax enable
 set background=dark
-colorscheme hybrid_material
+" colorscheme seoul256
 
 filetype plugin indent on
 

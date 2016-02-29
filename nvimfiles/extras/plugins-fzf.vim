@@ -1,4 +1,4 @@
-NeoBundle "junegunn/fzf"
+Plug 'junegunn/fzf'
 
 command! FZFMru call fzf#run({
 \  'source':  v:oldfiles,

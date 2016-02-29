@@ -1,1 +1,1 @@
-NeoBundle 'wakatime/vim-wakatime'
+Plug 'wakatime/vim-wakatime'
