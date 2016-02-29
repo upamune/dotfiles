@@ -1,4 +1,4 @@
-NeoBundle 'kannokanno/previm', { 'depends': 'tyru/open-browser.vim', 'autoload': {'filetypes': ['markdown']}}
+Plug 'tyru/open-browser.vim' | Plug 'kannokanno/previm', { 'for': 'markdown'}
 
 augroup PrevimSettings
     autocmd!

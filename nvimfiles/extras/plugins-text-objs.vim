@@ -1,9 +1,6 @@
-NeoBundle 'kana/vim-textobj-user'
-
-NeoBundle 'kana/vim-textobj-entire' " ae / ie
-NeoBundle 'osyo-manga/vim-textobj-multiblock' " asb / isb
-NeoBundle 'kana/vim-textobj-indent' " ai / ii
-NeoBundle 'kana/vim-textobj-line' " al / il
-NeoBundle 'kana/vim-textobj-function' " af / if
-
-
+Plug 'kana/vim-textobj-user'
+Plug 'kana/vim-textobj-entire' " ae / ie
+Plug 'osyo-manga/vim-textobj-multiblock' " asb / isb
+Plug 'kana/vim-textobj-indent' " ai / ii
+Plug 'kana/vim-textobj-line' " al / il
+Plug 'kana/vim-textobj-function' " af / if

@@ -1,1 +1,1 @@
-NeoBundle "mattn/gist-vim"
+Plug 'mattn/gist-vim'

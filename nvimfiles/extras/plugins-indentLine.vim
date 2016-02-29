@@ -1,1 +1,1 @@
-NeoBundle 'Yggdroot/indentLine'
+Plug 'Yggdroot/indentLine'

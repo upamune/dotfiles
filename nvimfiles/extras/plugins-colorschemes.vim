@@ -1,1 +1,1 @@
-NeoBundle 'kristijanhusak/vim-hybrid-material'
+Plug 'kristijanhusak/vim-hybrid-material'

@@ -1,4 +1,4 @@
-NeoBundle 'osyo-manga/vim-anzu'
+Plug 'osyo-manga/vim-anzu'
 
 nmap n <Plug>(anzu-n-with-echo)
 nmap N <Plug>(anzu-N-with-echo)

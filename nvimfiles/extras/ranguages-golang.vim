@@ -1,7 +1,7 @@
-NeoBundleLazy 'dgryski/vim-godef', {'autoload': {'filetypes': ['go']}}
-NeoBundleLazy 'fatih/vim-go', {'autoload': {'filetypes': ['go']}}
-NeoBundleLazy 'vim-jp/vim-go-extra', {'autoload': {'filetypes': ['go']}}
-NeoBundleLazy 'zchee/deoplete-go', {'autoload' : {'filetypes' : ['go']}, 'build': {'unix': 'make'}}
+Plug 'dgryski/vim-godef', { 'for': 'go' }
+Plug 'fatih/vim-go', { 'for': 'go' }
+Plug 'vim-jp/vim-go-extra', { 'for': 'go' }
+Plug 'zchee/deoplete-go', { 'for': 'go', 'do': 'make' }
 
 augroup golang
   autocmd!

@@ -1,1 +1,1 @@
-NeoBundle 'vim-jp/vimdoc-ja'
+Plug 'vim-jp/vimdoc-ja'

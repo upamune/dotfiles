@@ -1,1 +1,1 @@
-NeoBundle 'chrisbra/vim-diff-enhanced'
+Plug 'chrisbra/vim-diff-enhanced'

@@ -1,2 +1,2 @@
-NeoBundle 'Shougo/unite-outline'
+Plug 'Shougo/unite-outline'
 

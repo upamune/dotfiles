@@ -1,1 +1,1 @@
-NeoBundle 'szw/vim-tags'
+Plug 'szw/vim-tags'

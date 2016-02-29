@@ -1,1 +1,1 @@
-NeoBundle 'mattn/emmet-vim'
+Plug 'mattn/emmet-vim'

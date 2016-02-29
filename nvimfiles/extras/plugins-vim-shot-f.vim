@@ -1,2 +1,2 @@
-NeoBundle 'deris/vim-shot-f'
+Plug 'deris/vim-shot-f'
 
