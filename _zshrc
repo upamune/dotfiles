@@ -31,24 +31,22 @@ zplug "mollifier/cd-gitroot"
 zplug "mollifier/anyframe"
 zplug "upamune/tw", as:command, from:gh-r, file:tw
 zplug "upamune/miscripts"
-zplug "junegunn/fzf-bin", \
-    as:command, \
-    file:fzf, \
-    from:gh-r \
-    | zplug "b4b4r07/zsh-gomi", if:"which fzf"plug "tarruda/zsh-autosuggestions"
+zplug "junegunn/fzf-bin"
+zplug "b4b4r07/zsh-gomi", if:"which fzf"
+zplug "tarruda/zsh-autosuggestions"
 zplug "stedolan/jq", \
-    as:command, \
-    file:jq, \
-    from:gh-r \
-    | zplug "b4b4r07/emoji-cli"
+  as:command, \
+  file:jq, \
+  from:gh-r \
+  | zplug "b4b4r07/emoji-cli"
 # after executing compinit command
 zplug "zsh-users/zsh-syntax-highlighting", nice:10
 zplug "zsh-users/zsh-completions", nice:10
 if ! zplug check ; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    fi
+  printf "Install? [y/N]: "
+  if read -q; then
+    echo; zplug install
+  fi
 fi
 
 zplug load
@@ -64,8 +62,7 @@ if which tmux > /dev/null 2>&1 ; then
 fi
 
 # alias
-alias ls='ls --color'
-alias l='ls'
+alias l='\ls'
 alias mv='mv -i'
 alias rm='gomi'
 alias -g cp='cp -i'
@@ -103,45 +100,6 @@ git config --global user.name "upamune"
 git config --global github.user upamune
 git config --global diff.algorithm histogram
 
-# cd したら ls する(大量のファイル/ディレクトリがあるときは省略する)
-add-zsh-hook chpwd ls_abbrev
-ls_abbrev() {
-  # -a : Do not ignore entries starting with ..
-  # -C : Force multi-column output.
-  # -F : Append indicator (one of */=>@|) to entries.
-  local cmd_ls='ls'
-  local -a opt_ls
-  opt_ls=('-CF' '--color=always')
-  case "${OSTYPE}" in
-    freebsd*|darwin*)
-      if type gls > /dev/null 2>&1; then
-        cmd_ls='gls'
-      else
-        # -G : Enable colorized output.
-        opt_ls=('-aCFG')
-      fi
-      ;;
-  esac
-
-  local ls_result
-  ls_result=$(CLICOLOR_FORCE=1 COLUMNS=$COLUMNS command $cmd_ls ${opt_ls[@]} | sed $'/^\e\[[0-9;]*m$/d')
-
-  local ls_lines=$(echo "$ls_result" | wc -l | tr -d ' ')
-
-  if [ $ls_lines -gt 10 ]; then
-    echo "$ls_result" | head -n 5
-    echo '...'
-    echo "$ls_result" | tail -n 5
-    echo "$(command ls -1 -A | wc -l | tr -d ' ') files exist"
-  else
-    echo "$ls_result"
-  fi
-}
-
-# 空でEnterを押すと ls した結果と git status が表示される
-zle -N do_enter
-bindkey '^m' do_enter
-
 # rbenv があったら初期化処理を追加する
 if which rbenv > /dev/null 2>&1 ; then
   eval "$(rbenv init -)"
@@ -166,8 +124,13 @@ case ${OSTYPE} in
 
   if [[ -d $HOME/.nvm ]] ; then
     export NVM_DIR=$HOME/.nvm
-    source /usr/share/nvm/init-nvm.sh
+    source $(brew --prefix nvm)/nvm.sh
   fi
+
+  # pyenvのパスを通す
+  export PYENV_ROOT=/usr/local/var/pyenv
+  # To enable shims and autocompletion add to your profile:
+  if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 
   ;;
   # For Linux
@@ -246,47 +209,16 @@ esac
 export LESS='-iMRS'
 
 # Functions
-function do_enter() {
-if [ -n "$BUFFER" ]; then
-  zle accept-line
-  return 0
+# miscripts にパスを通す
+if zplug check upamune/miscripts; then
+  source $ZPLUG_HOME/repos/upamune/miscripts/sh/*
+  export PATH="$ZPLUG_HOME/repos/upamune/miscripts/sh:$PATH"
 fi
-echo
-ls_abbrev
-if [ "$(git rev-parse --is-inside-work-tree 2> /dev/null)" = 'true' ]; then
-  echo
-  echo -e "\e[0;33m--- git status ---\e[0m"
-  git status -sb
-  echo "\n"
+
+# anyframe の設定
+if zplug check mollifier/anyframe; then
+  bindkey '^x^p' anyframe-widget-put-history
+  bindkey '^x^g' anyframe-widget-cd-ghq-repository
+  bindkey '^x^k' anyframe-widget-kill
+  bindkey '^x^e' anyframe-widget-insert-git-branch
 fi
-zle reset-prompt
-return 0
-  }
-
-  # miscripts にパスを通す
-  if zplug check upamune/miscripts; then
-    source $ZPLUG_HOME/repos/upamune/miscripts/sh/*
-    export PATH="$ZPLUG_HOME/repos/upamune/miscripts/sh:$PATH"
-  fi
-
-  # anyframe の設定
-  if zplug check mollifier/anyframe; then
-    bindkey '^x^p' anyframe-widget-put-history
-    bindkey '^x^g' anyframe-widget-cd-ghq-repository
-    bindkey '^x^k' anyframe-widget-kill
-    bindkey '^x^e' anyframe-widget-insert-git-branch
-  fi
-function peco-branch () {
-    local branch=$(git branch -a | peco | tr -d ' ' | tr -d '*')
-    if [ -n "$branch" ]; then
-      if [ -n "$LBUFFER" ]; then
-        local new_left="${LBUFFER%\ } $branch"
-      else
-        local new_left="$branch"
-      fi
-      BUFFER=${new_left}${RBUFFER}
-      CURSOR=${#new_left}
-    fi
-}
-zle -N peco-branch
-bindkey '^x^b' peco-branch # C-x b でブランチ選択
