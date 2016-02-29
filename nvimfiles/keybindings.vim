@@ -81,3 +81,8 @@ tnoremap sh <C-\><C-n><C-w>h
 tnoremap sj <C-\><C-n><C-w>j
 tnoremap sk <C-\><C-n><C-w>k
 tnoremap sl <C-\><C-n><C-w>l
+
+" Leader
+let mapleader = "\<Space>"
+nnoremap <Leader>o :VimFiler<CR>
+nnoremap <Leader>w :w<CR>
