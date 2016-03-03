@@ -13,7 +13,6 @@ augroup golang
   au FileType go nmap <Leader>rv <Plug>(go-run-vertical)
   au FileType go nmap <Leader>b <Plug>(go-build)
   au FileType go nmap <Leader>t <Plug>(go-test)
-  au FileType go nmap <Leader>c <Plug>(go-coverage)
   au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
   au FileType go nmap <Leader>e <Plug>(go-rename)
 augroup END
