@@ -12,10 +12,5 @@ call plug#begin('~/.config/nvim/plugged')
 
 call plug#end()
 
-" these syntax, color settings must be written after neobundle#end
-syntax enable
-set background=dark
-" colorscheme seoul256
-
-filetype plugin indent on
+colorscheme seoul256
 
