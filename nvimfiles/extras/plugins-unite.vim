@@ -1,5 +1,6 @@
 Plug 'Shougo/unite.vim'
 
+nnoremap <silent> <Leader>u :Unite<CR>
 nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
 let g:unite_enable_start_insert=1
 let g:unite_source_history_yank_enable =1
