@@ -24,10 +24,6 @@ set infercase
 set ignorecase
 set smartcase
 
-" カッコを対応させる
-set showmatch
-set matchtime=1
-
 " inc search
 set hlsearch
 set incsearch
