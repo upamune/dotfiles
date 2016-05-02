@@ -25,34 +25,24 @@ bindkey -e
 # zplug
 if [[ -f ~/.zplug/init.zsh ]]; then
   source ~/.zplug/init.zsh
-  export ZPLUG_LOADFILE="$HOME/.zsh/zplug.zsh"
   export ZPLUG_PROTOCOL="SSH"
   zplug "b4b4r07/zplug"
   zplug "b4b4r07/enhancd", of:enhancd.sh
   zplug "mollifier/cd-gitroot"
   zplug "mollifier/anyframe"
   zplug "upamune/tw", as:command, from:gh-r, file:tw
-  zplug "upamune/miscripts"
-  zplug "junegunn/fzf-bin"
+  zplug "junegunn/fzf-bin", \
+    from:gh-r, \
+    as:command, \
+    rename-to:fzf
   zplug "b4b4r07/zsh-gomi", if:"which fzf"
   zplug "tarruda/zsh-autosuggestions"
-  zplug "stedolan/jq", \
-    as:command, \
-    file:jq, \
-    from:gh-r \
-    | zplug "b4b4r07/emoji-cli"
+
   # after executing compinit command
   zplug "zsh-users/zsh-syntax-highlighting", nice:10
   zplug "zsh-users/zsh-completions", nice:10
 
-  if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-      echo; zplug install
-    else
-      echo
-    fi
-  fi
+  zplug install
   zplug load --verbose
 fi
 
@@ -60,7 +50,6 @@ fi
 # alias
 alias l='\ls'
 alias mv='mv -i'
-alias rm='gomi'
 alias -g cp='cp -i'
 alias -g grep='grep --color=auto --exclude-dir={.bzr,.cvs,.git,.hg,.svn}'
 alias -g mkdir='mkdir -p'
@@ -80,6 +69,10 @@ alias -g R='`git remote | peco --prompt "GIT REMOTE>" | head -n 1`'
 alias cdu='cd-gitroot'
 alias cdd="cd $GOPATH/src/github.com/$USER"
 alias gd="godic search "
+
+if which gomi > /dev/null 2>&1 ; then
+  alias rm='gomi'
+fi
 
 # git settings
 git config --global alias.a 'add'
