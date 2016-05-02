@@ -8,7 +8,7 @@ ln -sfnv $HOME/.nvimfiles $NVIM_CONF_DIR/nvimfiles
 
 # zplugを導入する
 if [[ ! -f $HOME/.zplug/zplug ]] ; then
-  curl -fLo ~/.zplug/zplug --create-dirs https://git.io/zplug
+  curl -sL git.io/zplug | zsh
 fi
 
 # tpm を導入する
