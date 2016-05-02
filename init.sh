@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
 NVIM_CONF_DIR=$HOME/.config/nvim
 mkdir -p $HOME/.nvim
