@@ -22,44 +22,40 @@ export ENHANCD_FILTER=peco
 # Keybind
 bindkey -e
 
-# Plugins
-source ~/.zplug/zplug
-export ZPLUG_PROTOCOL="SSH"
-zplug "b4b4r07/zplug"
-zplug "b4b4r07/enhancd", of:enhancd.sh
-zplug "mollifier/cd-gitroot"
-zplug "mollifier/anyframe"
-zplug "upamune/tw", as:command, from:gh-r, file:tw
-zplug "upamune/miscripts"
-zplug "junegunn/fzf-bin"
-zplug "b4b4r07/zsh-gomi", if:"which fzf"
-zplug "tarruda/zsh-autosuggestions"
-zplug "stedolan/jq", \
-  as:command, \
-  file:jq, \
-  from:gh-r \
-  | zplug "b4b4r07/emoji-cli"
-# after executing compinit command
-zplug "zsh-users/zsh-syntax-highlighting", nice:10
-zplug "zsh-users/zsh-completions", nice:10
-if ! zplug check ; then
-  printf "Install? [y/N]: "
-  if read -q; then
-    echo; zplug install
-  fi
-fi
+# zplug
+if [[ -f ~/.zplug/init.zsh ]]; then
+  source ~/.zplug/init.zsh
+  export ZPLUG_LOADFILE="$HOME/.zsh/zplug.zsh"
+  export ZPLUG_PROTOCOL="SSH"
+  zplug "b4b4r07/zplug"
+  zplug "b4b4r07/enhancd", of:enhancd.sh
+  zplug "mollifier/cd-gitroot"
+  zplug "mollifier/anyframe"
+  zplug "upamune/tw", as:command, from:gh-r, file:tw
+  zplug "upamune/miscripts"
+  zplug "junegunn/fzf-bin"
+  zplug "b4b4r07/zsh-gomi", if:"which fzf"
+  zplug "tarruda/zsh-autosuggestions"
+  zplug "stedolan/jq", \
+    as:command, \
+    file:jq, \
+    from:gh-r \
+    | zplug "b4b4r07/emoji-cli"
+  # after executing compinit command
+  zplug "zsh-users/zsh-syntax-highlighting", nice:10
+  zplug "zsh-users/zsh-completions", nice:10
 
-zplug load
-
-if which tmux > /dev/null 2>&1 ; then
-  if [ -z $TMUX ] ; then
-    if [ -z `tmux ls` ] ; then
-      tmux -2
+  if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+      echo; zplug install
     else
-      tmux -2 attach
+      echo
     fi
   fi
+  zplug load --verbose
 fi
+
 
 # alias
 alias l='\ls'
@@ -210,12 +206,6 @@ esac
 export LESS='-iMRS'
 
 # Functions
-# miscripts にパスを通す
-if zplug check upamune/miscripts; then
-  source $ZPLUG_HOME/repos/upamune/miscripts/sh/*
-  export PATH="$ZPLUG_HOME/repos/upamune/miscripts/sh:$PATH"
-fi
-
 # anyframe の設定
 if zplug check mollifier/anyframe; then
   bindkey '^x^p' anyframe-widget-put-history

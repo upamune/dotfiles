@@ -7,8 +7,35 @@ ln -sfnv $HOME/.nvimrc $NVIM_CONF_DIR/init.vim
 ln -sfnv $HOME/.nvimfiles $NVIM_CONF_DIR/nvimfiles
 
 # zplugを導入する
-if [[ ! -f $HOME/.zplug/zplug ]] ; then
-  curl -sL git.io/zplug | zsh
+if [[ ! -f ~/.zplug/init.zsh ]]; then
+    if (( ! $+commands[git] )); then
+        echo "git: command not found" >&2
+        exit 1
+    fi
+
+    git clone \
+        https://github.com/b4b4r07/zplug \
+        ~/.zplug
+
+    # failed
+    if (( $status != 0 )); then
+        echo "zplug: fails to installation of zplug" >&2
+    fi
+fi
+
+if [[ -f ~/.zplug/init.zsh ]]; then
+    echo "zplug: not found" >&2
+    exit 1
+fi
+
+if which tmux > /dev/null 2>&1 ; then
+  if [ -z $TMUX ] ; then
+    if [ -z `tmux ls` ] ; then
+      tmux -2
+    else
+      tmux -2 attach
+    fi
+  fi
 fi
 
 # tpm を導入する
