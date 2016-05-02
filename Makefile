@@ -29,6 +29,8 @@ init:
 update:
 	git pull origin master
 
+only-install: update deploy init
+
 install: update deploy init
 	@exec $$SHELL
 
