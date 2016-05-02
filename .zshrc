@@ -25,7 +25,6 @@ bindkey -e
 # zplug
 if [[ -f ~/.zplug/init.zsh ]]; then
   source ~/.zplug/init.zsh
-  export ZPLUG_PROTOCOL="SSH"
   zplug "b4b4r07/zplug"
   zplug "b4b4r07/enhancd", of:enhancd.sh
   zplug "mollifier/cd-gitroot"
@@ -42,8 +41,14 @@ if [[ -f ~/.zplug/init.zsh ]]; then
   zplug "zsh-users/zsh-syntax-highlighting", nice:10
   zplug "zsh-users/zsh-completions", nice:10
 
-  zplug install
-  zplug load --verbose
+  if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+  fi
+
+  zplug load
 fi
 
 
