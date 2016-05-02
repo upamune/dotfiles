@@ -32,6 +32,15 @@ if which tmux > /dev/null 2>&1 ; then
   fi
 fi
 
+# prezto を導入する
+if [[ ! -d ~/.zprezto ]]; then
+  git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto" 
+  setopt EXTENDED_GLOB
+  for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
+    ln -sf "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
+  done
+fi
+
 # tpm を導入する
 if [[ ! -d $HOME/.tmux/plugins/tpm ]] ; then
   mkdir -p $HOME/.tmux/plugins/tpm && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
