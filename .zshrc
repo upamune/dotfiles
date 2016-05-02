@@ -26,10 +26,9 @@ bindkey -e
 if [[ -f ~/.zplug/init.zsh ]]; then
   source ~/.zplug/init.zsh
   zplug "b4b4r07/zplug"
-  zplug "b4b4r07/enhancd", of:enhancd.sh
+  zplug "b4b4r07/enhancd", use:enhancd.sh
   zplug "mollifier/cd-gitroot"
   zplug "mollifier/anyframe"
-  zplug "upamune/tw", as:command, from:gh-r, file:tw
   zplug "junegunn/fzf-bin", \
     from:gh-r, \
     as:command, \
