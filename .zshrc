@@ -35,6 +35,7 @@ if [[ -f ~/.zplug/init.zsh ]]; then
     rename-to:fzf
   zplug "b4b4r07/zsh-gomi", if:"which fzf"
   zplug "tarruda/zsh-autosuggestions"
+  zplug "felixr/docker-zsh-completion"
 
   # after executing compinit command
   zplug "zsh-users/zsh-syntax-highlighting", nice:10
@@ -73,6 +74,7 @@ alias -g R='`git remote | peco --prompt "GIT REMOTE>" | head -n 1`'
 alias cdu='cd-gitroot'
 alias cdd="cd $GOPATH/src/github.com/$USER"
 alias gd="godic search "
+alias d='docker'
 
 if which gomi > /dev/null 2>&1 ; then
   alias rm='gomi'
