@@ -52,3 +52,6 @@ _peco-select-history() {
 }
 zle -N _peco-select-history
 bindkey '^r' _peco-select-history
+
+# Shift + TAB back menu complete
+bindkey '^[[Z' reverse-menu-complete
