@@ -8,38 +8,16 @@ ln -sfnv $HOME/.nvimfiles $NVIM_CONF_DIR/nvimfiles
 
 # zplugを導入する
 if [[ ! -f ~/.zplug/init.zsh ]]; then
-
-    git clone \
-        https://github.com/b4b4r07/zplug \
-        ~/.zplug
-
+  curl -sL zplug.sh/installer | zsh
 fi
 
 if [[ ! -f ~/.zplug/init.zsh ]]; then
     echo "zplug: not found" >&2
     exit 1
 fi
+
 # load zplug
 source ~/.zplug/init.zsh
-
-if which tmux > /dev/null 2>&1 ; then
-  if [ -z $TMUX ] ; then
-    if [ -z `tmux ls` ] ; then
-      tmux -2
-    else
-      tmux -2 attach
-    fi
-  fi
-fi
-
-# prezto を導入する
-if [[ ! -d ~/.zprezto ]]; then
-  git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto" 
-  setopt EXTENDED_GLOB
-  for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
-    ln -sf "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
-  done
-fi
 
 # tpm を導入する
 if [[ ! -d $HOME/.tmux/plugins/tpm ]] ; then
