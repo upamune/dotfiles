@@ -21,7 +21,7 @@ do-enter() {
     if is_git_repo; then
         git status
     else
-        ls
+        ls -GF
     fi
 
     zle reset-prompt
