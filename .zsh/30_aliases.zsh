@@ -5,6 +5,7 @@ fi
 
 alias ls='ls -GF'
 alias l='ls'
+alias la='ls -laGF'
 alias mv='mv -i'
 alias -g cp='cp -i'
 alias -g grep='grep --color=auto --exclude-dir={.bzr,.cvs,.git,.hg,.svn}'
