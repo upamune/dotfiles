@@ -1,0 +1,6 @@
+bind generic G none
+# alias vim-like behavior
+bind main g move-first-line
+bind main G move-last-line
+
+# vim: ft=config
