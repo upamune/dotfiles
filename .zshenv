@@ -59,7 +59,7 @@ export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46
 
 setopt no_global_rcs
 # Add ~/bin to PATH
-export PATH=~/bin:"$PATH"
+export PATH=~/bin:$DOTPATH/bin:"$PATH"
 
 # Settings for golang
 export GOPATH="$HOME"
