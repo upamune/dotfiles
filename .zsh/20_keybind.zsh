@@ -35,7 +35,7 @@ _peco-select-history() {
         history 1 \
             | sort -k1,1nr \
             | perl -ne 'BEGIN { my @lines = (); } s/^\s*\d+\s*//; $in=$_; if (!(grep {$in eq $_} @lines)) { push(@lines, $in); print $in; }' \
-            | fzf --query "$LBUFFER"
+            | peco --query "$LBUFFER"
         )"
 
         CURSOR=$#BUFFER
@@ -55,3 +55,21 @@ bindkey '^r' _peco-select-history
 
 # Shift + TAB back menu complete
 bindkey '^[[Z' reverse-menu-complete
+
+function peco-src () {
+  local selected_dir=$(ghq list -p | peco --query "$LBUFFER")
+  if [ -n "$selected_dir" ]; then
+    BUFFER="cd ${selected_dir}"
+    zle accept-line
+  fi
+  zle clear-screen
+}
+zle -N peco-src
+bindkey '^x^g' peco-src
+
+function fzy-git-checkout () {
+  git checkout `git branch | fzy | sed -e "s/\* //g" | awk "{print \$1}"`
+  zle clear-screen
+}
+zle -N fzy-git-checkout
+bindkey '^x^o' fzy-git-checkout

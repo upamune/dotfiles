@@ -43,7 +43,11 @@ if [[ -f ~/.zplug/init.zsh ]]; then
   zplug load --verbose
 fi
 
-printf "\n$fg_bold[cyan]This is ZSH $fg_bold[red]${ZSH_VERSION}"
-printf "$fg_bold[cyan] - DISPLAY on $fg_bold[red]$DISPLAY$reset_color\n\n"
+eval "$(direnv hook zsh)"
+eval "$(docker-machine env develop)"
+export NVM_DIR="$HOME/.nvm"
+. "$(brew --prefix nvm)/nvm.sh"
 
+
+eval "$(rbenv init -)"
 # vim:fdm=marker fdc=3 ft=zsh ts=4 sw=4 sts=4:
