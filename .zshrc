@@ -43,8 +43,9 @@ if [[ -f ~/.zplug/init.zsh ]]; then
   zplug load --verbose
 fi
 
+export PATH=/usr/local/bin:$PATH
+
 eval "$(direnv hook zsh)"
-eval "$(docker-machine env develop)"
 export NVM_DIR="$HOME/.nvm"
 . "$(brew --prefix nvm)/nvm.sh"
 
