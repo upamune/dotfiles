@@ -1,1 +1,0 @@
-Plug 'szw/vim-tags'
