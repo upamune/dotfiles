@@ -1,1 +1,0 @@
-Plug 'mattn/gist-vim'
