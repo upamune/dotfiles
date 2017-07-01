@@ -1,0 +1,25 @@
+#!/bin/bash
+# Copyright (C) 2017 Yu SERIZAWA(@upamune)
+
+# Deploy files
+cd $(dirname $BASH_SOURCE)
+BASE=$(pwd)
+touch bashrc-extra
+for rc in *rc *profile tmux.conf; do
+  mkdir -pv bak
+  [ -e ~/.$rc ] && mv -v ~/.$rc bak/.$rc
+  ln -sfv $BASE/$rc ~/.$rc
+done
+
+# git-prompt
+if [ ! -e ~/.git-prompt.sh ]; then
+  curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh -o ~/.git-prompt.sh
+fi
+
+if which tmux > /dev/null; then
+  tmux source-file ~/.tmux.conf
+fi
+
+if which git > /dev/null; then
+  git clone --depth 1 https://github.com/b4b4r07/enhancd ~/.enhancd
+fi
