@@ -21,5 +21,5 @@ if which tmux > /dev/null; then
 fi
 
 if which git > /dev/null; then
-  git clone --depth 1 https://github.com/b4b4r07/enhancd ~/.enhancd
+  [ ! -d ~/.enhancd ] && git clone -f --depth 1 https://github.com/b4b4r07/enhancd ~/.enhancd
 fi
