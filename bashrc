@@ -1,4 +1,5 @@
 # Copyright (C) 2017 Yu SERIZAWA(@upamune)
+# figlet: isometric1
 
 #  _                      
 # | |                     
@@ -392,3 +393,23 @@ function ghq-fzf() {
 }
 bind -x '"\C-g": ghq-fzf'
 
+#      ___           ___           ___           ___     
+#     /\  \         /\__\         /\__\         |\__\    
+#     \:\  \       /::|  |       /:/  /         |:|  |   
+#      \:\  \     /:|:|  |      /:/  /          |:|  |   
+#      /::\  \   /:/|:|__|__   /:/  /  ___      |:|__|__ 
+#     /:/\:\__\ /:/ |::::\__\ /:/__/  /\__\ ____/::::\__\
+#    /:/  \/__/ \/__/~~/:/  / \:\  \ /:/  / \::::/~~/~   
+#   /:/  /            /:/  /   \:\  /:/  /   ~~|:|~~|    
+#   \/__/            /:/  /     \:\/:/  /      |:|  |    
+#                   /:/  /       \::/  /       |:|  |    
+#                   \/__/         \/__/         \|__|    
+if which tmux >/dev/null 2>&1; then
+    # if no session is started, start a new session
+    test -z ${TMUX} && tmux
+
+    # when quitting tmux, try to attach
+    while test -z ${TMUX}; do
+        tmux attach || break
+    done
+fi
