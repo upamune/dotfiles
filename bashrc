@@ -53,8 +53,10 @@ export HISTTIMEFORMAT="%Y/%m/%d %H:%M:%S:   "
 [ -f /etc/bash_completion ] && . /etc/bash_completion
 
 ## Docker 補完
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-. $(brew --prefix)/etc/bash_completion
+if which brew >/dev/null 2>&1; then
+  if [ -f $(brew --prefix)/etc/bash_completion ]; then
+  . $(brew --prefix)/etc/bash_completion
+  fi
 fi
 
 export GOPATH=~
