@@ -62,6 +62,9 @@ fi
 export GOPATH=~
 if [ -z "$PATH_EXPANED" ]; then
   export PATH=$GOPATH/bin:$PATH
+  if [ -d ~/miniconda3 ];then
+    export PATH="~/miniconda3/bin:$PATH"
+  fi
   # 読み込みフラグを立てる
   export PATH_EXPANED=1
 fi
