@@ -134,6 +134,7 @@ fi
 git config --global user.email "github@serizawa.me"
 git config --global user.name "Yu SERIZAWA (@upamune)"
 
+alias ga='git add'
 alias gv='git log --graph --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
 alias gc='git commit'
 alias gs='git status'
