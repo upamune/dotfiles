@@ -36,7 +36,8 @@ export HISTFILESIZE=
 
 ## 先頭がスペースで始まるコマンドと重複するコマンドはヒストリに残さない
 ## 重複しているヒストリを削除する
-export HISTCONTROL=ignoreboth:erasedups
+export HISTCONTROL=ignorespace:erasedups
+export HISTIGNORE="fg*:bg*:history*:cd*:ls*"
 
 ## ウィンドウサイズを反映する
 shopt -s checkwinsize
