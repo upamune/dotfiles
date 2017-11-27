@@ -4,6 +4,9 @@ if [[ ! -d $HOME/.tmux/plugins/tpm ]] ; then
   mkdir -p $HOME/.tmux/plugins/tpm && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi
 
+midir -p $HOME/.config/fish
+ln -sfnv $HOME/.config.fish $HOME/.config/fish/config.fish
+
 git config --global alias.a 'add'
 git config --global alias.b 'checkout -b'
 git config --global alias.c 'commit -v'
