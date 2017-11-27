@@ -1,30 +1,9 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 
-NVIM_CONF_DIR=$HOME/.config/nvim
-mkdir -p $HOME/.nvim
-mkdir -p $NVIM_CONF_DIR
-ln -sfnv $HOME/.nvimrc $NVIM_CONF_DIR/init.vim
-ln -sfnv $HOME/.nvimfiles $NVIM_CONF_DIR/nvimfiles
-
-# zplugを導入する
-if [[ ! -f ~/.zplug/init.zsh ]]; then
-  curl -sL zplug.sh/installer | zsh
-fi
-
-if [[ ! -f ~/.zplug/init.zsh ]]; then
-    echo "zplug: not found" >&2
-    exit 1
-fi
-
-# load zplug
-source ~/.zplug/init.zsh
-
-# tpm を導入する
 if [[ ! -d $HOME/.tmux/plugins/tpm ]] ; then
   mkdir -p $HOME/.tmux/plugins/tpm && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi
 
-# Git の設定
 git config --global alias.a 'add'
 git config --global alias.b 'checkout -b'
 git config --global alias.c 'commit -v'
@@ -34,7 +13,7 @@ git config --global alias.pu 'push'
 git config --global alias.puu 'push -u'
 git config --global ghq.root "$HOME/src"
 git config --global core.editor vim
-git config --global user.email "jajkeqos@gmail.com"
+git config --global user.email "info@serizawa.me"
 git config --global user.name "upamune"
 git config --global diff.algorithm histogram
 
