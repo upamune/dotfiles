@@ -16,10 +16,6 @@ if [ ! -e ~/.git-prompt.sh ]; then
   curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh -o ~/.git-prompt.sh
 fi
 
-if which tmux > /dev/null; then
-  tmux source-file ~/.tmux.conf
-fi
-
 if which git > /dev/null; then
   [ ! -d ~/.enhancd ] && git clone --depth 1 https://github.com/b4b4r07/enhancd ~/.enhancd
 fi
