@@ -1,11 +1,11 @@
-#!/bin/bash
+#!/bin/bash -eu
 # Copyright (C) 2017 Yu SERIZAWA(@upamune)
 
 # Deploy files
 cd $(dirname $BASH_SOURCE)
 BASE=$(pwd)
 touch bashrc-extra
-for rc in *rc *profile tmux.conf tmux.conf.local; do
+for rc in *rc *profile tmux.conf tmux.conf.local config.fish; do
   mkdir -pv bak
   [ -e ~/.$rc ] && mv -v ~/.$rc bak/.$rc
   ln -sfv $BASE/$rc ~/.$rc
