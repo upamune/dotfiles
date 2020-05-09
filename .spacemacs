@@ -44,7 +44,6 @@ values."
      go
      html
      ivy
-     javascript
      markdown
      python
      ruby
