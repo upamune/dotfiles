@@ -288,7 +288,7 @@ zplug load
 
 # Emacs
 if ! emacsclient -e "t" > /dev/null 2>&1 ; then
-    emacs --daemon
+  (emacs --daemon &) >/dev/null 2>&1
 fi
 
 export EDITOR='emacsclient -a "" -t'
