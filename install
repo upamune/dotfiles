@@ -4,8 +4,7 @@
 # Deploy files
 cd $(dirname $BASH_SOURCE)
 BASE=$(pwd)
-touch bashrc-extra
-for rc in *rc *profile tmux.conf tmux.conf.local config.fish; do
+for rc in *rc *profile tmux.conf.local; do
   mkdir -pv bak
   [ -e ~/.$rc ] && mv -v ~/.$rc bak/.$rc
   ln -sfv $BASE/$rc ~/.$rc
