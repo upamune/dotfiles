@@ -24,7 +24,10 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
+    # Go
     pkgs.go
+    pkgs.gopls
+
     pkgs.jq
     pkgs.ghq
     pkgs.devbox
