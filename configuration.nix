@@ -7,6 +7,7 @@
     git
     zsh
     nixfmt-rfc-style
+    lunarvim
   ];
 
   # Nixデーモンの自動アップグレードを有効化
