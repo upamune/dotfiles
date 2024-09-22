@@ -1,5 +1,3 @@
-# 環境変数
-
 # 色を使用出来るようにする
 autoload -Uz colors
 colors
@@ -125,6 +123,17 @@ alias sudo='sudo '
 alias -g L='| less'
 alias -g G='| grep'
 alias -g zshrc="$EDITOR $HOME/.zshrc"
+if [[ $(command -v eza) ]]; then
+  alias -g e='eza --icons'
+  alias -g l='e'
+  alias -g ls='e'
+  alias -g ea='eza -a --icons'
+  alias -g la=ea
+fi
+
+if [[ $(command -v bat) ]]; then
+  alias -g cat='bat'
+fi
 
 # git エイリアス
 alias -g gpush='git push origin HEAD'
@@ -214,8 +223,5 @@ exit() {
         builtin exit
     fi
 }
-
-# direnv
-(( $+commands[direnv] )) && eval "$(direnv hook zsh)"
 
 # vim:set ft=zsh:
