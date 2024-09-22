@@ -13,14 +13,18 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
-    pkgs.fzf
     pkgs.ghq
     pkgs.devbox
     pkgs.uv
     pkgs.tig
+    pkgs.lazygit
     pkgs.fontconfig
     (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; })
   ];
+  programs.fzf.enable = true;
+  programs.eza.enable = true;
+  programs.bat.enable = true;
+  programs.direnv.enable = true;
   programs.mise.enable = true;
   programs.neovim.enable = true;
   programs.gh.enable = true;
@@ -28,6 +32,7 @@
     enable = true;
     userEmail = "info@serizawa.me";
     userName = "Yu SERIZAWA(@upamune)";
+    delta.enable = true;
   };
   programs.starship = {
     enable = true;
@@ -37,13 +42,18 @@
     defaultKeymap = "emacs";
     dotDir = ".config/zsh";
     syntaxHighlighting.enable = true;
+    envExtra = ''
+      if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then
+        . ~/.nix-profile/etc/profile.d/nix.sh
+      fi
+    '';
   };
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
     # ".screenrc".source = dotfiles/screenrc;
-    ".zshrc".source = ./zshrc;
+    ".config/zsh/.zshrc".source = ./zshrc;
   };
 
   home.sessionVariables = {
