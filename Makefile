@@ -14,3 +14,7 @@ update: ## 環境をアップデート
 	@echo "DARWIN_HOST: $${DARWIN_HOST}"
 	nix run nix-darwin -- switch --flake . --impure
 	darwin-rebuild switch --flake . --impure
+
+.PHONY: fmt
+fmt: ## フォーマット
+	nixfmt *.nix
