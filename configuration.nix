@@ -5,6 +5,7 @@
   environment.systemPackages = with pkgs; [
     vim
     git
+    zsh
   ];
 
   # Nixデーモンの自動アップグレードを有効化
@@ -13,6 +14,9 @@
 
   # zshの設定
   programs.zsh.enable = true;
+  environment.shells = [
+    pkgs.zsh
+  ];
 
   # 非自由パッケージを許可
   nixpkgs.config.allowUnfree = true;
