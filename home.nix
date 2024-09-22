@@ -43,6 +43,7 @@
   # plain files is through 'home.file'.
   home.file = {
     # ".screenrc".source = dotfiles/screenrc;
+    ".zshrc".source = ./zshrc;
   };
 
   home.sessionVariables = {

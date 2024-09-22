@@ -1,38 +1,4 @@
 # 環境変数
-export LANG=en_US.UTF-8
-export GOPATH=$HOME/go
-export GHQ_ROOT=$GOPATH/src
-export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
-
-export N_PREFIX=$HOME
-
-# PATH
-path=(
-  $N_PREFIX/n/bin(N-/) # n tools
-  $GOPATH/bin(N-/) # Go tools
-  $HOME/.local/bin(N-/)
-  $HOME/.cargo/bin(N-/) # Rust (Cargo) tools
-
-  $HOME/.local/google-cloud-sdk/bin(N-/)
-  $HOME/.local/bin(N-/)
- 
-  /usr/local/sbin(N-/)
-  /usr/local/bin(N-/)
-  /usr/sbin(N-/)
-  /usr/bin(N-/)
-  /sbin(N-/)
-  /bin(N-/)
-  /usr/games(N-/)
-  /usr/local/games(N-/)
-  /snap/bin(N-/)
-  /usr/sbin(N-/)
-  /usr/bin(N-/)
-  /sbin(N-/)
-  /bin(N-/)
-  /usr/games(N-/)
-  /usr/local/games(N-/)
-  /snap/bin(N-/)
-)
 
 # 色を使用出来るようにする
 autoload -Uz colors
@@ -43,8 +9,8 @@ bindkey -e
 
 # ヒストリの設定
 HISTFILE=$HOME/zsh_history
-HISTSIZE=1000000
-SAVEHIST=1000000
+HISTSIZE=1000
+SAVEHIST=1000
 
 # 単語の区切り文字を指定する
 autoload -Uz select-word-style
@@ -98,20 +64,6 @@ zstyle ':completion:*:descriptions' format '%F{yellow}Completing %B%d%b%f'$DEFAU
 
 # マッチ種別を別々に表示
 zstyle ':completion:*' group-name ''
-
-########################################
-# vcs_info
-autoload -Uz vcs_info
-autoload -Uz add-zsh-hook
-
-zstyle ':vcs_info:*' formats '%F{green}(%s)-[%b]%f'
-zstyle ':vcs_info:*' actionformats '%F{red}(%s)-[%b|%a]%f'
-
-function _update_vcs_info_msg() {
-    LANG=en_US.UTF-8 vcs_info
-    RPROMPT="${vcs_info_msg_0_}"
-}
-add-zsh-hook precmd _update_vcs_info_msg
 
 ########################################
 # オプション
@@ -202,6 +154,10 @@ case ${OSTYPE} in
         #Mac用の設定
         export CLICOLOR=1
         alias ls='ls -G -F'
+
+        # For nix-darwin
+        export DARWIN_USER=$(whoami)
+        export DARWIN_HOST=$(hostname -s)
         ;;
     linux*)
         #Linux用の設定
@@ -259,40 +215,7 @@ exit() {
     fi
 }
 
-# ZPlug
-source $HOME/.zplug/init.zsh
-zplug BurntSushi/ripgrep, as:command, from:gh-r, rename-to:"rg", frozen:1
-zplug Valodim/zsh-curl-completion
-zplug b4b4r07/enhancd, use:init.sh
-zplug b4b4r07/gomi, as:command, from:gh-r, rename-to:"gomi", frozen:1
-zplug git/git, use:contrib/completion/git-completion.zsh
-zplug glidenote/hub-zsh-completion
-zplug junegunn/fzf-bin, as:command, from:gh-r, rename-to:"fzf", frozen:1
-zplug mafredri/zsh-async, from:github
-zplug sindresorhus/pure, use:pure.zsh, from:github, as:theme
-zplug zplug/zplug, hook-build:'zplug --self-manage'
-zplug zsh-users/zsh-autosuggestions
-zplug zsh-users/zsh-completions
-zplug zsh-users/zsh-syntax-highlighting, defer:2
-# Install plugins if there are plugins that have not been installed
-if ! zplug check --verbose; then
-  printf "Install? [y/N]: "
-  if read -q; then
-    echo; zplug install
-  fi
-fi
-zplug load
-
 # direnv
 (( $+commands[direnv] )) && eval "$(direnv hook zsh)"
-
-# Emacs
-if ! emacsclient -e "t" > /dev/null 2>&1 ; then
-  (emacs --daemon &) >/dev/null 2>&1
-fi
-
-export EDITOR='emacsclient -a "" -t'
-alias -g e=${EDITOR}
-alias -g ekill='emacsclient -e "(kill-emacs)"'
 
 # vim:set ft=zsh:
