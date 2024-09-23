@@ -28,12 +28,28 @@
     pkgs.go
     pkgs.gopls
 
-    pkgs.jq
+    # Git
     pkgs.ghq
-    pkgs.devbox
-    pkgs.uv
-    pkgs.tig
     pkgs.lazygit
+    pkgs.tig
+
+    # Nix
+    pkgs.cachix
+    pkgs.devbox
+
+    # Python
+    pkgs.uv
+
+    # Network
+    pkgs.tailscale
+
+    # CLI
+    pkgs._1password
+    pkgs.asciinema
+    pkgs.htop
+    pkgs.jq
+
+    # Fonts
     pkgs.fontconfig
     (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; })
   ];
@@ -54,6 +70,21 @@
     userEmail = "info@serizawa.me";
     userName = "Yu SERIZAWA(@upamune)";
     delta.enable = true;
+
+    aliases = {
+      cleanup = "!git branch --merged | grep  -v '\\*\\|main\\|develop' | xargs -n 1 -r git branch -d";
+      prettylog = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(r) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative";
+      root = "rev-parse --show-toplevel";
+    };
+
+    extraConfig = {
+      color.ui = true;
+      core.askPass = ""; # needs to be empty to use terminal for ask pass
+      credential.helper = "store"; # want to make this more secure
+      github.user = "upamune";
+      push.default = "tracking";
+      init.defaultBranch = "main";
+    };
   };
   programs.starship = {
     enable = true;
