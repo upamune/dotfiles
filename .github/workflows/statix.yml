@@ -14,4 +14,4 @@ jobs:
         install_url: https://github.com/nix-community/nix-unstable-installer/releases/download/nix-2.23.0pre20240603_da92ad7/install
         extra_nix_config: |
           experimental-features = ca-references ca-derivations nix-command flakes
-    - run: nix run nixpkgs#statix -- check ./
+    - run: make lint
