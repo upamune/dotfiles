@@ -8,6 +8,7 @@
     zsh
     nixfmt-rfc-style
     lunarvim
+    ripgrep
   ];
 
   # Nixデーモンの自動アップグレードを有効化
