@@ -88,6 +88,7 @@
   };
   programs.starship = {
     enable = true;
+    settings = import ./config/starship.nix;
   };
   programs.zsh = {
     enable = true;
