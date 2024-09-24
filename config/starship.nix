@@ -4,12 +4,12 @@
   right_format = "$directory$git_branch$git_commit$git_state$git_status";
 
   character = {
-    success_symbol = "[♥](bold green)";
-    error_symbol = "[♥](bold red)";
-    vimcmd_symbol = "[♡](bold purple)";
-    vimcmd_replace_symbol = "[♡](bold green)";
-    vimcmd_replace_one_symbol = "[♡](bold green)";
-    vimcmd_visual_symbol = "[♡](bold yellow)";
+    success_symbol = "[󰚩](bold green)";
+    error_symbol = "[󱚡](bold red)";
+    vimcmd_symbol = "[󱙺](bold purple)";
+    vimcmd_replace_symbol = "[󱙺](bold green)";
+    vimcmd_replace_one_symbol = "[󱙺](bold green)";
+    vimcmd_visual_symbol = "[󱙺](bold yellow)";
   };
 
   username = {
@@ -53,5 +53,5 @@
     format = "[$read_only]($read_only_style) [$path]($style)";
   };
 
-  nix_shell.format = "[(\\($name\\))]($style) ";
+  nix_shell.format = "[󱄅]($style) ";
 }
