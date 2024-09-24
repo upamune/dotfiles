@@ -11,5 +11,6 @@ $ curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/ni
 
 ```zsh
 $ source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
-$ make update
+$ make switch
 ```
+
