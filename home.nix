@@ -57,7 +57,6 @@
   programs.eza.enable = true;
   programs.bat.enable = true;
   programs.direnv.enable = true;
-  programs.mise.enable = true;
   programs.neovim = {
     enable = true;
     withNodeJs = true;
@@ -105,6 +104,7 @@
   };
   programs.zoxide.enable = true;
   programs.bun.enable = true;
+  programs.fd.enable = true;
 
   home.sessionVariables = {
     EDITOR = "nvim";
