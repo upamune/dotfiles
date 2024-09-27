@@ -1,7 +1,7 @@
 {
   command_timeout = 3000;
   format = "$directory$hostname$nix_shell$git_branch$git_commit$git_state$git_status $cmd_duration$line_break$character";
-  right_format = "$go$nodejs$aws$direnv";
+  right_format = "$golang$nodejs$aws$direnv";
 
   add_newline = true;
 
