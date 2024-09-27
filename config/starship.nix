@@ -30,6 +30,8 @@
   git_commit.format = ''( [\($hash$tag\)]($style))'';
   git_state.format = " [\\($state( $progress_current/$progress_total)\\)]($style)";
 
+  cmd_duration.format = '' 󰔛 [$duration]($style) '';
+
   git_status = {
     ahead = "↑";
     behind = "↓";
