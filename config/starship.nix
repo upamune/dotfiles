@@ -1,6 +1,6 @@
 {
   command_timeout = 3000;
-  format = "$directory$hostname$nix_shell$git_branch$git_commit$git_state$git_status$cmd_duration$line_break$character";
+  format = "$directory$hostname$nix_shell$git_branch$git_commit$git_state$git_status $cmd_duration$line_break$character";
   right_format = "$go$nodejs$aws$direnv";
 
   add_newline = true;
@@ -30,7 +30,7 @@
   git_commit.format = ''( [\($hash$tag\)]($style))'';
   git_state.format = " [\\($state( $progress_current/$progress_total)\\)]($style)";
 
-  cmd_duration.format = '' 󰔛 [$duration]($style) '';
+  cmd_duration.format = ''󰔛 [$duration]($style) '';
 
   git_status = {
     ahead = "↑";
