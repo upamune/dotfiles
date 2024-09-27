@@ -95,7 +95,7 @@
     dotDir = ".config/zsh";
     syntaxHighlighting.enable = true;
     autosuggestion.enable = true;
-    initExtra = (builtins.readFile ./zshrc);
+    initExtra = builtins.readFile ./zshrc;
     envExtra = ''
       if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then
         . ~/.nix-profile/etc/profile.d/nix.sh
