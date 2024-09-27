@@ -55,4 +55,6 @@
   };
 
   nix_shell.format = "[󱄅]($style) ";
+
+  golang.symbol = " ";
 }
