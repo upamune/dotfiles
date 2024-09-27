@@ -1,7 +1,9 @@
 {
   command_timeout = 3000;
-  format = "$directory$hostname$nix_shell$character";
-  right_format = "$git_branch$git_commit$git_state$git_status";
+  format = "$directory$hostname$nix_shell$git_branch$git_commit$git_state$git_status$cmd_duration$line_break$character";
+  right_format = "$go$nodejs$aws$direnv";
+
+  add_newline = true;
 
   character = {
     success_symbol = "[󱙺](bold green)";
@@ -44,9 +46,6 @@
     format = " → [$symbol$branch(:$remote_branch)]($style)";
     symbol = "";
   };
-
-  battery.disabled = true;
-  line_break.disabled = true;
 
   directory = {
     read_only = "(ro)";

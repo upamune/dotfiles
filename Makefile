@@ -21,7 +21,7 @@ switch: ## 環境をアップデート
 
 .PHONY: fmt
 fmt: ## フォーマット
-	@nix run nixpkgs#nixfmt-rfc-style -- -c .
+	@nix run nixpkgs#nixfmt-rfc-style -- .
 
 .PHONY: test
 test: ## テスト
