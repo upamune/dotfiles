@@ -35,13 +35,6 @@
     launchanim = true;
   };
 
-  # システムの言語と地域の設定
-  system.defaults.NSGlobalDomain.AppleLanguages = [
-    "en-JP"
-    "ja-JP"
-  ];
-  system.defaults.NSGlobalDomain.AppleLocale = "en_JP";
-
   # キーボードの設定
   system.keyboard = {
     enableKeyMapping = true;
