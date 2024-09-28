@@ -27,6 +27,7 @@
   users.users.nixos = {
     isNormalUser = true;
     extraGroups = [ "wheel" ];
+    shell = pkgs.zsh;
   };
 
   environment.sessionVariables = rec {
