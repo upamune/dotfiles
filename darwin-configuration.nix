@@ -2,7 +2,7 @@
 { config, pkgs, ... }:
 
 {
-  imports = [ 
+  imports = [
     ./common-configuration.nix
   ];
 
@@ -36,7 +36,10 @@
   };
 
   # システムの言語と地域の設定
-  system.defaults.NSGlobalDomain.AppleLanguages = [ "en-JP" "ja-JP" ];
+  system.defaults.NSGlobalDomain.AppleLanguages = [
+    "en-JP"
+    "ja-JP"
+  ];
   system.defaults.NSGlobalDomain.AppleLocale = "en_JP";
 
   # キーボードの設定

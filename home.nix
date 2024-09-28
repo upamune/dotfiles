@@ -1,4 +1,9 @@
-{ pkgs, lib, username, ... }:
+{
+  pkgs,
+  lib,
+  username,
+  ...
+}:
 
 let
   isDarwin = pkgs.stdenv.isDarwin;
@@ -6,57 +11,60 @@ let
 in
 {
   home.username = username;
-  home.homeDirectory = if isDarwin
-    then lib.mkForce "/Users/${username}"
-    else lib.mkForce "/home/${username}";
+  home.homeDirectory =
+    if isDarwin then lib.mkForce "/Users/${username}" else lib.mkForce "/home/${username}";
   home.stateVersion = "24.05"; # Please read the comment before changing.
-  
+
   fonts.fontconfig.enable = true;
-  
-  home.packages = with pkgs; [
-    # Go
-    go
-    gopls
-    # Git
-    ghq
-    lazygit
-    tig
-    # Nix
-    cachix
-    devbox
-    # Python
-    uv
-    # CLI
-    _1password
-    asciinema
-    htop
-    jq
-    # Fonts
-    fontconfig
-    (nerdfonts.override { fonts = [ "FiraCode" ]; })
-  ] ++ lib.optionals isDarwin [
-    # macOS-specific packages
-    tailscale
-  ] ++ lib.optionals isLinux [
-    # Linux-specific packages
-    # Add any WSL-specific packages here
-  ];
+
+  home.packages =
+    with pkgs;
+    [
+      # Go
+      go
+      gopls
+      # Git
+      ghq
+      lazygit
+      tig
+      # Nix
+      cachix
+      devbox
+      # Python
+      uv
+      # CLI
+      _1password
+      asciinema
+      htop
+      jq
+      # Fonts
+      fontconfig
+      (nerdfonts.override { fonts = [ "FiraCode" ]; })
+    ]
+    ++ lib.optionals isDarwin [
+      # macOS-specific packages
+      tailscale
+    ]
+    ++ lib.optionals isLinux [
+      # Linux-specific packages
+      # Add any WSL-specific packages here
+    ];
 
   programs = {
     fzf.enable = true;
     eza.enable = true;
     bat.enable = true;
     direnv.enable = true;
-    
+
     neovim = {
       enable = true;
       withNodeJs = true;
       withPython3 = true;
       vimAlias = true;
     };
-    
+
     gh.enable = true;
-    
+
     git = {
       enable = true;
       userEmail = "info@serizawa.me";
@@ -76,12 +84,12 @@ in
         init.defaultBranch = "main";
       };
     };
-    
+
     starship = {
       enable = true;
       settings = import ./config/starship.nix;
     };
-    
+
     zsh = {
       enable = true;
       defaultKeymap = "emacs";
@@ -89,13 +97,17 @@ in
       syntaxHighlighting.enable = true;
       autosuggestion.enable = true;
       initExtra = builtins.readFile ./zshrc;
-      envExtra = if isLinux then ''
-        if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then
-          . ~/.nix-profile/etc/profile.d/nix.sh
-        fi
-      '' else "";
+      envExtra =
+        if isLinux then
+          ''
+            if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then
+              . ~/.nix-profile/etc/profile.d/nix.sh
+            fi
+          ''
+        else
+          "";
     };
-    
+
     zoxide.enable = true;
     bun.enable = true;
     fd.enable = true;

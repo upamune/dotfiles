@@ -9,6 +9,7 @@
     nixfmt-rfc-style
     lunarvim
     ripgrep
+    gnumake
   ];
 
   # zshの設定

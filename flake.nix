@@ -15,12 +15,24 @@
     };
   };
 
-  outputs = { self, nixpkgs, nix-darwin, home-manager, nixos-wsl }:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      nix-darwin,
+      home-manager,
+      nixos-wsl,
+    }:
     let
       username = builtins.getEnv "NIX_USER";
       hostname = builtins.getEnv "NIX_HOST";
 
-      mkDarwinSystem = { system, host, user }:
+      mkDarwinSystem =
+        {
+          system,
+          host,
+          user,
+        }:
         nix-darwin.lib.darwinSystem {
           inherit system;
           modules = [
@@ -32,7 +44,11 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.${user} =
-                { pkgs, lib, ... }: import ./home.nix { inherit pkgs lib; username = user; };
+                { pkgs, lib, ... }:
+                import ./home.nix {
+                  inherit pkgs lib;
+                  username = user;
+                };
             }
           ];
           specialArgs = {
@@ -41,7 +57,12 @@
           };
         };
 
-      mkNixosSystem = { system, host, user }:
+      mkNixosSystem =
+        {
+          system,
+          host,
+          user,
+        }:
         nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
@@ -59,7 +80,11 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.${user} =
-                { pkgs, lib, ... }: import ./home.nix { inherit pkgs lib; username = user; };
+                { pkgs, lib, ... }:
+                import ./home.nix {
+                  inherit pkgs lib;
+                  username = user;
+                };
             }
           ];
           specialArgs = {
