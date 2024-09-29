@@ -56,37 +56,46 @@
             inherit user;
           };
         };
-
       mkNixosSystem =
         {
           system,
           host,
           user,
+          wsl ? false,
         }:
         nixpkgs.lib.nixosSystem {
           inherit system;
-          modules = [
-            nixos-wsl.nixosModules.default
-            ./nixos-wsl-configuration.nix
-            home-manager.nixosModules.home-manager
-            {
-              networking.hostName = host;
-              wsl.defaultUser = user;
-              users.users.${user} = {
-                isNormalUser = true;
-                home = "/home/${user}";
-                extraGroups = [ "wheel" ];
-              };
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.${user} =
-                { pkgs, lib, ... }:
-                import ./home.nix {
-                  inherit pkgs lib;
-                  username = user;
+          modules =
+            [
+              (import ./nixos-configuration.nix)
+              home-manager.nixosModules.home-manager
+              {
+                networking.hostName = host;
+                users.users.${user} = {
+                  isNormalUser = true;
+                  home = "/home/${user}";
+                  extraGroups = [ "wheel" ];
                 };
-            }
-          ];
+                home-manager.useGlobalPkgs = true;
+                home-manager.useUserPackages = true;
+                home-manager.users.${user} =
+                  { pkgs, lib, ... }:
+                  import ./home.nix {
+                    inherit pkgs lib;
+                    username = user;
+                  };
+              }
+            ]
+            ++ (
+              if wsl then
+                [
+                  nixos-wsl.nixosModules.wsl
+                  (import ./nixos-wsl-configuration.nix)
+                ]
+              else
+                [ ]
+            );
+
           specialArgs = {
             inherit (nixpkgs) lib;
             inherit user;
@@ -101,10 +110,17 @@
         user = username;
       };
 
-      nixosConfigurations.nixos = mkNixosSystem {
+      nixosConfigurations.wsl = mkNixosSystem {
         system = "x86_64-linux";
         host = "nixos";
         user = "nixos";
+        wsl = true;
+      };
+
+      nixosConfigurations.nixos = mkNixosSystem {
+        system = "x86_64-linux";
+        host = "nixos";
+        user = "upamune";
       };
     };
 }

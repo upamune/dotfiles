@@ -28,7 +28,7 @@ switch: ## 環境をアップデート
 	@echo "NIX_USER: $${NIX_USER}"
 	@echo "NIX_HOST: $${NIX_HOST}"
 ifeq ($(PLATFORM),macos)
-	nix run nix-darwin -- switch --flake . --impure
+	nix run --experimental-features 'nix-command flakes' nix-darwin -- switch --flake . --impure
 	@echo "nix-darwin switch が完了しました。"
 	@read -p "darwin-rebuild も実行しますか？ (y/N): " answer; \
 	if [ "$$answer" = "y" ] || [ "$$answer" = "Y" ]; then \
@@ -37,8 +37,7 @@ ifeq ($(PLATFORM),macos)
 		echo "darwin-rebuild はスキップされました。"; \
 	fi
 else
-	#sudo -E nixos-rebuild switch --flake .#$${NIX_HOST} --impure
-	sudo nixos-rebuild switch --flake .#nixos
+	sudo nixos-rebuild --experimental-features 'nix-command flakes' switch --flake .#nixos
 endif
 
 .PHONY: fmt
