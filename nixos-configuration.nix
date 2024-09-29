@@ -11,6 +11,11 @@
     ./common-configuration.nix
   ];
 
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
+
   # システムパッケージ
   environment.systemPackages = with pkgs; [
     vim
