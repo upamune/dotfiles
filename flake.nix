@@ -118,7 +118,7 @@
       };
 
       nixosConfigurations.nixos = mkNixosSystem {
-        system = "x86_64-linux";
+        system = "aarch64-linux";
         host = "nixos";
         user = "upamune";
       };
