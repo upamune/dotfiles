@@ -1,51 +1,110 @@
 {
-  description = "Darwin system flake";
+  description = "Cross-platform system flake for Darwin and WSL NixOS";
+
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-24.05-darwin";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-wsl = {
+      url = "github:nix-community/NixOS-WSL";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
+
   outputs =
     {
       self,
       nixpkgs,
       nix-darwin,
       home-manager,
+      nixos-wsl,
     }:
     let
-      darwinUser = builtins.getEnv "DARWIN_USER";
-      darwinHost = builtins.getEnv "DARWIN_HOST";
+      username = builtins.getEnv "NIX_USER";
+      hostname = builtins.getEnv "NIX_HOST";
 
       mkDarwinSystem =
-        { hostname, username }:
+        {
+          system,
+          host,
+          user,
+        }:
         nix-darwin.lib.darwinSystem {
-          system = "aarch64-darwin";
+          inherit system;
           modules = [
-            ./configuration.nix
+            ./darwin-configuration.nix
             home-manager.darwinModules.home-manager
             {
-              networking.hostName = hostname;
-              users.users.${username}.home = "/Users/${username}";
+              networking.hostName = host;
+              users.users.${user}.home = "/Users/${user}";
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.${username} =
-                { pkgs, lib, ... }: import ./home.nix { inherit pkgs lib username; };
+              home-manager.users.${user} =
+                { pkgs, lib, ... }:
+                import ./home.nix {
+                  inherit pkgs lib;
+                  username = user;
+                };
             }
           ];
           specialArgs = {
             inherit (nixpkgs) lib;
-            inherit username;
+            inherit user;
           };
         };
+
+      mkNixosSystem =
+        {
+          system,
+          host,
+          user,
+        }:
+        nixpkgs.lib.nixosSystem {
+          inherit system;
+          modules = [
+            nixos-wsl.nixosModules.default
+            ./nixos-wsl-configuration.nix
+            home-manager.nixosModules.home-manager
+            {
+              networking.hostName = host;
+              wsl.defaultUser = user;
+              users.users.${user} = {
+                isNormalUser = true;
+                home = "/home/${user}";
+                extraGroups = [ "wheel" ];
+              };
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.${user} =
+                { pkgs, lib, ... }:
+                import ./home.nix {
+                  inherit pkgs lib;
+                  username = user;
+                };
+            }
+          ];
+          specialArgs = {
+            inherit (nixpkgs) lib;
+            inherit user;
+          };
+        };
+
     in
     {
-      darwinConfigurations.${darwinHost} = mkDarwinSystem {
-        hostname = darwinHost;
-        username = darwinUser;
+      darwinConfigurations.${hostname} = mkDarwinSystem {
+        system = "aarch64-darwin";
+        host = hostname;
+        user = username;
+      };
+
+      nixosConfigurations.nixos = mkNixosSystem {
+        system = "x86_64-linux";
+        host = "nixos";
+        user = "nixos";
       };
     };
 }
