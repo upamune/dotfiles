@@ -36,6 +36,7 @@ in
       asciinema
       htop
       jq
+      tldr
       # Fonts
       fontconfig
       (nerdfonts.override { fonts = [ "FiraCode" ]; })
@@ -59,7 +60,6 @@ in
       enable = true;
       withNodeJs = true;
       withPython3 = true;
-      vimAlias = true;
     };
 
     gh.enable = true;
@@ -110,6 +110,7 @@ in
     zoxide.enable = true;
     bun.enable = true;
     fd.enable = true;
+    atuin.enable = true;
   };
 
   home.sessionVariables = {
