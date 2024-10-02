@@ -48,6 +48,7 @@
     pkgs.asciinema
     pkgs.htop
     pkgs.jq
+    pkgs.tldr
 
     # Fonts
     pkgs.fontconfig
@@ -61,7 +62,6 @@
     enable = true;
     withNodeJs = true;
     withPython3 = true;
-    vimAlias = true;
   };
   programs.gh.enable = true;
   programs.git = {
@@ -102,6 +102,7 @@
       fi
     '';
   };
+  programs.atuin.enable = true;
   programs.zoxide.enable = true;
   programs.bun.enable = true;
   programs.fd.enable = true;
