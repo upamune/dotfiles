@@ -34,6 +34,7 @@ in
       # CLI
       _1password
       asciinema
+      google-cloud-sdk
       htop
       jq
       tldr
@@ -107,10 +108,11 @@ in
           "";
     };
 
-    zoxide.enable = true;
+    atuin.enable = true;
     bun.enable = true;
     fd.enable = true;
-    atuin.enable = true;
+    mise.enable = true;
+    zoxide.enable = true;
   };
 
   home.sessionVariables = {
