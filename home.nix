@@ -31,6 +31,9 @@ in
       devbox
       # Python
       uv
+      # Container
+      colima
+      docker-client
       # CLI
       _1password
       asciinema
