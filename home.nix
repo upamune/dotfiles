@@ -34,6 +34,7 @@ in
       # Container
       colima
       docker-client
+      lazydocker
       # CLI
       _1password
       asciinema
