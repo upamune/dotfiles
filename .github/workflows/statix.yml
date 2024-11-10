@@ -1,7 +1,6 @@
 name: "nix-config statix check"
 on:
   pull_request:
-  push:
 jobs:
   tests:
     runs-on: ubuntu-latest
