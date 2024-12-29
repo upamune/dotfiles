@@ -12,7 +12,7 @@ in
   home.username = username;
   home.homeDirectory =
     if isDarwin then lib.mkForce "/Users/${username}" else lib.mkForce "/home/${username}";
-  home.stateVersion = "24.05"; # Please read the comment before changing.
+  home.stateVersion = "24.05";
 
   fonts.fontconfig.enable = true;
 
@@ -26,6 +26,8 @@ in
       ghq
       lazygit
       tig
+      # jujutsu
+      jujutsu
       # Nix
       cachix
       devbox
@@ -44,7 +46,7 @@ in
       tldr
       # Fonts
       fontconfig
-      (nerdfonts.override { fonts = [ "FiraCode" ]; })
+      nerd-fonts.fira-code
     ]
     ++ lib.optionals isDarwin [
       # macOS-specific packages
