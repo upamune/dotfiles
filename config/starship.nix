@@ -6,12 +6,12 @@
   add_newline = true;
 
   character = {
-    success_symbol = "[󱙺](bold green)";
-    error_symbol = "[󱚢](bold red)";
-    vimcmd_symbol = "[󱙺](bold purple)";
-    vimcmd_replace_symbol = "[󱙺](bold green)";
-    vimcmd_replace_one_symbol = "[󱙺](bold green)";
-    vimcmd_visual_symbol = "[󱙺](bold yellow)";
+    success_symbol = "[YUKI.N>](bold green)";
+    error_symbol = "[YUKI.N>](bold red)";
+    vimcmd_symbol = "[YUKI.N>](bold purple)";
+    vimcmd_replace_symbol = "[YUKI.N>](bold green)";
+    vimcmd_replace_one_symbol = "[YUKI.N>](bold green)";
+    vimcmd_visual_symbol = "[YUKI.N>](bold yellow)";
   };
 
   username = {
