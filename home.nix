@@ -38,7 +38,7 @@ in
       docker-client
       lazydocker
       # CLI
-      _1password
+      _1password-cli
       asciinema
       google-cloud-sdk
       htop
