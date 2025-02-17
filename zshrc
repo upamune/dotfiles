@@ -210,4 +210,9 @@ exit() {
     fi
 }
 
+# aqua
+export PATH=${AQUA_ROOT_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua}/bin:$PATH
+export AQUA_GLOBAL_CONFIG="~/.config/aquaproj-aqua/aqua.yaml"
+export PATH="$(aqua root-dir)/bin:$PATH"
+
 # vim:set ft=zsh:
