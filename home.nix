@@ -58,7 +58,13 @@ in
     ];
 
   programs = {
-    fzf.enable = true;
+    fzf = {
+      enable = true;
+      enableZshIntegration = true;
+      defaultOptions = [
+        "--bind ctrl-n:down,ctrl-p:up"
+      ];
+    };
     eza.enable = true;
     bat.enable = true;
     direnv.enable = true;
