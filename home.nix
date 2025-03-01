@@ -36,6 +36,7 @@ in
       # Container
       colima
       docker-client
+      docker-compose
       lazydocker
       # CLI
       _1password-cli
