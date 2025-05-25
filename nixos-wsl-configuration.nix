@@ -37,6 +37,5 @@
     XDG_STATE_HOME = "$HOME/.local/state";
   };
 
-  # システムの状態バージョン。変更時は注意が必要です。
-  system.stateVersion = "24.05";
+  system.stateVersion = "25.05";
 }

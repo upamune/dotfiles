@@ -12,7 +12,7 @@ in
   home.username = username;
   home.homeDirectory =
     if isDarwin then lib.mkForce "/Users/${username}" else lib.mkForce "/home/${username}";
-  home.stateVersion = "24.05";
+  home.stateVersion = "25.05";
 
   fonts.fontconfig.enable = true;
 
@@ -38,6 +38,9 @@ in
       docker-client
       docker-compose
       lazydocker
+      # LLM
+      ollama
+      qdrant
       # CLI
       _1password-cli
       asciinema

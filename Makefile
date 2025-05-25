@@ -28,17 +28,25 @@ switch: ## 環境をアップデート
 	@echo "NIX_USER: $${NIX_USER}"
 	@echo "NIX_HOST: $${NIX_HOST}"
 ifeq ($(PLATFORM),macos)
-	nix run nix-darwin -- switch --flake . --impure
+	@echo "nix-darwin switch を実行中..."
+	sudo -E NIX_CONFIG="experimental-features = nix-command flakes" nix run nix-darwin -- switch --flake . --impure
 	@echo "nix-darwin switch が完了しました。"
-	@read -p "darwin-rebuild も実行しますか？ (y/N): " answer; \
-	if [ "$$answer" = "y" ] || [ "$$answer" = "Y" ]; then \
-		darwin-rebuild switch --flake . --impure; \
-	else \
-		echo "darwin-rebuild はスキップされました。"; \
-	fi
 else
-	#sudo -E nixos-rebuild switch --flake .#$${NIX_HOST} --impure
-	sudo nixos-rebuild switch --flake .#nixos
+	@echo "NixOS rebuild を実行中..."
+	sudo -E nixos-rebuild switch --flake .#nixos --impure
+	@echo "NixOS rebuild が完了しました。"
+endif
+
+.PHONY: darwin-rebuild
+darwin-rebuild: ## darwin-rebuild を直接使用してアップデート (macOS)
+	@echo "NIX_USER: $${NIX_USER}"
+	@echo "NIX_HOST: $${NIX_HOST}"
+ifeq ($(PLATFORM),macos)
+	@echo "darwin-rebuild switch を実行中..."
+	sudo -E NIX_CONFIG="experimental-features = nix-command flakes" darwin-rebuild switch --flake . --impure
+	@echo "darwin-rebuild switch が完了しました。"
+else
+	@echo "このコマンドはmacOSでのみ使用できます。"
 endif
 
 .PHONY: fmt
