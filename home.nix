@@ -19,9 +19,6 @@ in
   home.packages =
     with pkgs;
     [
-      # Go
-      go
-      gopls
       # Git
       ghq
       lazygit
