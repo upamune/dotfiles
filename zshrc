@@ -139,12 +139,55 @@ fi
 alias -g gpush='git push origin HEAD'
 alias -g gpull='git pull'
 alias -g gmaster='git checkout master'
+
+# ブランチのチェックアウトをiikanjiに行う関数
 gcheck() {
-    if git rev-parse --verify "$1" >/dev/null 2>&1; then
-        git checkout "$1"
-    else
-        git checkout -b "$1"
-    fi
+  # 引数が指定されていない場合は使い方を表示して終了
+  if [[ -z "$1" ]]; then
+    echo "Usage: gcheck <branch-name>" >&2
+    return 1
+  fi
+
+  local branch_name="$1"
+  local remote_branch="origin/$branch_name"
+
+  # 1. ローカルに同名のブランチが存在するかチェック
+  # git branch --list は、マッチするブランチがあればその名前を出力する
+  # -n で文字列が空でないことを確認
+  if [[ -n $(git branch --list "$branch_name") ]]; then
+    echo "Switching to existing local branch '$branch_name'."
+    git checkout "$branch_name"
+
+  # 2. リモート (origin) に同名のブランチが存在するかチェック
+  # git rev-parse でリモート追跡ブランチの参照が存在するか確認
+  elif git rev-parse --verify --quiet "$remote_branch" >/dev/null; then
+    echo "Creating new local branch '$branch_name' to track '$remote_branch'."
+    git checkout --track "$remote_branch"
+
+  # 3. ローカルにもリモートにも存在しない場合
+  else
+    echo "Creating new local branch '$branch_name'."
+    git checkout -b "$branch_name"
+  fi
+}
+
+# git rootディレクトリに移動する関数
+gr() {
+  # git rev-parse --show-toplevel でルートディレクトリのパスを取得
+  # 2>/dev/null は、Gitリポジトリでない場合にエラーメッセージを非表示にするためのおまじないです
+  local git_root
+  git_root=$(git rev-parse --show-toplevel 2>/dev/null)
+
+  # git rev-parse コマンドが成功したかチェック ($? は直前のコマンドの終了ステータス)
+  if [[ $? -eq 0 ]]; then
+    # 成功した場合、取得したパスにcdする
+    # パスにスペースが含まれる可能性を考慮し、""で囲むのが安全です
+    cd "$git_root"
+  else
+    # 失敗した場合（Gitリポジトリではない場合）、エラーメッセージを表示して終了
+    echo "cdg: not a git repository" >&2
+    return 1
+  fi
 }
 alias -g gs='git status'
 alias -g gc='git commit'
