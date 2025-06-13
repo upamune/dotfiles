@@ -262,4 +262,9 @@ export PATH="$(aqua root-dir)/bin:$PATH"
 export NPM_CONFIG_PREFIX="${XDG_DATA_HOME:-$HOME/.local/share}/npm-global"
 export PATH=$NPM_CONFIG_PREFIX/bin:$PATH
 
+# Load local configuration if exists
+if [[ -f "$HOME/.zshrc.local" ]]; then
+    source "$HOME/.zshrc.local"
+fi
+
 # vim:set ft=zsh:
