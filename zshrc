@@ -262,6 +262,63 @@ export PATH="$(aqua root-dir)/bin:$PATH"
 export NPM_CONFIG_PREFIX="${XDG_DATA_HOME:-$HOME/.local/share}/npm-global"
 export PATH=$NPM_CONFIG_PREFIX/bin:$PATH
 
+gca() {
+  # ステージされている変更内容を取得
+  local staged_diff
+  staged_diff=$(git diff --staged)
+
+  # ステージされている変更があるか確認
+  if [ -z "$staged_diff" ]; then
+    echo "ステージされている変更がありません。"
+    return 1
+  fi
+
+  # Claudeに渡すプロンプト (ユーザーの元のプロンプトを日本語化・調整)
+  local prompt="ステージされたgitの差分を要約したコミットタイトルを作成してください。タイトルのみを返信し、肯定の言葉やその他の説明は不要です。"
+
+  # Claudeを使ってコミットメッセージを生成
+  local commit_message
+  commit_message=$(echo "$staged_diff" | claude -p "$prompt")
+
+  # メッセージが正常に生成されたか確認
+  if [ -z "$commit_message" ]; then
+    echo "エラー: Claudeからのコミットメッセージ生成に失敗しました。"
+    return 1
+  fi
+
+  # 生成されたメッセージでgit commitを実行
+  git commit -m "$commit_message"
+  
+  # 実行したコマンドを表示（確認用）
+  echo "Executed: git commit -m \"$commit_message\""
+}
+
+yo() {
+  local model_flag=""
+  if [ -n "$CLAUDE_CODE_MODEL" ]; then
+    model_flag="--model $CLAUDE_CODE_MODEL"
+  fi
+  
+  # $OBSIDIAN_VAULT_DIRが設定されている場合のみ--add-dirを使用
+  local add_dir_flag=""
+  if [ -n "$OBSIDIAN_VAULT_DIR" ]; then
+    add_dir_flag="--add-dir=$OBSIDIAN_VAULT_DIR"
+  fi
+  
+  local cmd="claude --dangerously-skip-permissions $add_dir_flag $model_flag $@"
+  echo "$cmd"
+  eval "$cmd"
+}
+
+oo() {
+  # $OBSIDIAN_VAULT_DIRが設定されていない場合はエラーを出す
+  if [ -z "$OBSIDIAN_VAULT_DIR" ]; then
+    echo "エラー: OBSIDIAN_VAULT_DIR環境変数が設定されていません。"
+    return 1
+  fi
+  cd "$OBSIDIAN_VAULT_DIR"
+}
+
 # Load local configuration if exists
 if [[ -f "$HOME/.zshrc.local" ]]; then
     source "$HOME/.zshrc.local"
