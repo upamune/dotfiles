@@ -1,0 +1,11 @@
+pre-commit:
+  parallel: true
+  commands:
+    secretlint:
+      run: secretlint "**/*"
+
+pre-push:
+  parallel: true
+  commands:
+    secretlint:
+      run: secretlint "**/*"
