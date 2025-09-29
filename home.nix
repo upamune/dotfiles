@@ -1,7 +1,9 @@
 {
+  config,
   pkgs,
   lib,
   username,
+  dotfilesPath,
   ...
 }:
 
@@ -20,31 +22,16 @@ in
     with pkgs;
     [
       # Git
-      ghq
-      lazygit
       tig
-      # jujutsu
-      jujutsu
       # Nix
       cachix
       devbox
-      # Python
-      uv
       # Container
       colima
       docker-client
       docker-compose
-      lazydocker
-      # LLM
-      ollama
-      qdrant
       # CLI
-      _1password-cli
-      asciinema
       google-cloud-sdk
-      htop
-      jq
-      tldr
       # Fonts
       fontconfig
       nerd-fonts.fira-code
@@ -75,8 +62,6 @@ in
       withNodeJs = true;
       withPython3 = true;
     };
-
-    gh.enable = true;
 
     git = {
       enable = true;
@@ -121,10 +106,14 @@ in
           "";
     };
 
+    mise = {
+      enable = true;
+      enableZshIntegration = true;
+    };
+
     atuin.enable = true;
     bun.enable = true;
     fd.enable = true;
-    mise.enable = true;
     zoxide.enable = true;
   };
 

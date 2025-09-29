@@ -1,0 +1,20 @@
+[tools]
+1password-cli = "latest"
+"aqua:goreleaser/goreleaser" = "latest"
+"aqua:suzuki-shunsuke/pinact" = "latest"
+gh = "latest"
+ghq = "latest"
+jq = "latest"
+lazydocker = "latest"
+node = "latest"
+"npm:@ast-grep/cli" = "latest"
+"npm:@augmentcode/auggie" = "latest"
+"npm:@charmland/crush" = "latest"
+"npm:@github/copilot" = "latest"
+"npm:@openai/codex" = "latest"
+rust = "latest"
+
+[settings]
+experimental = true
+idiomatic_version_file_enable_tools = ["python"]
+

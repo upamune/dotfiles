@@ -44,10 +44,11 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.${user} =
-                { pkgs, lib, ... }:
+                { config, pkgs, lib, ... }:
                 import ./home.nix {
-                  inherit pkgs lib;
+                  inherit config pkgs lib;
                   username = user;
+                  dotfilesPath = toString ./.;
                 };
             }
           ];
@@ -80,10 +81,11 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.${user} =
-                { pkgs, lib, ... }:
+                { config, pkgs, lib, ... }:
                 import ./home.nix {
-                  inherit pkgs lib;
+                  inherit config pkgs lib;
                   username = user;
+                  dotfilesPath = toString ./.;
                 };
             }
           ];

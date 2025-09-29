@@ -36,6 +36,7 @@ else
 	sudo -E nixos-rebuild switch --flake .#nixos --impure
 	@echo "NixOS rebuild が完了しました。"
 endif
+	@$(MAKE) link-config
 
 .PHONY: darwin-rebuild
 darwin-rebuild: ## darwin-rebuild を直接使用してアップデート (macOS)
@@ -71,3 +72,10 @@ info: ## システム情報を表示
 	@echo "User: $${NIX_USER}"
 	@echo "Host: $${NIX_HOST}"
 	@nix-shell -p nix-info --run "nix-info -m"
+
+.PHONY: link-config
+link-config: ## 設定ファイルのsymlinkを作成
+	@echo "設定ファイルのsymlinkを作成中..."
+	@mkdir -p ~/.config/mise
+	@ln -sf $(PWD)/_mise.toml ~/.config/mise/config.toml
+	@echo "mise設定のsymlinkを作成しました: ~/.config/mise/config.toml -> $(PWD)/_mise.toml"
