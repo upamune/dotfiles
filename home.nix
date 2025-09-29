@@ -106,13 +106,8 @@ in
           "";
     };
 
-    mise = {
-      enable = true;
-      enableZshIntegration = true;
-    };
 
     atuin.enable = true;
-    bun.enable = true;
     fd.enable = true;
     zoxide.enable = true;
   };

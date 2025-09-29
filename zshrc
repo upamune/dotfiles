@@ -262,6 +262,20 @@ export PATH="$(aqua root-dir)/bin:$PATH"
 export NPM_CONFIG_PREFIX="${XDG_DATA_HOME:-$HOME/.local/share}/npm-global"
 export PATH=$NPM_CONFIG_PREFIX/bin:$PATH
 
+# mise
+# miseがインストールされていない場合、setup-mise.shを実行
+if [[ ! -f "$HOME/.local/bin/mise" ]]; then
+  if [[ -f "./setup-mise.sh" ]]; then
+    echo "mise not found. Running ./setup-mise.sh..."
+    ./setup-mise.sh
+  fi
+fi
+
+# miseが利用可能な場合はactivate
+if [[ -f "$HOME/.local/bin/mise" ]]; then
+  eval "$("$HOME/.local/bin/mise" activate zsh)"
+fi
+
 gca() {
   # ステージされている変更内容を取得
   local staged_diff

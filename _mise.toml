@@ -12,7 +12,6 @@ node = "latest"
 "npm:@charmland/crush" = "latest"
 "npm:@github/copilot" = "latest"
 "npm:@openai/codex" = "latest"
-rust = "latest"
 
 [settings]
 experimental = true
