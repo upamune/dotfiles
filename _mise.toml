@@ -16,4 +16,5 @@ rust = "latest"
 
 [settings]
 experimental = true
+lockfile = true
 
