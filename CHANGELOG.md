@@ -1,5 +1,8 @@
 # Changelog
 
+## [v0.0.2](https://github.com/upamune/dotfiles/compare/v0.0.1...v0.0.2) - 2025-11-24
+- chore(aqua): add config for aqua by @upamune in https://github.com/upamune/dotfiles/pull/21
+
 ## [v0.0.1](https://github.com/upamune/dotfiles/commits/v0.0.1) - 2025-01-19
 - support NixOS on WSL2 by @upamune in https://github.com/upamune/dotfiles/pull/12
 - [pkg] tldr, atuin by @upamune in https://github.com/upamune/dotfiles/pull/13
