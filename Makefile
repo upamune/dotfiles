@@ -79,3 +79,28 @@ link-config: ## 設定ファイルのsymlinkを作成
 	@mkdir -p ~/.config/mise
 	@ln -sf $(PWD)/_mise.toml ~/.config/mise/config.toml
 	@echo "mise設定のsymlinkを作成しました: ~/.config/mise/config.toml -> $(PWD)/_mise.toml"
+	@ln -sf $(PWD)/config/starship.toml ~/.config/starship.toml
+	@echo "starship設定のsymlinkを作成しました: ~/.config/starship.toml -> $(PWD)/config/starship.toml"
+	@mkdir -p ~/.config/bash
+	@ln -sf $(PWD)/bashrc ~/.config/bash/dotfiles.bash
+	@touch ~/.bashrc
+	@if ! grep -Fq "source ~/.config/bash/dotfiles.bash" ~/.bashrc; then \
+		printf '\n# dotfiles\nsource ~/.config/bash/dotfiles.bash\n' >> ~/.bashrc; \
+		echo "~/.bashrc に dotfiles の設定を追加しました。"; \
+	else \
+		echo "~/.bashrc は既に dotfiles の設定を読み込んでいます。"; \
+	fi
+	@echo "設定ファイルのsymlinkの作成が完了しました。"
+
+.PHONY: bootstrap
+bootstrap: ## Nix を使わないホスト向けの初期設定 (mise + 各種config)
+	@if [ ! -x "$$HOME/.local/bin/mise" ]; then \
+		echo "mise が見つかりません。setup-mise.sh を実行します..."; \
+		./setup-mise.sh; \
+	else \
+		echo "mise は既にインストールされています: $$HOME/.local/bin/mise"; \
+	fi
+	@$(MAKE) link-config
+
+.PHONY: omarchy
+omarchy: bootstrap ## omarchy 用セットアップ (bash)

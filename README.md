@@ -14,3 +14,12 @@ $ source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
 $ make switch
 ```
 
+## omarchy (bash / non-Nix)
+
+```
+$ make omarchy
+```
+
+- `mise` が未インストールの場合は自動でセットアップします
+- `_mise.toml`、`bashrc`、`config/starship.toml` をホームディレクトリへsymlinkします
+- `~/.bashrc` に symlink 経由で dotfiles を読み込むよう追記します
