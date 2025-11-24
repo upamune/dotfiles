@@ -8,14 +8,17 @@ HISTCONTROL=ignoredups:ignorespace
 # resolve dotfiles directory, even when sourced via symlink
 _dotfiles_source="${BASH_SOURCE[0]}"
 while [ -L "$_dotfiles_source" ]; do
-  _dir="$(cd -P "$(dirname "$_dotfiles_source")" && pwd)"
+  _dir="$(builtin cd -P "$(dirname "$_dotfiles_source")" && pwd)"
   _dotfiles_source="$(readlink "$_dotfiles_source")"
   case "$_dotfiles_source" in
     /*) ;;
     *) _dotfiles_source="$_dir/$_dotfiles_source" ;;
   esac
 done
-export DOTFILES_DIR="${DOTFILES_DIR:-$(cd -P "$(dirname "$_dotfiles_source")" && pwd)}"
+if [ -z "${DOTFILES_DIR-}" ] || [ ! -d "$DOTFILES_DIR" ]; then
+  DOTFILES_DIR="$(builtin cd -P "$(dirname "$_dotfiles_source")" && pwd)"
+fi
+export DOTFILES_DIR
 unset _dotfiles_source _dir
 
 # history file
