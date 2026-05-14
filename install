@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+case "$(uname -s)" in
+  Linux) ;;
+  *)
+    echo "Unsupported OS: $(uname -s)" >&2
+    exit 1
+    ;;
+esac
+
+case "$(uname -m)" in
+  x86_64 | amd64 | aarch64 | arm64) ;;
+  *)
+    echo "Unsupported architecture: $(uname -m)" >&2
+    exit 1
+    ;;
+esac
+
+url="https://raw.githubusercontent.com/upamune/summon/main/summon.sh"
+
+if command -v curl >/dev/null 2>&1; then
+  curl -fsSL "${url}" | sh
+elif command -v wget >/dev/null 2>&1; then
+  wget -qO- "${url}" | sh
+else
+  echo "curl or wget is required" >&2
+  exit 1
+fi
