@@ -1,19 +1,16 @@
-# darwin-configuration.nix
-{ config, pkgs, ... }:
+# macOS (nix-darwin) のシステム設定
+{ user, ... }:
 
 {
   imports = [
-    ./common-configuration.nix
+    ../modules/common.nix
   ];
 
-  # Nixデーモンの自動アップグレードを有効化
-  services.nix-daemon.enable = true;
-  nix.package = pkgs.nix;
+  # Determinate Nix を使うので nix-darwin の Nix 管理は無効化する
+  nix.enable = false;
 
-  # システムにインストールするパッケージ
-  environment.systemPackages = with pkgs; [
-    # macOS特有のパッケージをここに追加
-  ];
+  # nix-darwin のシステム設定を適用するプライマリユーザー
+  system.primaryUser = user;
 
   # Finder設定
   system.defaults.finder = {

@@ -1,4 +1,4 @@
-# common-configuration.nix
+# すべてのマシンで共有するシステム設定
 { pkgs, ... }:
 {
   # システムにインストールするパッケージ
@@ -6,8 +6,7 @@
     vim
     git
     zsh
-    nixfmt-rfc-style
-    lunarvim
+    nixfmt
     ripgrep
     gnumake
   ];

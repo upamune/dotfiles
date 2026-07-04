@@ -1,14 +1,5 @@
-# 色を使用出来るようにする
-autoload -Uz colors
-colors
-
-# emacs 風キーバインドにする
-bindkey -e
-
-# ヒストリの設定
-HISTFILE=$HOME/zsh_history
-HISTSIZE=1000
-SAVEHIST=1000
+# home-manager の initContent として読み込まれる zsh 設定。
+# キーマップ・履歴・補完の初期化 (compinit) は home-manager 側 (zsh.nix) で行う。
 
 # 単語の区切り文字を指定する
 autoload -Uz select-word-style
@@ -20,9 +11,6 @@ zstyle ':zle:*' word-style unspecified
 
 ########################################
 # 補完
-# 補完機能を有効にする
-autoload -Uz compinit
-compinit
 
 # Shift + TABで補完を逆に辿れるようにする
 zmodload zsh/complist
@@ -56,15 +44,15 @@ zstyle ':completion:*' verbose yes
 zstyle ':completion:*' completer _expand _complete _match _prefix _approximate _list _history
 zstyle ':completion:*:messages' format '%F{YELLOW}%d'$DEFAULT
 zstyle ':completion:*:warnings' format '%F{RED}No matches for:''%F{YELLOW} %d'$DEFAULT
-zstyle ':completion:*:descriptions' format '%F{YELLOW}completing %B%d%b'$DEFAULT
-zstyle ':completion:*:options' description 'yes'
 zstyle ':completion:*:descriptions' format '%F{yellow}Completing %B%d%b%f'$DEFAULT
+zstyle ':completion:*:options' description 'yes'
 
 # マッチ種別を別々に表示
 zstyle ':completion:*' group-name ''
 
 ########################################
-# オプション
+# オプション (履歴まわりは home-manager 側で設定)
+
 # 日本語ファイル名を表示可能にする
 setopt print_eight_bit
 
@@ -89,15 +77,6 @@ setopt auto_pushd
 # 重複したディレクトリを追加しない
 setopt pushd_ignore_dups
 
-# 同時に起動したzshの間でヒストリを共有する
-setopt share_history
-
-# 同じコマンドをヒストリに残さない
-setopt hist_ignore_all_dups
-
-# スペースから始まるコマンド行はヒストリに残さない
-setopt hist_ignore_space
-
 # ヒストリに保存するときに余分なスペースを削除する
 setopt hist_reduce_blanks
 
@@ -106,9 +85,6 @@ setopt extended_glob
 
 ########################################
 # エイリアス
-
-alias la='ls -a'
-alias ll='ls -l'
 
 alias rm='rm -i'
 alias cp='cp -i'
@@ -119,26 +95,62 @@ alias mkdir='mkdir -p'
 # sudo の後のコマンドでエイリアスを有効にする
 alias sudo='sudo '
 
-# グローバルエイリアス
-alias -g L='| less'
-alias -g G='| grep'
-alias -g zshrc="$EDITOR $HOME/.zshrc"
-if [[ $(command -v eza) ]]; then
-  alias -g e='eza --icons'
-  alias -g l='e'
-  alias -g ls='e'
-  alias -g ea='eza -a --icons'
-  alias -g la=ea
+# OS 別の設定
+case ${OSTYPE} in
+    darwin*)
+        # Mac用の設定
+        export CLICOLOR=1
+        alias ls='ls -G -F'
+        ;;
+    linux*)
+        # Linux用の設定
+        alias ls='ls -F --color=auto'
+        ;;
+esac
+
+# eza / bat があれば置き換える
+if command -v eza >/dev/null 2>&1; then
+  alias e='eza --icons'
+  alias l='eza --icons'
+  alias ls='eza --icons'
+  alias ea='eza -a --icons'
+  alias la='eza -a --icons'
+  alias ll='eza -l --icons'
+else
+  alias la='ls -a'
+  alias ll='ls -l'
 fi
 
-if [[ $(command -v bat) ]]; then
-  alias -g cat='bat'
+if command -v bat >/dev/null 2>&1; then
+  alias cat='bat'
+fi
+
+# グローバルエイリアス (パイプ用)
+alias -g L='| less'
+alias -g G='| grep'
+
+# C で標準出力をクリップボードにコピーする
+# mollifier delta blog : http://mollifier.hatenablog.com/entry/20100317/p1
+if command -v pbcopy >/dev/null 2>&1 ; then
+    # Mac
+    alias -g C='| pbcopy'
+elif command -v xsel >/dev/null 2>&1 ; then
+    # Linux
+    alias -g C='| xsel --input --clipboard'
+elif command -v putclip >/dev/null 2>&1 ; then
+    # Cygwin
+    alias -g C='| putclip'
 fi
 
 # git
-alias -g gpush='git push origin HEAD'
-alias -g gpull='git pull'
-alias -g gmaster='git checkout master'
+alias gs='git status'
+alias gc='git commit'
+alias gpush='git push origin HEAD'
+alias gpull='git pull'
+alias gmaster='git checkout master'
+
+########################################
+# 関数
 
 # ブランチのチェックアウトをiikanjiに行う関数
 gcheck() {
@@ -152,14 +164,11 @@ gcheck() {
   local remote_branch="origin/$branch_name"
 
   # 1. ローカルに同名のブランチが存在するかチェック
-  # git branch --list は、マッチするブランチがあればその名前を出力する
-  # -n で文字列が空でないことを確認
   if [[ -n $(git branch --list "$branch_name") ]]; then
     echo "Switching to existing local branch '$branch_name'."
     git checkout "$branch_name"
 
   # 2. リモート (origin) に同名のブランチが存在するかチェック
-  # git rev-parse でリモート追跡ブランチの参照が存在するか確認
   elif git rev-parse --verify --quiet "$remote_branch" >/dev/null; then
     echo "Creating new local branch '$branch_name' to track '$remote_branch'."
     git checkout --track "$remote_branch"
@@ -173,57 +182,18 @@ gcheck() {
 
 # git rootディレクトリに移動する関数
 gr() {
-  # git rev-parse --show-toplevel でルートディレクトリのパスを取得
-  # 2>/dev/null は、Gitリポジトリでない場合にエラーメッセージを非表示にするためのおまじないです
   local git_root
   git_root=$(git rev-parse --show-toplevel 2>/dev/null)
 
-  # git rev-parse コマンドが成功したかチェック ($? は直前のコマンドの終了ステータス)
   if [[ $? -eq 0 ]]; then
-    # 成功した場合、取得したパスにcdする
-    # パスにスペースが含まれる可能性を考慮し、""で囲むのが安全です
     cd "$git_root"
   else
-    # 失敗した場合（Gitリポジトリではない場合）、エラーメッセージを表示して終了
-    echo "cdg: not a git repository" >&2
+    echo "gr: not a git repository" >&2
     return 1
   fi
 }
-alias -g gs='git status'
-alias -g gc='git commit'
 
-# C で標準出力をクリップボードにコピーする
-# mollifier delta blog : http://mollifier.hatenablog.com/entry/20100317/p1
-if which pbcopy >/dev/null 2>&1 ; then
-    # Mac
-    alias -g C='| pbcopy'
-elif which xsel >/dev/null 2>&1 ; then
-    # Linux
-    alias -g C='| xsel --input --clipboard'
-elif which putclip >/dev/null 2>&1 ; then
-    # Cygwin
-    alias -g C='| putclip'
-fi
-
-########################################
-# OS 別の設定
-case ${OSTYPE} in
-    darwin*)
-        #Mac用の設定
-        export CLICOLOR=1
-        alias ls='ls -G -F'
-
-        # For nix-darwin
-        export DARWIN_USER=$(whoami)
-        export DARWIN_HOST=$(hostname -s)
-        ;;
-    linux*)
-        #Linux用の設定
-        alias ls='ls -F --color=auto'
-        ;;
-esac
-
-# Functions
+# ghq で管理しているリポジトリに fzf で移動する
 function fzf-ghq() {
   local loc="$(ghq list | fzf --cycle)"
   if [[ -n $loc ]]; then
@@ -244,7 +214,7 @@ exit() {
     fi
 
     panes=$(tmux list-panes | wc -l)
-    wins=$(tmux list-windows | wc -l) 
+    wins=$(tmux list-windows | wc -l)
     count=$(($panes + $wins - 1))
     if [ $count -eq 1 ]; then
         tmux detach
@@ -253,16 +223,21 @@ exit() {
     fi
 }
 
+########################################
+# PATH まわり
+
 # aqua
 export PATH=${AQUA_ROOT_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua}/bin:$PATH
 export AQUA_GLOBAL_CONFIG=${AQUA_GLOBAL_CONFIG:-}:${XDG_CONFIG_HOME:-$HOME/.config}/aquaproj-aqua/aqua.yaml
-export PATH="$(aqua root-dir)/bin:$PATH"
+if command -v aqua >/dev/null 2>&1; then
+  export PATH="$(aqua root-dir)/bin:$PATH"
+fi
 
 # aqua with Node.js
 export NPM_CONFIG_PREFIX="${XDG_DATA_HOME:-$HOME/.local/share}/npm-global"
 export PATH=$NPM_CONFIG_PREFIX/bin:$PATH
 
-# Load local configuration if exists
+# マシン固有・非公開の設定は ~/.zshrc.local に置く
 if [[ -f "$HOME/.zshrc.local" ]]; then
     source "$HOME/.zshrc.local"
 fi

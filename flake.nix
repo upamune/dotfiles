@@ -13,98 +13,35 @@
       url = "github:nix-community/NixOS-WSL";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # overlays/colima.nix で使う pin 用の nixpkgs
+    nixpkgs-colima.url = "github:NixOS/nixpkgs/nixos-24.11";
   };
 
   outputs =
-    {
-      self,
-      nixpkgs,
-      nix-darwin,
-      home-manager,
-      nixos-wsl,
-    }:
+    { nixpkgs, ... }@inputs:
     let
+      # ユーザー名とホスト名は環境変数から読む (Makefile が設定する)。
+      # そのため rebuild には --impure が必要。
       username = builtins.getEnv "NIX_USER";
       hostname = builtins.getEnv "NIX_HOST";
 
-      mkDarwinSystem =
-        {
-          system,
-          host,
-          user,
-        }:
-        nix-darwin.lib.darwinSystem {
-          inherit system;
-          modules = [
-            ./darwin-configuration.nix
-            home-manager.darwinModules.home-manager
-            {
-              networking.hostName = host;
-              users.users.${user}.home = "/Users/${user}";
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.${user} =
-                { pkgs, lib, ... }:
-                import ./home.nix {
-                  inherit pkgs lib;
-                  username = user;
-                };
-            }
-          ];
-          specialArgs = {
-            inherit (nixpkgs) lib;
-            inherit user;
-          };
-        };
-
-      mkNixosSystem =
-        {
-          system,
-          host,
-          user,
-        }:
-        nixpkgs.lib.nixosSystem {
-          inherit system;
-          modules = [
-            nixos-wsl.nixosModules.default
-            ./nixos-wsl-configuration.nix
-            home-manager.nixosModules.home-manager
-            {
-              networking.hostName = host;
-              wsl.defaultUser = user;
-              users.users.${user} = {
-                isNormalUser = true;
-                home = "/home/${user}";
-                extraGroups = [ "wheel" ];
-              };
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.${user} =
-                { pkgs, lib, ... }:
-                import ./home.nix {
-                  inherit pkgs lib;
-                  username = user;
-                };
-            }
-          ];
-          specialArgs = {
-            inherit (nixpkgs) lib;
-            inherit user;
-          };
-        };
-
+      mkSystem = import ./lib/mksystem.nix { inherit nixpkgs inputs; };
     in
     {
-      darwinConfigurations.${hostname} = mkDarwinSystem {
+      darwinConfigurations.${hostname} = mkSystem {
+        machine = "darwin";
         system = "aarch64-darwin";
-        host = hostname;
         user = username;
+        host = hostname;
+        darwin = true;
       };
 
-      nixosConfigurations.nixos = mkNixosSystem {
+      nixosConfigurations.nixos = mkSystem {
+        machine = "wsl";
         system = "x86_64-linux";
-        host = "nixos";
         user = "nixos";
+        host = "nixos";
+        wsl = true;
       };
     };
 }
