@@ -7,6 +7,8 @@
       defaultOptions = [
         "--bind ctrl-n:down,ctrl-p:up"
       ];
+      # Ctrl-R は atuin に譲る
+      historyWidget.command = "";
     };
     eza.enable = true;
     bat.enable = true;
