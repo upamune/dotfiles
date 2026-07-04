@@ -23,6 +23,15 @@ help: ## ヘルプを表示
 lint: ## linter を実行
 	@nix run nixpkgs#statix -- check ./
 
+.PHONY: hooks
+hooks: ## git hooks (gitleaks による pre-commit スキャン) を有効化
+	@git config core.hooksPath .githooks
+	@echo "core.hooksPath を .githooks に設定しました。"
+
+.PHONY: secrets
+secrets: ## gitleaks で全履歴の機微情報をスキャン
+	@nix run nixpkgs#gitleaks -- git --redact .
+
 .PHONY: switch
 switch: ## 環境をアップデート
 	@echo "NIX_USER: $${NIX_USER}"

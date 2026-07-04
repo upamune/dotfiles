@@ -30,6 +30,7 @@ in
       # CLI
       _1password-cli
       asciinema
+      gitleaks
       google-cloud-sdk
       htop
       jq

@@ -1,0 +1,10 @@
+#!/bin/sh
+# コミット前にステージ済みの変更へ機微情報 (API キー等) が混入していないか検査する
+set -e
+
+if command -v gitleaks >/dev/null 2>&1; then
+  exec gitleaks git --pre-commit --staged --redact
+else
+  echo "gitleaks が見つからないため nix run で実行します..." >&2
+  exec nix run nixpkgs#gitleaks -- git --pre-commit --staged --redact
+fi

@@ -51,6 +51,12 @@ source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
 make switch
 ```
 
+3. git hooks の有効化 (gitleaks によるコミット前の機微情報スキャン)
+
+```zsh
+make hooks
+```
+
 ## コマンド
 
 | コマンド | 説明 |
@@ -61,5 +67,7 @@ make switch
 | `make lint` | statix による lint |
 | `make fmt` | nixfmt-rfc-style でフォーマット |
 | `make test` | `nix flake check` |
+| `make hooks` | git hooks (gitleaks pre-commit) を有効化 |
+| `make secrets` | gitleaks で全履歴の機微情報をスキャン |
 | `make clean` | Nix のガベージコレクション |
 | `make info` | システム情報を表示 |
